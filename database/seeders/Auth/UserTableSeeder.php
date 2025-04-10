@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
                 'id' => 1,
                 'username' => '100001',
                 'name' => 'Super Admin',
-                'email' => 'super@admin.com',
+                'email' => 'super@phpteacher.com',
                 'password' => Hash::make('secret'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
                 'id' => 2,
                 'username' => '100002',
                 'name' => 'Admin Istrator',
-                'email' => 'admin@admin.com',
+                'email' => 'admin@phpteacher.com',
                 'password' => Hash::make('secret'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -47,7 +47,7 @@ class UserTableSeeder extends Seeder
                 'id' => 3,
                 'username' => '100003',
                 'name' => 'Manager User',
-                'email' => 'manager@manager.com',
+                'email' => 'manager@phpteacher.com',
                 'password' => Hash::make('secret'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -57,7 +57,7 @@ class UserTableSeeder extends Seeder
                 'id' => 4,
                 'username' => '100004',
                 'name' => 'Executive User',
-                'email' => 'executive@executive.com',
+                'email' => 'executive@phpteacher.com',
                 'password' => Hash::make('secret'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -67,7 +67,7 @@ class UserTableSeeder extends Seeder
                 'id' => 5,
                 'username' => '100005',
                 'name' => 'General User',
-                'email' => 'user@user.com',
+                'email' => 'user@phpteacher.com',
                 'password' => Hash::make('secret'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -75,7 +75,8 @@ class UserTableSeeder extends Seeder
             ],
         ];
 
-        foreach ($users as $user_data) {
+        foreach ($users as $user_data)
+        {
             $user = User::create($user_data);
 
             event(new UserCreated($user));

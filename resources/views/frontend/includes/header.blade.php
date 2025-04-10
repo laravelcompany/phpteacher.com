@@ -1,7 +1,13 @@
 <nav class="border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900">
     <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/">
-            <img class="h-9" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
+            <img class="h-9" src="{{ asset("logo.svg") }}" alt="{{ app_name() }} Logo" />
+            <span class="self-center whitespace-nowrap text-2xl font-semibold text-gray-900 dark:text-white">
+                {{ app_name() }}
+                @if (env('APP_ENV') === 'local')
+                    <span class="text-gray-500"> (local)</span>
+                @endif
+            </span>
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
             {{-- <button
@@ -348,9 +354,6 @@
                     :active="request()->routeIs('frontend.tags.*')"
                 >
                     {{ __("Tags") }}
-                </x-frontend.nav-item>
-                <x-frontend.nav-item href="https://nasirkhn.com" target="_blank">
-                    {{ __("Contact") }}
                 </x-frontend.nav-item>
             </ul>
         </div>

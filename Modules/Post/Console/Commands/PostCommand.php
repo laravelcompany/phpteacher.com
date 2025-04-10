@@ -11,14 +11,14 @@ class PostCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'post:command';
+    protected $signature = 'post:import';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Post Command description';
+    protected $description = 'Import posts from the old website';
 
     /**
      * Execute the console command.

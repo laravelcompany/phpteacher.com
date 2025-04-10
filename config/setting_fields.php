@@ -238,7 +238,6 @@ return [
         'title' => 'Custom Code',
         'desc' => 'Custom code area',
         'icon' => 'fa-solid fa-file-code',
-
         'elements' => [
             [
                 'type' => 'textarea', // input fields type

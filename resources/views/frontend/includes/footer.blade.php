@@ -1,7 +1,7 @@
 <footer class="bg-gray-100 p-4 dark:bg-gray-800 sm:p-20">
     <div class="mx-auto max-w-screen-xl text-center">
         <a class="flex items-center justify-center text-2xl font-semibold text-gray-900 dark:text-white" href="/">
-            <img class="h-10" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
+            <img class="h-10" src="{{ asset("logo.svg") }}" alt="{{ app_name() }} Logo" />
         </a>
         <p class="mx-auto my-6 text-gray-500 dark:text-gray-400 sm:w-1/2">
             {!! setting("meta_description") !!}

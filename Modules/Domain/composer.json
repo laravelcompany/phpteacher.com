@@ -1,0 +1,24 @@
+{
+    "name": "phpteacher/domain",
+    "description": "",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "Stefan Bogdanel",
+            "email": "stefan@izdrail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Domain\\": ""
+        }
+    }
+}
