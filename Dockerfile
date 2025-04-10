@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install zip pdo_mysql pcntl sockets && \
-    docker-php-ext-enable zip pcntl sockets
+RUN docker-php-ext-install exif zip pdo_mysql pcntl sockets && \
+    docker-php-ext-enable exif zip pcntl sockets
 
 # Install Redis PHP extension
 RUN pecl install redis && \
@@ -36,7 +36,7 @@ COPY . .
 # Install PHP dependencies with verbose output
 RUN cd /var/www && \
     ls -la && \
-    composer install --no-interaction --no-suggest --ignore-platform-req=ext-exif -v && \
+    composer install --no-interaction --no-suggest -v && \
     ls -la vendor
 # Configure Redis
 RUN mkdir -p /var/lib/redis /var/log/redis
