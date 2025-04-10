@@ -14,7 +14,7 @@ return [
                 'label' => 'App Name', // you know what label it is
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Laravel Starter', // default value if you want
+                'value' => 'PHP Teacher', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -23,7 +23,7 @@ return [
                 'label' => 'App Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Laravel Starter is a CMS like modular starter application project built with Laravel. This starter project can be used as a foundation to build your own projects.', // default value if you want
+                'value' => 'Discover and learn programming with phpteacher', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -32,7 +32,7 @@ return [
                 'label' => 'Footer Text', // you know what label it is
                 'rules' => 'required|min:2', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '<a href="https://github.com/nasirkhan/laravel-starter/" class="text-muted">Built with ♥ from Bangladesh</a>', // default value if you want
+                'value' => '<a href="https://laravelcompany.com" class="text-muted">Built with ♥ in Essex</a>', // default value if you want
             ],
             [
                 'type' => 'checkbox', // input fields type
@@ -58,7 +58,7 @@ return [
                 'label' => 'Email', // you know what label it is
                 'rules' => 'required|email', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'info@example.com', // default value if you want
+                'value' => 'contact@phpteacher.com', // default value if you want
             ],
         ],
 
@@ -76,7 +76,7 @@ return [
                 'label' => 'Website URL', // you know what label it is
                 'rules' => 'nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'https://nasirkhn.com', // default value if you want
+                'value' => 'https://phpteacher.com', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -94,7 +94,7 @@ return [
                 'label' => 'Twitter Profile URL', // you know what label it is
                 'rules' => 'nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'https://twitter.com/nasirkhansaikat', // default value if you want
+                'value' => 'https://twitter.com/thephpteacher', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -103,7 +103,7 @@ return [
                 'label' => 'Instagram Account URL', // you know what label it is
                 'rules' => 'nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'https://www.instagram.com/nasirkhansaikat', // default value if you want
+                'value' => 'https://www.instagram.com/thephpteacher', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -112,7 +112,7 @@ return [
                 'label' => 'Youtube Channel URL', // you know what label it is
                 'rules' => 'nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'https://www.youtube.com/@nasirkhan', // default value if you want
+                'value' => 'https://www.youtube.com/@thephpteacher', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -157,7 +157,7 @@ return [
                 'label' => 'Meta Site Name', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Laravel Starter | An Awesome Laravel Starter Project', // default value if you want
+                'value' => 'PHP Teacher', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -166,7 +166,7 @@ return [
                 'label' => 'Meta Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Laravel Starter is a CMS like modular starter application project built with latest Laravel. This starter project can be used as a foundation to build your own projects.', // default value if you want
+                'value' => 'learn php programming for free', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -175,7 +175,7 @@ return [
                 'label' => 'Meta Keyword', // you know what label it is
                 'rules' => 'nullable', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Web Application, web app, Laravel, Laravel starter, Bootstrap, Admin, Template, Open Source, nasir khan saikat, nasirkhansaikat', // default value if you want
+                'value' => '', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type

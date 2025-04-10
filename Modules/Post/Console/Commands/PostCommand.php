@@ -11,7 +11,7 @@ class PostCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:PostCommand';
+    protected $signature = 'post:command';
 
     /**
      * The console command description.

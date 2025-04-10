@@ -11,7 +11,7 @@ class CategoryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:CategoryCommand';
+    protected $signature = 'category:command';
 
     /**
      * The console command description.

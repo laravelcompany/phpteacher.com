@@ -11,7 +11,7 @@ class TagCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:TagCommand';
+    protected $signature = 'tag:command';
 
     /**
      * The console command description.
