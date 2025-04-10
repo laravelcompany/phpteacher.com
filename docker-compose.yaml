@@ -1,0 +1,55 @@
+services:
+  phpteacher.com:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        WWWUSER: '${WWWUSER:-1000}'
+        WWWGROUP: '${WWWGROUP:-1000}'
+    image: izdrail/phpteacher.com:latest
+    container_name: phpteacher.com
+    restart: unless-stopped
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - '13000:13000'
+      - '13001:13001'
+      - '13002:13002'
+      - '13003:13003'
+      - '13005:13005'
+      - '13006:13006'
+      - '443:443'
+      - '443:443/udp'
+    environment:
+      WWWUSER: '${WWWUSER}'
+      WWWGROUP: '${WWWGROUP}'
+      LARAVEL_SAIL: 1
+      IGNITION_LOCAL_SITES_PATH: '${PWD}'
+    volumes:
+      - '.:/var/www'
+    networks:
+      - sail
+
+  database.phpteacher.com:
+    image: mysql:8.0
+    container_name: database.phpteacher.com
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword  # Change this to a secure password
+      MYSQL_DATABASE: laravelmail
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravelpassword  # Change this to a secure password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sail
+
+
+volumes:
+  mysql_data:
+
+networks:
+  sail:
+    driver: bridge
