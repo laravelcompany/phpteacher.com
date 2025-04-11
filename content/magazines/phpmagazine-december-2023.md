@@ -1,7 +1,7 @@
 ---
-title: PHP Teacher magazine - December 2023
-publishDate: 2023-04-19 00:00:00
-description: "Welcome to this month's issue of PHP Teacher Magazine! We've got a diverse range of articles to explore, covering everything from **home automation with PHP** to **advanced application architecture** and **cybersecurity**. Let’s delve into what this issue has in store for you"
+title: December 2023 Magazine
+publishDate: 2023-12-12 00:00:00
+description: 
 
 image: /assets/services/security.svg
 tags:
@@ -11,9 +11,8 @@ tags:
   - 2023
 ---
 
-###### Feature: PHP Unit Testing: Ensuring Code Quality and Reliability
+## Feature: PHP Unit Testing: Ensuring Code Quality and Reliability
 
- Godstime Aburu
 
  Welcome to your guide to becoming proficient in PHP unit testing! We’re here to take you on a journey, starting with the basics and why they matter in the PHP development world. Along the way, you’ll meet our trusty companion, PHPUnit, a well-loved unit testing framework.
 
@@ -37,8 +36,6 @@ constructing stellar PHP applications.
 Let’s embark on this journey together,
 one step at a time, and bring out the
 best in your PHP coding skills.
-
-###### Introduction
 
 Welcome to the ever-evolving world
 of web development, where PHP scripts
@@ -105,7 +102,7 @@ to enhance the reliability of your PHP
 code. Together, let’s embark on this
 journey, one unit test at a time.
 
-###### Significance of Code Reliability in PHP Development
+## Significance of Code Reliability in PHP Development
 
 Picture this: You’ve crafted an
 amazing web application using PHP.

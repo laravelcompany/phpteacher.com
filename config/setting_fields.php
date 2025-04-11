@@ -23,7 +23,7 @@ return [
                 'label' => 'App Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Discover and learn programming with phpteacher', // default value if you want
+                'value' => '**Welcome to the battleground of web development**, where every line of code you write is either a foundation for greatness or a ticking time bomb', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -32,7 +32,7 @@ return [
                 'label' => 'Footer Text', // you know what label it is
                 'rules' => 'required|min:2', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '<a href="https://laravelcompany.com" class="text-muted">Built with ♥ in Essex</a>', // default value if you want
+                'value' => 'Built with ♥ in Essex <a href="https://laravelcompany.com" class="text-muted">Laravel Development Agency</a>', // default value if you want
             ],
             [
                 'type' => 'checkbox', // input fields type
