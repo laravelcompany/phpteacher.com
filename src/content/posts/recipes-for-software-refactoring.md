@@ -3,7 +3,7 @@ title: "Recipes for Decoupling by Matthias Noback book review"
 description: "Recipes for Decoupling by Matthias Noback, serves as a practical guide for software developers working with PHP applications. The author, experienced in building web applications, identifies tight coupling to frameworks, ORMs, and testing libraries as a significant source of technical debt and unmaintainable code"
 pubDate: "2025-05-01 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/5wKOBnF.png"
+banner: "https://i.imgur.com/VO1YEge.png"
 tags: ["Audit", "Security", "Programming", "PHP",  "Technical", "Learn"]
 selected: false
 ---
