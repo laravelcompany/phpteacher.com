@@ -1,4 +1,4 @@
 ---
 title: 'Laravel 🐛'
-description: '最优雅的 PHP 框架'
+description: 'Learn about Laravel php framework'
 ---

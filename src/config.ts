@@ -1,7 +1,7 @@
 import type { NavigationLink, Site } from './types.ts'
 
 export const SITE: Site = {
-    author: 'phpteacher',
+    author: 'stefan bogdan',
     url: 'https://phpteacher.com',
     title: 'Learn the ins and outs of PHP programming language with PHP teacher',
     description: 'Discover and learn a programming language for free.',
