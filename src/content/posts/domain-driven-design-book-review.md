@@ -5,7 +5,7 @@ pubDate: "2025-05-01 21:00:00"
 category: "books"
 banner: "https://i.imgur.com/lq3cWvE.png"
 tags: ["Technology", "Programming", "Laravel", "Books", "Technical", "Download", "Ebook", "Free", "Learn"]
-
+selected: true
 ---
 
 👋 Yo devs! Ever felt your Laravel project turn into a spaghetti mess once it grows?
