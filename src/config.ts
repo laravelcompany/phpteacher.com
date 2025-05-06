@@ -1,10 +1,10 @@
 import type { NavigationLink, Site } from './types.ts'
 
 export const SITE: Site = {
-    author: 'stefan bogdan',
+    author: 'Laravel Company',
     url: 'https://phpteacher.com',
-    title: 'Learn the ins and outs of PHP programming language with PHP teacher',
-    description: 'Discover and learn a programming language for free.',
+    title: 'PHP Teacher Agency',
+    description: 'Discover and learn php programming language for free and get a job as a software engineer ',
     shortDescription: '',
 }
 
@@ -19,9 +19,7 @@ export const FooterLinks = [
         section: 'Blog',
         links: [
             { name: 'Posts', url: '/posts/' },
-
             { name: 'Categories', url: '/categories/' },
-
         ],
     },
     {
@@ -43,7 +41,7 @@ export const Settings = {
     // See https://github.com/umami-software/umami
     UmamiAnalytics: {
         enable: false,
-        dataWebsiteID: 'bf63658a-9418-4f39-a6a1-5a0cedb6e429',
+        dataWebsiteID: '',
     },
 
     Comment: {
@@ -54,7 +52,7 @@ export const Settings = {
         // please visit https://giscus.app/ to learn how to configure it.
         // You can also check out this article: https://liruifengv.com/posts/add-comments-to-astro/.
         giscus: {
-            repo: 'godruoyi/gblog',
+            repo: 'laravelcompany/phpteacherblog',
             repoId: 'MDEwOlJlcG9zaXRvcnkxMjcyODI0NzA',
             category: 'Announcements',
             categoryId: 'DIC_kwDOB5YtJs4CfZnX',

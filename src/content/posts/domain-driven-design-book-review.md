@@ -1,5 +1,5 @@
 ---
-title: "Domain-Driven Design with Laravel"
+title: "Domain-Driven Design with Laravel book review"
 description: "The primary themes explored in the excerpts revolve around applying Domain-Driven Design (DDD) principles to a Laravel application, specifically in the context of building an email marketing software"
 pubDate: "2025-05-01 21:00:00"
 category: "books"
