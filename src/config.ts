@@ -1,19 +1,17 @@
 import type { NavigationLink, Site } from './types.ts'
 
 export const SITE: Site = {
-    author: 'Godruoyi',
-    url: 'https://godruoyi.com',
-    title: '连波的闲谈杂鱼',
-    description: 'Godruoyi\'s personal blog, I enjoy the process of building something using any technology stack',
+    author: 'phpteacher',
+    url: 'https://phpteacher.com',
+    title: 'Learn the ins and outs of PHP programming language with PHP teacher',
+    description: 'Discover and learn a programming language for free.',
     shortDescription: '',
 }
 
 export const NavigationLinks: NavigationLink[] = [
     { name: 'Posts', url: '/posts/' },
     { name: 'Category', url: '/categories/' },
-    { name: 'Timeline', url: '/timeline/' },
-    { name: 'About', url: '/posts/about-godruoyi/' },
-    { name: 'Friends', url: '/friends/' },
+    { name: 'Partners', url: '/partners/' },
 ]
 
 export const FooterLinks = [
@@ -21,9 +19,9 @@ export const FooterLinks = [
         section: 'Blog',
         links: [
             { name: 'Posts', url: '/posts/' },
-            { name: 'Timeline', url: '/timeline/' },
+
             { name: 'Categories', url: '/categories/' },
-            { name: 'About Me', url: '/posts/about-godruoyi/' },
+
         ],
     },
     {
@@ -31,7 +29,7 @@ export const FooterLinks = [
         links: [
             { name: 'RSS', url: '/rss.xml' },
             { name: 'Site Map', url: '/sitemap-index.xml' },
-            { name: 'GitHub', url: 'https://github.com/godruoyi' },
+            { name: 'GitHub', url: 'https://github.com/laravelcompany' },
         ],
     },
 ]
@@ -44,7 +42,7 @@ export const Settings = {
 
     // See https://github.com/umami-software/umami
     UmamiAnalytics: {
-        enable: true,
+        enable: false,
         dataWebsiteID: 'bf63658a-9418-4f39-a6a1-5a0cedb6e429',
     },
 
@@ -95,7 +93,7 @@ export const SEO = {
     structuredData: {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        'inLanguage': 'en-US',
+        'inLanguage': 'en-GB',
         '@id': SITE.url,
         'url': SITE.url,
         'name': SITE.title,

@@ -1,22 +1,15 @@
 {
-  "name": "godruoyi.com",
+  "name": "phpteacher.com",
   "type": "module",
   "version": "1.0.0",
-  "homepage": "https://godruoyi.com",
-  "bugs": {
-    "url": "https://github.com/godruoyi/gblog/issues",
-    "email": "godruoyi@gmail.com"
-  },
+  "homepage": "https://phpteacher.com",
+
   "repository": {
     "type": "git",
-    "url": "https://github.com/godruoyi/gblog.git"
+    "url": "https://github.com/laravelcompany"
   },
   "license": "MIT",
-  "author": {
-    "name": "Godruoyi",
-    "email": "godruoyi@gmail.com",
-    "url": "https://godruoyi.com"
-  },
+
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
