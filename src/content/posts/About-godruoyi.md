@@ -3,7 +3,7 @@ title: "About Godruoyi"
 description: "Godruoyi，15 年毕业于西南大学计算机专业，Laravel 爱好者；目前靠 Go 养家糊口，抽空学习 Rust，全职远程中"
 pubDate: "2019-03-26 18:00:48"
 category: "life"
-banner: "https://images.godruoyi.com/gblog/images/banners/_1554874559_RUE1L2EnwC.avif"
+banner: "https://images.godruoyi.com/gblog/images/banners/3538131a-f23c-480a-9681-34ce32825dd2.avif"
 tags: ["life"]
 oldViewCount: 8084
 oldKeywords: ["Godruoyi,二愣的闲谈杂鱼"]
