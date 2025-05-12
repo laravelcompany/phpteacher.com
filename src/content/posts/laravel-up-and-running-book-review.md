@@ -63,10 +63,6 @@ We’re not throwing shade at Stauffer — he’s contributed a *lot* to the Lar
 
 ---
 
-### TL;DR:
 
-*Laravel: Up & Running* is a clean, accessible intro to Laravel — but it falls short of being a “deep dive.” Great starting point, but you’ll need to supplement it with docs, Laracasts, or Spatie’s “Beyond CRUD” to really level up.
 
-👂 *Want to multitask?* Check out the **audio version** of the book’s overview — it’s a chill way to absorb the structure without cracking open a page.
-
----
+https://www.youtube.com/watch?v=nuEgkCheq4I

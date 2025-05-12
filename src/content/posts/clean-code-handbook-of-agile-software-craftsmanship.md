@@ -161,3 +161,4 @@ Refactor a method, rename a var, delete a useless comment. It stacks.
 **Final Thought 💭:**
 Clean code ain't a flex. It's respect for your teammates (and future you). Build like a pro. 👨‍💻👩‍💻
 
+https://www.youtube.com/watch?v=U7nDX4CKNug
