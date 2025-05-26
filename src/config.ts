@@ -3,7 +3,7 @@ import type { NavigationLink, Site } from './types.ts'
 export const SITE: Site = {
     author: 'Laravel Company',
     url: 'https://phpteacher.com',
-    title: 'PHP Teacher Agency',
+    title: 'PHP Teacher - Learn PHP Programming Language for Free',
     description: 'Discover and learn php programming language for free and get a job as a software engineer ',
     shortDescription: '',
 }
