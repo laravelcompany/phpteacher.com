@@ -17,6 +17,15 @@
   name: 'Sppan'
   description: 'A man and a Bird who knows everything'
 
+- avatar: 'https://bucket.liruifengv.com/avatar.jpg'
+  social:
+    twitter: 'liruifengv'
+    blog: 'https://liruifengv.com'
+    github: 'liruifengv'
+  title: 'Web Developer'
+  name: 'liruifengv'
+  description: "Web 开发者，Astro 项目成员，开源爱好者。"
+
 - avatar: 'https://avatars.githubusercontent.com/u/21162238?v=4'
   social:
     twitter: 'quentin_hsu'
