@@ -5,7 +5,7 @@ pubDate: "2025-05-01 21:00:00"
 category: "books"
 banner: "https://i.imgur.com/9IAEfB7.png"
 tags: ["Audit", "Security", "Programming", "PHP", "Technical", "Learn"]
-selected: false
+selected: true
 ---
 
 # 🧠 PHP 8 Objects, Patterns, and Practice by Matt Zandstra

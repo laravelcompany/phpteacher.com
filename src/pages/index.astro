@@ -1,35 +1,80 @@
 ---
-import { getCollection } from 'astro:content'
-import type { CollectionEntry } from 'astro:content'
-import BaseLayout from '@layouts/BaseLayout.astro'
-import BlogInsight from '@components/blog/BlogInsight.astro'
+import Image from '@components/ui/images/Image.astro'
+import { FooterLinks, SITE } from '@/config'
 
-
-const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
-    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).slice(0, 3);
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogInsight from "@components/blog/BlogInsight.astro";
+import footerBanner from '@images/logo2.svg'
+const posts: CollectionEntry<"posts">[] = (await getCollection("posts")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <BaseLayout>
+  <section>
+    <div class="grid px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+      <div class="mr-auto place-self-center lg:col-span-7">
+        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+          Learn PHP Programming Like a Pro
+        </h1>
+        <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+          💡 Whether you're starting from scratch or levelling up, explore interactive tutorials, toolkits, and project-based guides built for modern PHP devs. 学 PHP 编程，使用最佳工具。Изучи PHP шаг за шагом.
+        </p>
+        <a href="/php-course" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+          Start Learning PHP
+          <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </a>
+        <a href="/php-tools" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+          Browse PHP Tools
+        </a>
+      </div>
+      <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+     <Image
+                        src={footerBanner}
+                        alt={SITE.title}
+                        class="h-full w-full object-cover object-center"
+                        draggable="false"
+                        loading="eager"
+                        disableBlur={true}
+                    />
+      </div>
+    </div>
+  </section>
 
+  <!--
+  <section>
+    <div class="mx-auto px-4 py-8 sm:text-center lg:px-12 lg:py-16">
+      <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        Your PHP Developer Toolkit
+      </h2>
+      <p class="text-gray-500 dark:text-gray-400 sm:text-lg md:px-20 xl:px-48">
+        🧰 We've curated the most powerful and practical PHP developer tools, including IDEs, debuggers, learning portals, and frameworks. Всë, что нужно для старта и прокачки. PHP 编程者必备工具合集。
+      </p>
+      <div class="mt-8 gap-4 sm:mt-12 sm:grid sm:grid-cols-4">
+        <img src="/images/tool-phpstorm.png" alt="PHPStorm IDE" class="col-span-2 mb-4 rounded-lg sm:mb-0" />
+        <img src="/images/tool-laravel.png" alt="Laravel Framework" class="col-span-1 hidden rounded-lg sm:block" />
+        <img src="/images/tool-xdebug.png" alt="Xdebug PHP debugger" class="col-span-1 hidden rounded-lg sm:block" />
+        <img src="/images/tool-composer.png" alt="Composer package manager" class="col-span-1 hidden rounded-lg sm:block" />
+        <img src="/images/tool-docker-php.png" alt="Docker for PHP" class="col-span-2 rounded-lg" />
+        <img src="/images/tool-tinkerwell.png" alt="Tinkerwell Laravel tool" class="col-span-1 hidden rounded-lg sm:block" />
+      </div>
+    </div>
+  </section>
+   -->
 
-    <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
-        <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-            <h2 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
-                Latest Post
-            </h2>
-            <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
-                Always want to write something, but rarely actually do it
-            </p>
-        </div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {
-                posts.map(b => (
-                    <BlogInsight blog={b} />
-                ))
-            }
-        </div>
-    </section>
-
-
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+      <h2 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+        Latest PHP Learning Articles
+      </h2>
+      <p class="mt-1 text-neutral-600 dark:text-neutral-400">
+        👨‍💻 Discover beginner-to-advanced PHP tutorials, framework deep dives, and dev career advice. Прокачай знания PHP через практику. 通过真实项目提高 PHP 水平。
+      </p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {posts.map((b) => <BlogInsight blog={b} />)}
+    </div>
+  </section>
 </BaseLayout>
