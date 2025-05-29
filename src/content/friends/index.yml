@@ -1,6 +1,6 @@
 - avatar: https://avatars.githubusercontent.com/u/2276408
   social:
-    twitter: 'izdrail'
+    twitter: 'bogdanizdrail'
     blog: 'https://izdrail.com'
     github: 'izdrail'
   title: 'Senior Developer'
@@ -10,22 +10,21 @@
 
 
 
-- avatar: 'https://avatars.githubusercontent.com/u/21162238?v=4'
+- avatar: 'https://avatars.githubusercontent.com/u/76781411?s=200&v=4'
   social:
-    twitter: 'quentin_hsu'
-    blog: 'https://www.xqy404.com/'
-    github: 'QuentinHsu'
-  title: 'Web Developer'
-  name: 'Quentin Hau'
-  description: "Life's tough, let's be romantic"
+    blog: 'https://laravelcompany.com/'
+    github: 'laravelcompany'
+  title: 'Laravel Development Services'
+  name: 'Laravel Company'
+  description: "Laravel™ Agency delivers ESOP-aligned technical solutions since 2004. As a 100% employee-owned company, we help leadership teams."
 
 
 
-- avatar: 'https://avatars.githubusercontent.com/u/21162238?v=4'
+- avatar: 'https://avatars.githubusercontent.com/u/199833348?s=200&v=4'
   social:
-    twitter: 'robloxbox'
-    blog: 'https://www.robloxbox.com/'
-    github: 'izdrail'
-  title: 'roblox box'
-  name: 'Quentin Hau'
-  description: "Life's tough, let's be romantic"
+
+    blog: 'https://publicsos.org/'
+    github: 'publicsos'
+  title: 'Emergency Response Service Management System'
+  name: 'Public SOS'
+  description: "This comprehensive application delivers a strategic and operational framework for your incident management team, ensuring strict adherence to Public Safety and rescue service guidelines."
