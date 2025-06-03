@@ -4,7 +4,7 @@ description: "Dive into game dev with Game Programming All in One, 3rd Ed. by Jo
 pubDate: "2025-05-27 21:00:00"
 category: "books"
 banner: "https://i.imgur.com/Go7oQ9E.png"
-tags: ["Audio", "Book", "Programming", "Technical", "Games"]
+tags: ["books kindle amazon", "Book", "Programming", "amazon kindle books", "amazon kindle kindle books"]
 selected: true
 ---
 

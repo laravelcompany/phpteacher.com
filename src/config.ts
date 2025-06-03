@@ -38,7 +38,6 @@ export const Settings = {
         id: 'G-NV9CPH6BX3',
     },
 
-    // See https://github.com/umami-software/umami
     UmamiAnalytics: {
         enable: false,
         dataWebsiteID: '',
@@ -52,7 +51,7 @@ export const Settings = {
         // please visit https://giscus.app/ to learn how to configure it.
         // You can also check out this article: https://liruifengv.com/posts/add-comments-to-astro/.
         giscus: {
-            repo: 'laravelcompany/phpteacherblog',
+            repo: 'laravelcompany/phpteacher',
             repoId: 'MDEwOlJlcG9zaXRvcnkxMjcyODI0NzA',
             category: 'Announcements',
             categoryId: 'DIC_kwDOB5YtJs4CfZnX',

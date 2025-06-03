@@ -4,7 +4,7 @@ description: "The PHP Foundation just dropped a fat security audit on `php-src` 
 pubDate: "2025-05-01 21:00:00"
 category: "tool"
 banner: "https://i.imgur.com/6irET8e.jpeg"
-tags: ["Tools", "Programming","Technical", "Linux"]
+tags: ["Tips", "Programming","Technical", "Linux"]
 selected: false
 ---
 
@@ -23,10 +23,10 @@ My gear’s no slouch:
 So the weak link? The **sync method**. I had been using:
 
 ```bash
-rsync -au --progress --stats /Volumes/mercury/* /Volumes/Shuttle/Video_Projects
+rsync -au --progress --stats /drive/sda/* /Volumes/Shuttle/Video_Projects
 ```
 
-Where `/Volumes/mercury/` is a fast NVMe-backed NAS share from my Arm-based NAS (fittingly named “Mercury”), and “Shuttle” is the SSD I carry around.
+Where `/drive/` is a fast NVMe-backed NAS share from my Arm-based NAS (fittingly named “Mercury”), and “Shuttle” is the SSD I carry around.
 
 And while `rsync` is rock solid — it *gets the job done* — it doesn’t seem to care much about using all that juicy bandwidth and IOPS I’ve got lying around.
 
@@ -39,13 +39,13 @@ So I swapped `rsync` out with [`rclone`](https://rclone.org/), which is usually 
 Here’s the basic `rclone` command I used:
 
 ```bash
-rclone copy /Volumes/mercury/ Shuttle:Video_Projects --progress --transfers=32 --checkers=64 --fast-list
+rclone copy /drive/sda/ Shuttle:Video_Projects --progress --transfers=32 --checkers=64 --fast-list
 ```
 
 Or with a local path target:
 
 ```bash
-rclone copy /Volumes/mercury/ /Volumes/Shuttle/Video_Projects --progress --transfers=32 --checkers=64 --fast-list
+rclone copy /drive/sda/ /Volumes/Shuttle/Video_Projects --progress --transfers=32 --checkers=64 --fast-list
 ```
 
 Tweakable. Efficient. And **way faster**.
@@ -81,21 +81,3 @@ We're talking about **4x faster** syncs — basically using up every bit of that
 * ✅ Keep using `rsync` for surgical precision or POSIX metadata needs, but consider `rclone` when raw speed matters.
 
 ---
-
-### 🛠️ My Setup
-
-* Mac Studio M2 Ultra
-* 10 Gbps Ethernet via Thunderbolt 5 dock
-* Synology NAS w/ NVMe cache
-* External Thunderbolt 5 SSD (2 TB, 7 GB/sec peak)
-* All volumes mounted via SMB3
-
----
-
-Give `rclone` a shot for local file syncs. You might be surprised it isn’t just for S3 buckets and Google Drive anymore. 😉
-
-**— Jeff**
-
----
-
-Would you like this formatted as a markdown file for your blog or Jekyll site?
