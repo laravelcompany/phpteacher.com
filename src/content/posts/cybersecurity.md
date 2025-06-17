@@ -1,3 +1,4 @@
+---
 title: "The Dangerous Illusion: Why Cybersecurity Compliance Isn't Security"
 description: "Welcome to the real world, where **compliance ≠ security**, and just following the rules won’t save your infrastructure from getting nuked by a zero-day or a rogue script kiddie running a botnet from a coffee shop in Siberia."
 pubDate: "2025-06-13 21:00:00"
