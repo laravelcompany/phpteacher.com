@@ -3,7 +3,7 @@ import type { NavigationLink, Site } from './types.ts'
 export const SITE: Site = {
     author: 'Laravel Company',
     url: 'https://phpteacher.com',
-    title: 'PHP Teacher - Learn PHP Programming Language for Free',
+    title: 'Learn PHP Programming Language for Free - PHP Teacher',
     description: 'Discover and learn php programming language for free and get a job as a software engineer ',
     shortDescription: '',
 }
@@ -51,7 +51,7 @@ export const Settings = {
         // please visit https://giscus.app/ to learn how to configure it.
         // You can also check out this article: https://liruifengv.com/posts/add-comments-to-astro/.
         giscus: {
-            repo: 'laravelcompany/phpteacher',
+            repo: 'laravelcompany/phpteacher.com',
             repoId: 'MDEwOlJlcG9zaXRvcnkxMjcyODI0NzA',
             category: 'Announcements',
             categoryId: 'DIC_kwDOB5YtJs4CfZnX',
