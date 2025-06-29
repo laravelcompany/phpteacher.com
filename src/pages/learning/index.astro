@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import MainSection from '@components/ui/sections/MainSection.astro'
+import LearningCard from '@components/blog/LearningCard.astro'
+import { SITE } from '@/config'
+
+const learningData: CollectionEntry<'learning'>[] = await getCollection('learning')
+
+const description = 'Easy to understand resource for learning how to write good code in PHP.'
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="Learning PHP Resources"
+    description={description}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'inLanguage': 'en-GB',
+        '@id': URL,
+        'url': URL,
+        'name': `All learning resources - ${SITE.title}`,
+        'description': description,
+        'isPartOf': {
+            '@type': 'WebSite',
+            'url': SITE.url,
+            'name': SITE.title,
+            'description': SITE.description,
+        },
+    }}
+>
+    <MainSection>
+        <div class="mx-auto px-4 py-10 sm:px-6 lg:px-8 lg:pt-10 lg:py-14 2xl:max-w-full">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
+                    PHP Learning Resources
+                </h1>
+                <p class="mt-1 text-gray-600 dark:text-gray-400">
+                    {description}
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {learningData.map((resource) => (
+                    <LearningCard learning={resource} />
+                ))}
+            </div>
+
+            {learningData.length === 0 && (
+                <div class="text-center py-10">
+                    <p class="text-gray-500 dark:text-gray-400">
+                        No learning resources found. Add some resources to your learning collection!
+                    </p>
+                </div>
+            )}
+        </div>
+    </MainSection>
+</BaseLayout>

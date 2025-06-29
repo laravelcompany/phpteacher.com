@@ -4,11 +4,12 @@ export const SITE: Site = {
     author: 'Laravel Company',
     url: 'https://phpteacher.com',
     title: 'Learn PHP Programming Language for Free - PHP Teacher',
-    description: 'Discover and learn php programming language for free and get a job as a software engineer ',
+    description: 'Discover and learn php programming language for free and get a job as a software engineer',
     shortDescription: '',
 }
 
 export const NavigationLinks: NavigationLink[] = [
+    { name: 'Learning', url: '/learning/' },
     { name: 'Posts', url: '/posts/' },
     { name: 'Category', url: '/categories/' },
     { name: 'Partners', url: '/partners/' },
@@ -46,7 +47,7 @@ export const Settings = {
     Comment: {
         // Please note that the environment value here is `string` type on Cloudflare Pages
         // If you want to disable the comment system, please delete the `COMMENT_ENABLE` environment variable not just set it to `false`.
-        enable: !!(import.meta.env.COMMENT_ENABLE) || !!process.env.COMMENT_ENABLE,
+        enable: true,
 
         // please visit https://giscus.app/ to learn how to configure it.
         // You can also check out this article: https://liruifengv.com/posts/add-comments-to-astro/.
@@ -56,7 +57,7 @@ export const Settings = {
             category: 'Announcements',
             categoryId: 'DIC_kwDOB5YtJs4CfZnX',
             darkThem: 'noborder_gray',
-            lightThem: 'light',
+            lightThem: 'dark',
         },
     },
 

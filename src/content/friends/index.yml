@@ -26,12 +26,11 @@
   name: 'Laravel Mail'
   description: "Multi-channel marketing platform for Laravel™ applications that you can host yourself."
 
-
-- avatar: 'https://avatars.githubusercontent.com/u/199833348?s=200&v=4'
+# https://avatars.githubusercontent.com/u/11355047?v=4
+- avatar: 'https://avatars.githubusercontent.com/u/11355047?v=4'
   social:
-
-    blog: 'https://publicsos.org/'
-    github: 'publicsos'
-  title: 'Emergency Response Service Management System'
-  name: 'Public SOS'
-  description: "This comprehensive application delivers a strategic and operational framework for your incident management team, ensuring strict adherence to Public Safety and rescue service guidelines."
+    blog: 'https://phpapprentice.com/'
+    github: 'restoreddev'
+  title: 'Andrew'
+  name: 'Php'
+  description: "PHP Apprentice is an online, open source book about the PHP programming language"

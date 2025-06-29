@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+const { learning } = Astro.props;
+
+interface Props {
+    learning: CollectionEntry<"learning">;
+}
+---
+
+<a
+    class="group relative block rounded-xl outline-none ring-zinc-500 transition duration-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
+    href={`/learning/${learning.data.slug}/`}
+    data-astro-prefetch="true"
+>
+    <h3
+        class="mt-2 text-xl font-bold text-neutral-800 group-hover:text-orange-400 dark:text-neutral-200 dark:group-hover:text-orange-300"
+    >
+        {learning.data.title}
+    </h3>
+    <div
+        class="mt-2 text-sm text-gray-600 dark:text-neutral-400 dark:group-hover:text-neutral-500"
+    >
+        {learning.data.description}
+    </div>
+</a>

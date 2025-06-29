@@ -30,7 +30,7 @@ export default defineConfig({
             HTML: {
                 'html-minifier-terser': {
                     collapseWhitespace: true,
-                    minifyCSS: false, // enable this will cause the CopyButton not work
+                    minifyCSS: false, 
                     minifyJS: true,
                 },
             },
@@ -71,6 +71,6 @@ export default defineConfig({
         // see https://docs.astro.build/en/reference/configuration-reference/#buildassets
         assets: 'assets',
         // see https://docs.astro.build/en/reference/configuration-reference/#buildassetsprefix
-        assetsPrefix: (!!import.meta.env.S3_ENABLE || !!process.env.S3_ENABLE) ? 'https://images.godruoyi.com/gblog' : '',
+        assetsPrefix: "assets/",
     },
 })
