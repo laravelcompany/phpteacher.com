@@ -1,6 +1,6 @@
 ---
-title : "Boolean Logic"
-description : "Is it a yes or a no?"
+title: "Boolean Logic"
+description: "Is it a yes or a no?"
 ---
 Boolean logic is used to combine booleans to return another boolean.
 

@@ -1,7 +1,7 @@
 ---
 title : "Variables"
 description : "The building blocks of PHP"
-----
+---
 
 A variable is a name for a piece of data.
 The variable is the basic building block of any programming language.
