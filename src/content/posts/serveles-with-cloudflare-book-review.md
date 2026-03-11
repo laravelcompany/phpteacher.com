@@ -3,7 +3,7 @@ title: "Building Dope Serverless Apps with Cloudflare – Edge Magic Vibes"
 description: "Yo devs, 兄弟姐妹们，ребята – serverless ain’t just a buzzword anymore. It’s how we roll. Infrastructure? Nah fam, that’s a 2010s problem. Cloudflare's stack lets you drop code at the edge and scale it like mad without babysitting servers."
 pubDate: "2025-05-28 08:00:00"
 category: "books"
-banner: "https://i.imgur.com/NYRomi7.png"
+banner: "/logo.svg"
 tags: ["Audio", "Book", "Programming", "Technical", "Cloudflare", "Serverless"]
 selected: true
 ---

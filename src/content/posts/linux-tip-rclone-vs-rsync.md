@@ -3,7 +3,7 @@ title: "Faster Network File Sync with `rclone` (vs `rsync`)"
 description: "The PHP Foundation just dropped a fat security audit on `php-src` — that’s the engine behind PHP itself — and yeah, it wasn’t pretty. Some high-sev vulnerabilities were found lurking in the dark corners"
 pubDate: "2025-05-01 21:00:00"
 category: "tool"
-banner: "https://i.imgur.com/6irET8e.jpeg"
+banner: "/logo.svg"
 tags: ["Tips", "Programming","Technical", "Linux"]
 selected: false
 ---

@@ -3,7 +3,7 @@ title: "Killer ChatGPT Prompts a guide to ai for success"
 description: "Gen Z, feeling overwhelmed? Discover how AI tools like ChatGPT can be your ultimate cheat code for school, work, and everyday life. Say goodbye to stress and hello to smarter, smoother days."
 pubDate: "2025-06-18 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/Mi352vR.png"
+banner: "/logo.svg"
 tags: [
  "GenZ",
   "AI",

@@ -3,7 +3,7 @@ title: "Kubernetes is Not Scary, You're Just Not Declarative Enough"
 description: "Learn the core principles of Kubernetes and how to master cloud-native application deployment with declarative configs, scalable workloads, secure secrets management, and efficient operations"
 pubDate: "2025-06-24 09:00:00"
 category: "kubernetes"
-banner: "https://i.imgur.com/wH2Ig2e.png"
+banner: "/logo.svg"
 tags: [
   "Kubernetes",
   "CloudNative",

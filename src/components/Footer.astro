@@ -48,10 +48,18 @@ import { FooterLinks, SITE } from '@/config'
         </div>
 
 
-        <div class="flex items-center text-center justify-center">
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">
-                © <span id="current-year">2024</span> {SITE.title} build with &love; By <a href="https://laravelcompany.com">Laravel Agency</a>
+        <div class="mx-auto flex max-w-screen-xl flex-col items-center p-4 text-center md:p-8 lg:p-10">
+            <div class="mb-8">
+                <a data-testid="flowbite-footer-brand" href="https://laravelcompany.com" class="flex items-center justify-center">
+                    <img alt="Laravel Company Logo" src="https://laravelcompany.com/logo.svg" class="mr-3 h-8">
+                    <span data-testid="flowbite-footer-brand-span" class="self-center text-2xl font-semibold text-white whitespace-nowrap">Laravel Company</span>
+                </a>
+            </div>
+            <p class="mb-6 text-sm text-gray-500 sm:mb-0 dark:text-white">
+                Part of the <a href="https://laravelcompany.com" class="hover:underline text-white dark:text-white">Laravel Company</a> ecosystem, delivering integrated messaging, e-commerce, and SEO
+                solutions.
             </p>
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2026 <a href="https://laravelcompany.com" class="hover:underline">Laravel Software</a>. All Rights Reserved.</span>
         </div>
     </div>
 </footer>

@@ -3,7 +3,7 @@ title: "Clean Code Handbook of Agile Software Craftsmanship"
 description: "It's about code that ain't just working, but is clean, solid, and built to *live long and prosper* 🚀. You’ll get key takeaways, punchy quotes, and mad practical advice on naming, function design, error handling, testing, concurrency, and more."
 pubDate: "2025-05-01 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/uRQpMqL.jpeg"
+banner: "/logo.svg"
 tags: ["Technology", "Programming", "Books", "Technical", "Download", "Ebook", "Free", "Learn"]
 selected: true
 ---

@@ -3,7 +3,7 @@ title: "Game Programming All in One Third Edition - Audio book overview"
 description: "Dive into game dev with Game Programming All in One, 3rd Ed. by Jonathan S. Harbour! Learn 2D graphics, input, sound, AI, and more using Allegro. Perfect for C/C++ devs. 启程游戏开发！全方位掌握编程技能。深入理解游戏设计原理 и научись создавать свои игры с нуля."
 pubDate: "2025-05-27 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/Go7oQ9E.png"
+banner: "/logo.svg"
 tags: ["books kindle amazon", "Book", "Programming", "amazon kindle books", "amazon kindle kindle books"]
 selected: true
 ---

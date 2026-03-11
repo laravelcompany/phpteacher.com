@@ -3,7 +3,7 @@ title: "Laravel up and running book review"
 description: "Speed and simplicity, for starters. This rapid application development framework and its ecosystem of tools let you quickly build new sites and applications with clean, readable code."
 pubDate: "2025-03-01 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/6P9jmia.png"
+banner: "/logo.svg"
 tags: ["Technology", "Programming", "Laravel", "Books", "Technical", "Download", "Ebook", "Free", "Learn"]
 selected: true
 ---

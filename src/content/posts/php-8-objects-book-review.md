@@ -3,7 +3,7 @@ title: "🧠 PHP 8 Objects, Patterns, and Practice by Matt Zandstra: Code Comman
 description: "Learn how to wield OOP in PHP 8 like a tactical weapon: classes, objects, encapsulation, and patterns for elite devs building PublicSOS."
 pubDate: "2025-05-01 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/9IAEfB7.png"
+banner: "/logo.svg"
 tags: ["Audit", "Security", "Programming", "PHP", "Technical", "Learn"]
 selected: true
 ---

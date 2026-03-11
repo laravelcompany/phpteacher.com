@@ -1,60 +1,132 @@
 ---
 import Image from '@components/ui/images/Image.astro'
-import { FooterLinks, SITE } from '@/config'
+import { SITE } from '@/config'
 
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BlogInsight from "@components/blog/BlogInsight.astro";
 import footerBanner from '@images/logo2.svg'
+
 const posts: CollectionEntry<"posts">[] = (await getCollection("posts")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const featuredPost = posts[0];
+const recentPosts = posts.slice(1, 7);
 ---
 
 <BaseLayout>
-  <section>
-    <div class="grid px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+  <section class="relative overflow-hidden bg-gradient-to-br from-neutral-50 via-orange-50/30 to-neutral-100 dark:from-neutral-900 dark:via-orange-900/10 dark:to-neutral-800">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiM0QjM5MUYiIGZpbGwtb3BhY2l0eT0iLjAyIi8+PC9nPjwvc3ZnPg==')] opacity-40 dark:opacity-20"></div>
+    
+    <div class="grid px-4 py-16 mx-auto lg:gap-12 xl:gap-16 lg:py-24 lg:grid-cols-12 relative">
       <div class="mr-auto place-self-center lg:col-span-7">
-        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-          Learn Programming Like a Pro
+        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-sm font-medium text-orange-700 bg-orange-100 rounded-full dark:bg-orange-900/30 dark:text-orange-300">
+          <span class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+          Free PHP Learning Resources
+        </div>
+        <h1 class="max-w-3xl mb-6 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+          Master <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-400 dark:to-orange-500">PHP Programming</span> Like a Pro
         </h1>
-        <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-           Whether you're starting from scratch or levelling up, explore interactive tutorials, toolkits, and project-based guides built for modern PHP devs. 学 PHP 编程，使用最佳工具。Изучи PHP шаг за шагом.
+        <p class="max-w-2xl mb-8 text-lg font-light text-neutral-600 lg:mb-10 dark:text-neutral-400">
+          From beginner to advanced tutorials, framework deep dives, and real-world projects. 
+         Level up your development career with practical, hands-on learning resources.
         </p>
-        <a href="/partners" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-          Partners
-          <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-        </a>
-        <a href="/posts" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-          Browse Posts
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/posts" class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-orange-600 rounded-lg hover:bg-orange-700 focus:ring-4 focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 transition-all duration-200">
+            Browse Articles
+            <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+          <a href="/partners" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-neutral-700 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 dark:text-white dark:border-neutral-600 dark:hover:bg-neutral-800 transition-all duration-200">
+            Partner with Us
+          </a>
+        </div>
+        
+        <div class="flex items-center gap-6 mt-10 text-sm text-neutral-500 dark:text-neutral-400">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            <span>5,000+ Readers</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+            <span>Weekly Updates</span>
+          </div>
+        </div>
       </div>
-      <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-     <Image
-                        src={footerBanner}
-                        alt={SITE.title}
-                        class="h-full w-full object-cover object-center"
-                        draggable="false"
-                        loading="eager"
-                        disableBlur={true}
-                    />
+      <div class="hidden lg:mt-0 lg:col-span-5 lg:flex relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-orange-400/20 to-orange-600/20 rounded-full blur-3xl"></div>
+        <Image
+          src={footerBanner}
+          alt={SITE.title}
+          class="h-full w-full object-cover object-center relative z-10"
+          draggable="false"
+          loading="eager"
+          disableBlur={true}
+        />
       </div>
     </div>
   </section>
 
+  {featuredPost && (
+    <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200">Featured Article</h2>
+      </div>
+      <a href={`/posts/${featuredPost.slug}/`} class="group relative grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 shadow-lg hover:shadow-xl transition-all duration-300" data-astro-prefetch>
+        <div class="relative aspect-[16/9] md:aspect-auto md:min-h-[320px] overflow-hidden">
+          <Image
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            src={featuredPost.data.banner}
+            alt={featuredPost.data.title}
+            format="avif"
+            loading="eager"
+            width="850"
+            height="440"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:hidden"></div>
+        </div>
+        <div class="p-6 md:p-10 flex flex-col justify-center">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-3 py-1 text-xs font-semibold text-white bg-orange-600 rounded-full">
+              Featured
+            </span>
+            <time class="text-sm text-neutral-500 dark:text-neutral-400">
+              {featuredPost.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </time>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-white mb-4 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+            {featuredPost.data.title}
+          </h3>
+          <p class="text-neutral-600 dark:text-neutral-400 mb-6 line-clamp-3">
+            {featuredPost.data.description}
+          </p>
+          <div class="inline-flex items-center gap-2 font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">
+            Read Article
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </div>
+        </div>
+      </a>
+    </section>
+  )}
 
-  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
     <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
       <h2 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
-        Latest PHP Learning Articles
+        Latest Articles
       </h2>
-      <p class="mt-1 text-neutral-600 dark:text-neutral-400">
-       Discover beginner-to-advanced PHP tutorials, framework deep dives, and dev career advice. Прокачай знания PHP через практику. 通过真实项目提高 PHP 水平。
+      <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+        Fresh tutorials, guides, and insights to help you grow as a developer.
       </p>
     </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {posts.map((b) => <BlogInsight blog={b} />)}
+      {recentPosts.map((b) => <BlogInsight blog={b} />)}
+    </div>
+    <div class="mt-12 text-center">
+      <a href="/posts" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-neutral-700 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 dark:text-white dark:border-neutral-600 dark:hover:bg-neutral-800 transition-all duration-200">
+        View All Articles
+        <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+      </a>
     </div>
   </section>
 </BaseLayout>

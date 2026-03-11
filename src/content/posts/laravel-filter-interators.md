@@ -3,7 +3,7 @@ title: "Introducing FilterIterators Building Flexible, Maintainable Iteration in
 description: "The PHP Foundation just dropped a fat security audit on `php-src` — that’s the engine behind PHP itself — and yeah, it wasn’t pretty. Some high-sev vulnerabilities were found lurking in the dark corners"
 pubDate: "2025-05-01 21:00:00"
 category: "laravel"
-banner: "https://i.imgur.com/HVUtPiQ.png"
+banner: "/logo.svg"
 tags: [ "Programming", "PHP",  "Technical", "Learn"]
 selected: false
 ---

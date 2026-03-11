@@ -3,7 +3,7 @@ title: "The Legacy Trap: Why Your 2005 Debugger Is a Cybersecurity Risk"
 description: "Welcome to 2025, where hackers ride AI and zero-days drop weekly. Still using a 2001 ICE box? You're not 'retro'—you're wide open. Let's talk truth about legacy tooling in embedded security."
 pubDate: "2025-07-31 20:00:00"
 category: "news"
-banner: "https://i.imgur.com/vHcDmvy.jpeg"
+banner: "/logo.svg"
 tags: [
     "Firmware Security",
     "Embedded Systems",

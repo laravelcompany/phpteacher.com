@@ -3,7 +3,7 @@ title: "The Richest Man in Babylon"
 description: "This excerpt from The Richest Man in Babylon by George S. Clason presents a guide to financial success through parables set in ancient Babylon."
 pubDate: "2025-05-01 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/piASQY3.png"
+banner: "/logo.svg"
 tags: ["Audit", "Financial",  "Technical", "Learn"]
 selected: true
 ---

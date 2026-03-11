@@ -3,7 +3,7 @@ title: "Five strategies to become an effective mentor"
 description: "Olivia Liddell’s reflections on her journey highlight something that many of us—teachers"
 pubDate: "2025-09-04 07:00:00"
 category: "news"
-banner: "https://i.imgur.com/kXp6vrs.png"
+banner: "/logo.svg"
 tags: ["mentoring", "developers", "Programming", "PHP",  "Technical", "Learn"]
 selected: false
 ---

@@ -3,7 +3,7 @@ title: "Laravel Design Patterns and Best Practices"
 description: "Our own take on the book that focus on design patterns and best practices for developing web applications using the Laravel framework"    
 pubDate: "2025-03-01 21:00:00"
 category: "books"
-banner: "https://i.imgur.com/xm2eUHw.png"
+banner: "/logo.svg"
 tags: ["Technology", "Programming", "Laravel", "Books", "Technical", "Download", "Ebook", "Free", "Learn"]
 selected: true
 ---

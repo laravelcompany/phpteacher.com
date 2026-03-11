@@ -3,7 +3,7 @@ title: "Top question on quora and reddit about the Laravel Framework"
 description: "Real-world SEO wins: See how we scaled an e-commerce site from 5K to 11K monthly visitors, boosted an auto service brand with 3.8M+ impressions, and drove hundreds of calls via Google Business Profiles."
 pubDate: "2025-08-21 12:00:00"
 category: "seo"
-banner: "https://i.imgur.com/daAuu0a.png"
+banner: "/logo.svg"
 tags: [
 "SEO",
 "E-Commerce",

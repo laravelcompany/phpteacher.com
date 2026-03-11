@@ -65,6 +65,9 @@ export default {
             },
         },
         extend: {
+            backgroundImage: {
+                'gradient-text': 'linear-gradient(to right, #8b5cf6, #ec4899)',
+            },
             typography: ({ theme }) => ({
                 blog: {
                     css: {
