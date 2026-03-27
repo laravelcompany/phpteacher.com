@@ -12,6 +12,7 @@ export const NavigationLinks: NavigationLink[] = [
     { name: 'Posts', url: '/posts/' },
     { name: 'Category', url: '/categories/' },
     { name: 'Partners', url: '/partners/' },
+    { name: 'Manual', url: '/manual/' },
 ]
 
 export const FooterLinks = [

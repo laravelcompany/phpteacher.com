@@ -1148,6 +1148,7 @@ div.soft-deprecation-notice blockquote.sidebar {
   box-sizing:border-box;
   padding:.75rem 0;
   font-size:.875rem;
+  display:none;
 }
 #breadcrumbs #breadcrumbs-inner {
   margin:0 auto;
@@ -1181,9 +1182,27 @@ div.soft-deprecation-notice blockquote.sidebar {
   float:right;
 }
 @media (min-width: 768px) {
+  #breadcrumbs {
+    display:block;
+    position: sticky;
+    top: 0px;
+    background: var(--dark-grey-color);
+    z-index: 1;
+  }
   .doctable thead th {
     position: sticky;
     top: 3rem;
+  }
+  #intro .background,
+  aside.tips,
+  .layout-menu {
+    width: 25%;
+    float: left;
+  }
+
+  #layout-content {
+    float: left;
+    width: 75%;
   }
 }
 
