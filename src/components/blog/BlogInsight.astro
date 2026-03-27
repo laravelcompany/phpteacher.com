@@ -11,13 +11,13 @@ interface Props {
 ---
 
 <a
-    class="group outline-none rounded-xl ring-zinc-500 transition duration-300 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
+    class="group outline-none rounded-2xl ring-zinc-500 transition duration-300 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none bg-white dark:bg-neutral-900 hover:shadow-xl dark:hover:shadow-orange-900/20 shadow-lg shadow-neutral-200/50 dark:shadow-neutral-800/50"
     href={`/posts/${blog.slug}/`}
     data-astro-prefetch
 >
-    <div class="aspect-w-16 aspect-h-10 relative overflow-hidden rounded-xl">
+    <div class="aspect-w-16 aspect-h-10 relative overflow-hidden rounded-t-2xl">
         <Image
-            class="w-full h-full sm:h-[220px] md:h-[240px] object-cover rounded-xl transition duration-500 ease-in-out group-hover:scale-105"
+            class="w-full h-full sm:h-[220px] md:h-[240px] object-cover rounded-t-2xl transition duration-500 ease-in-out group-hover:scale-110"
             src={blog.data.banner}
             alt={blog.data.title}
             format="avif"
@@ -26,13 +26,14 @@ interface Props {
             height="440"
         />
         <div class="absolute top-3 left-3">
-            <span class="px-2.5 py-1 text-xs font-semibold text-white bg-orange-600 rounded-md shadow-sm">
+            <span class="px-3 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-md shadow-sm">
                 {blog.data.category}
             </span>
         </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     </div>
 
-    <div class="mt-5">
+    <div class="p-5">
         <div class="flex items-center gap-2 mb-3">
             <time class="text-sm text-neutral-500 dark:text-neutral-400">
                 {blog.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -54,9 +55,10 @@ interface Props {
         </p>
 
         <div
-            class="mt-4 inline-flex items-center gap-1 font-medium text-orange-500 decoration-2 group-hover:underline dark:text-orange-400"
+            class="mt-4 inline-flex items-center gap-2 font-semibold text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all duration-200"
         >
-            Read more <Icon name="arrowRightStatic" />
+            Read more 
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
         </div>
     </div>
 </a>

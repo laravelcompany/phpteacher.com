@@ -33,6 +33,9 @@ const ogImage = post.data.ogImage
     title={post.data.title}
     description={post.data.description}
     ogImage={ogImage}
+    article={true}
+    publishedTime={post.data.pubDate.toISOString()}
+    author={SITE.author}
     structuredData={{
         '@context': 'https://schema.org',
         '@type': 'NewsArticle',
@@ -44,8 +47,8 @@ const ogImage = post.data.ogImage
 
         ],
         'headline': post.data.title,
-        'datePublished': post.data.pubDate,
-        'dateModified': post.data.pubDate,
+        'datePublished': post.data.pubDate.toISOString(),
+        'dateModified': post.data.pubDate.toISOString(),
         'author': [{
             '@type': 'Person',
             'name': SITE.author,

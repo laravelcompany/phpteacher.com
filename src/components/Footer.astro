@@ -5,24 +5,27 @@ import footerBanner from '@images/logo2.svg'
 import { FooterLinks, SITE } from '@/config'
 ---
 
-<footer class="w-full bg-neutral-300 dark:bg-neutral-900">
-    <div class="mx-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-16 lg:pt-20 2xl:max-w-screen-2xl">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 md:grid-cols-5">
-            <div class="col-span-full flex justify-center sm:grid sm:col-span-1">
-                <BrandLogo class="h-auto w-28 rounded-full" />
+<footer class="w-full bg-neutral-300 dark:bg-neutral-900 border-t border-neutral-400/30 dark:border-neutral-700/50">
+    <div class="mx-auto w-full max-w-[85rem] px-4 py-12 sm:px-6 lg:px-16 lg:pt-16 2xl:max-w-screen-2xl">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 md:grid-cols-4 lg:grid-cols-5">
+            <div class="col-span-full sm:col-span-1 flex flex-col items-center sm:items-start">
+                <BrandLogo class="h-12 w-auto mb-4" />
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 text-center sm:text-left">
+                    Free PHP learning resources for developers of all levels.
+                </p>
             </div>
             {
                 FooterLinks.map(section => (
-                    <div class="col-span-1 text-center">
-                        <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
+                    <div class="col-span-1 text-center sm:text-left">
+                        <h3 class="font-semibold text-neutral-800 dark:text-neutral-200 mb-4">
                             {section.section}
                         </h3>
-                        <ul class="mt-3 grid space-y-3">
+                        <ul class="space-y-3">
                                 {section.links.map((link, _index) => (
                                         <li>
                                             <a
                                                 href={link.url}
-                                                class="inline-flex gap-x-2 rounded-lg text-neutral-600 outline-none ring-zinc-500 transition duration-300 hover:text-neutral-500 focus-visible:ring dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none"
+                                                class="inline-flex text-neutral-600 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-400 transition-colors text-sm"
                                             >
                                                 {link.name}
                                             </a>
@@ -32,43 +35,21 @@ import { FooterLinks, SITE } from '@/config'
                     </div>
                 ))
             }
-
-            <div class="col-span-2 flex justify-center mt-10 md:mt-0">
-                <div class="max-w-[320px] max-h-[320px] -mt-16 scale-75 hidden md:block">
-                    <Image
-                        src={footerBanner}
-                        alt={SITE.title}
-                        class="h-full w-full object-cover object-center"
-                        draggable="false"
-                        loading="eager"
-                        disableBlur={true}
-                    />
-                </div>
-            </div>
         </div>
 
-
-        <div class="mx-auto flex max-w-screen-xl flex-col items-center p-4 text-center md:p-8 lg:p-10">
-            <div class="mb-8">
-                <a data-testid="flowbite-footer-brand" href="https://laravelcompany.com" class="flex items-center justify-center">
-                    <img alt="Laravel Company Logo" src="https://laravelcompany.com/logo.svg" class="mr-3 h-8">
-                    <span data-testid="flowbite-footer-brand-span" class="self-center text-2xl font-semibold text-white whitespace-nowrap">Laravel Company</span>
-                </a>
+        <div class="mt-12 pt-8 border-t border-neutral-400/30 dark:border-neutral-700/50">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <a href="https://laravelcompany.com" class="flex items-center gap-2">
+                        <img alt="Laravel Company Logo" src="https://laravelcompany.com/logo.svg" class="h-6">
+                        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">Laravel Company</span>
+                    </a>
+                </div>
+                <p class="text-sm text-neutral-500 dark:text-neutral-500">
+                    Part of the Laravel Company ecosystem delivering integrated messaging, e-commerce, and SEO solutions.
+                </p>
+                <span class="text-sm text-neutral-500 dark:text-neutral-500">© 2026 Laravel Software. All Rights Reserved.</span>
             </div>
-            <p class="mb-6 text-sm text-gray-500 sm:mb-0 dark:text-white">
-                Part of the <a href="https://laravelcompany.com" class="hover:underline text-white dark:text-white">Laravel Company</a> ecosystem, delivering integrated messaging, e-commerce, and SEO
-                solutions.
-            </p>
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2026 <a href="https://laravelcompany.com" class="hover:underline">Laravel Software</a>. All Rights Reserved.</span>
         </div>
     </div>
 </footer>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NV9CPH6BX3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NV9CPH6BX3');
-</script>

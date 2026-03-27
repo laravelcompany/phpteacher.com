@@ -12,15 +12,18 @@ interface Props {
     ogImage?: any
     lang?: string
     structuredData?: object
+    article?: boolean
+    publishedTime?: string
+    author?: string
 }
 
-const { title, description = SITE.description, ogImage, lang = 'en', structuredData } = Astro.props
+const { title, description = SITE.description, ogImage, lang = 'en', structuredData, article = false, publishedTime, author } = Astro.props
 const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
 ---
 
 <html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
     <head>
-        <title>{normalizeTitle} | phpteacher.com </title>
+        <title>{normalizeTitle}</title>
         <meta name="google-adsense-account" content="ca-pub-6836700493760647">
 
         <BaseHead
@@ -30,6 +33,9 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
             ogTitle={title === '' ? SITE.title : title}
             ogDescription={description}
             structuredData={structuredData}
+            article={article}
+            publishedTime={publishedTime}
+            author={author}
         />
         <script is:inline>
          if (localStorage.getItem('hs_theme') === 'dark' || (!('hs_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
