@@ -13,7 +13,7 @@ import { uploadAssetsToS3 } from './src/support/uploader.ts'
 export default defineConfig({
     site: SITE.url,
     redirects: {
-        '/manual': '/manual/index',
+        // '/manual': '/manual/index', // Handled by [...slug].astro
     },
     image: {
         // If you don't want to optimize images during the BUILD process please set the ASTRO_IMAGE_OPTIMIZE environment variable to false
