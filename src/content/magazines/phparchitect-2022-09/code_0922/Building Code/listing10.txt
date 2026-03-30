@@ -1,0 +1,16 @@
+class BookBuilder {
+    // Our properties
+
+    public function build(): Book {
+        return new Book(
+            title: $this->title,
+            contents: $this->contents,
+            author: $this->author,
+            cover: $this->cover,
+            coverImage: $this->coverImage,
+            size: $this->size,
+        );
+    }
+
+    // Our setter methods
+}

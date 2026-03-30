@@ -1,0 +1,32 @@
+"
+" ~~~~ Content Settings ~~~~~~~
+"
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smartindent
+
+" Convert tabs to spaces
+set expandtab
+
+set nojoinspaces
+set textwidth=0
+set wrapmargin=0
+set nowrap
+set linebreak
+
+" Minimal number of screen lines to keep above and below the cursor
+set scrolloff=8
+
+set sidescroll=12
+set sidescrolloff=12
+
+" Determine how you want special characters to be displayed
+set listchars=""
+set listchars+=tab:>¬
+set listchars+=eol:¶
+set listchars+=trail:∙
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:¤

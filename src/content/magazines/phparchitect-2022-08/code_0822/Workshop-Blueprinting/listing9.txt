@@ -1,0 +1,14 @@
+public function definition()
+{
+    return [
+        'name' => $this->faker->name,
+        'slug' => $this->faker->slug,
+        'site_url' => $this->faker->url,
+        'publisher_url' => $this->faker->url,
+        'publisher' => $this->faker->company,
+        'description' => $this->faker->text,
+        'thumbnail_url' => $this->faker->imageUrl(240,240),
+        'screen_url' => $this->faker->imageUrl(1280,720),
+        'published' => $this->faker->boolean,
+    ];
+}

@@ -1,0 +1,15 @@
+# config/services.yaml
+services:
+  acme.do_client:
+    class: Aws\\S3\\S3Client
+    arguments:
+      -
+        version: 'latest'
+        region: "%env(DO_REGION)%"
+        credentials:
+          key: "%env(DO_ACCESS_KEY)%"
+          secret: "%env(DO_SECRET_KEY)%"
+        url: "https://%env(DO_STORAGE_BUCKET)%. \
+           %env(DO_REGION)%.digitaloceanspaces.com"
+        endpoint: "https://%env(DO_REGION)%. \
+           digitaloceanspaces.com"

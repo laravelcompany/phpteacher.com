@@ -1,0 +1,10 @@
+# Enable authentication using SASL.
+smtp_sasl_auth_enable = yes
+# Use transport layer security (TLS) encryption.
+smtp_tls_security_level = encrypt
+# Do not allow anonymous authentication.
+smtp_sasl_security_options = noanonymous
+# Specify where to find the login information.
+smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd
+# Where to find the certificate authority (CA) certificates.
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt

@@ -1,0 +1,13 @@
+[
+  {
+    _id: 1,
+    speaker: {
+      _id: 1,
+      name: "Joel Lord"
+    },
+    conference_id: 1,
+    title: "MongoDB and PHP: A Perfect Match",
+    day: "June 1, 2022",
+    time: "14:15"
+  }
+]

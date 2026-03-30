@@ -1,0 +1,20 @@
+use App\Entity\Widget;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
+...
+public function createWidget(ManagerRegistry $doctrine): Response
+{
+    $entityManager = $doctrine->getManager();
+
+    $widget = new Widget();
+    $widget->setPrice(42);
+    $widget->setDescription('We forgot our name filed');
+    $widget->setStock(10);
+    $widget->setsellable(True);
+    // We want to save our $widget, but not run the query.
+    $entityManager->persist($widget);
+    // flush() actually executes our insert query build from our $widget
+    $entityManager->flush();
+    return new Response('Created our Widget with ID: '.$widget->getId());
+}

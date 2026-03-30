@@ -1,0 +1,30 @@
+[
+  [
+    '$facet' => [
+      'twitter' => [
+        ['$match' => ['socials.Twitter'=> ['$exists'=> 1]]],
+        ['$count'=> 'count']
+      ],
+      'github'=> [
+        ['$match'=> ['socials.Github'=> ['$exists'=> 1]]],
+        ['$count'=> 'count']
+      ],
+      'both'=> [
+        ['$match'=> ['$and'=> [
+          ['socials.Github'=> ['$exists'=> 1]],
+          ['socials.Twitter'=> ['$exists'=> 1]]
+        ]]],
+        ['$count'=> 'count']
+      ]
+    ]
+  ],
+  ['$unwind'=> ['path'=> '$twitter']],
+  ['$unwind'=> ['path'=> '$github']],
+  ['$unwind'=> ['path'=> '$both']],
+  ['$set'=> [
+      'twitter'=> '$twitter.count',
+      'github'=> '$github.count',
+      'both'=> '$both.count'
+    ]
+  ]
+]

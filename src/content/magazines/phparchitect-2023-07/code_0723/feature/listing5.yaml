@@ -1,0 +1,24 @@
+# config/packages/flysystem.yaml
+flysystem:
+  storages:
+    acme.storage.local:
+      adapter: 'local'
+      options:
+        directory: '%kernel.project_dir%/.../storage/'
+    acme.storage.aws:
+      adapter: 'aws'
+        # Make file publicly accessible in S3
+      visibility: public
+      options:
+          # The service ID of the Aws\\S3\\S3Client
+          # instance defined in services.yaml.
+          client: 'acme.s3_client'
+          bucket: '%env(AWS_STORAGE_BUCKET)%'
+          # Optional path prefix
+          #   you can set empty string
+          prefix: '%env(APP_ENV)%/uploads/storage/'
+          streamReads: true
+    acme.storage:
+      adapter: 'lazy'
+      options:
+          source: '%env(FLYSYSTEM_ADAPTER_STORAGE)%'

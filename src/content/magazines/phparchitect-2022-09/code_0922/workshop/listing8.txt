@@ -1,0 +1,17 @@
+REGISTRY := registry.phparch.com
+CONTAINER := phparch/awesome-php
+HASH := $(shell git rev-parse HEAD)
+BUILD = DOCKER_BUILDKIT=1 docker build --build-arg HASH=$(HASH)
+
+ifndef GITHUB_RUN
+GITHUB_RUN=latest
+endif
+
+.PHONY: docker_build
+docker_build:
+	$(BUILD) --label=GIT_HASH=$(GIT_HASH) \\
+	-t $(REGISTRY)/$(REPOSITORY):$(GITHUB_RUN) .
+
+.PHONY: docker_push
+docker_push:
+	docker push $(REGISTRY)/$(REPOSITORY):$(GITHUB_RUN)

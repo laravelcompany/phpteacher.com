@@ -1,0 +1,8 @@
+class VatRate
+{
+    public function __construct(
+        public readonly float $rate,
+    ) {
+    }
+    // ...
+}

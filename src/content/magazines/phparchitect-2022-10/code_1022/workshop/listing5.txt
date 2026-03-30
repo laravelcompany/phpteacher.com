@@ -1,0 +1,32 @@
+<script setup>
+...
+dayjs.extend(relativeTime);
+
+const props = defineProps(['task']);
+
+const form = useForm({
+    name: props.task.name,
+});
+
+const editing = ref(false);
+</script>
+
+<template>
+    <div class="p-6 flex space-x-2">
+        <div class=""></div>
+        <div class="flex-1">
+            <div class="flex justify-between items-center">
+                <Dropdown v-if="task.user.id === $page.props.auth.user.id">
+                    <template #trigger>
+                        <button>
+                        </button>
+                    </template>
+                </Dropdown>
+            </div>
+            <form v-if="editing" @submit.prevent="form.put(route('tasks.update', task.id), { onSuccess: editing = false })">
+                ...
+            </form>
+            <p v-else class="mt-4 text-lg text-gray-900">{{ task.name }}</p>
+        </div>
+    </div>
+</template>

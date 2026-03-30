@@ -1,0 +1,10 @@
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    $request->user()->tasks()->create($validated);
+
+    return redirect(route('tasks.index'));
+}

@@ -1,0 +1,56 @@
+@startuml
+
+' Import the libraries
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v11.1/dist
+!includeurl AWSPuml/AWSSimplified.puml
+!includeurl AWSPuml/General/Users.puml
+!includeurl AWSPuml/ApplicationIntegration/APIGateway.puml
+!includeurl AWSPuml/Compute/Lambda.puml
+!includeurl AWSPuml/Database/DynamoDB.puml
+!includeurl AWSPuml/Compute/EC2.puml
+!includeurl AWSPuml/Storage/SimpleStorageService.puml
+
+' Theme and styles
+
+!theme metal
+skinparam defaultTextAlignment center
+skinparam arrowThickness 1.5
+skinparam arrowColor black
+
+' Construction of the objects
+
+Users(visitors, "Visitors", "")
+
+cloud AWS {
+  APIGateway(api, "Upload API", "")
+  Lambda(lambda, "Converter\nLambda", "")
+  DynamoDB(storyDb, "Story Data\nDynamoDB", "")
+  EC2(ec2, "Extractor\nEC2", "")
+
+  rectangle {
+    SimpleStorageService(s3, "S3", "")
+    folder thumbnails
+    folder videos
+  }
+}
+
+interface "https" as apiEndpoint
+interface "https" as cdnEndpoint
+
+' Bind interfaces to objets
+
+apiEndpoint . api
+cdnEndpoint . thumbnails
+
+' Create the arrows
+
+visitors -> apiEndpoint : "Upload\na Story"
+api-> lambda: "Trigger\ncropping / conversion"
+lambda --> videos: storage
+videos --> ec2
+ec2 -> storyDb: "insert\nmetadata"
+ec2 -> thumbnails: storage
+visitors <-> cdnEndpoint: "browse\nthe images"
+
+@enduml

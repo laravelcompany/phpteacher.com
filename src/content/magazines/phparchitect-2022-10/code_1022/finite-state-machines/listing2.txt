@@ -1,0 +1,9 @@
+// results in:
+// PHP Fatal error:  Case ReadyForReview of backed enum 
+//      PublishedState must have a value
+enum PublishedState:string {
+    case Draft = "Draft";
+    case ReadyForReview;
+    case Scheduled = "Scheduled";
+    case Published = "Published";
+}

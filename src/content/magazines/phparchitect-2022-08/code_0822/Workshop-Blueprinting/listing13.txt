@@ -1,0 +1,8 @@
+$ php vendor/bin/phpunit
+PHPUnit 9.5.21 #StandWithUkraine
+
+....... 7 / 7 (100%)
+
+Time: 00:00.498, Memory: 32.00 MB
+
+OK (7 tests, 17 assertions)

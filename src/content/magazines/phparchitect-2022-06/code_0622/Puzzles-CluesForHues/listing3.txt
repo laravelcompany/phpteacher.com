@@ -1,0 +1,36 @@
+// count chars
+$raw = count_chars(implode('', $answer), 1);
+$freq = [];
+foreach ($raw as $chr => $count) {
+    $freq[chr($chr)] = $count;
+}
+
+// assume it's wrong
+$feedback = array_fill(0, 6, '-');
+print_r($feedback);
+
+// we're checking if the letter is in the right spot
+foreach ($feedback as $index => $state) {
+    if ($guess[$index] === $answer[$index]) {
+        // decrement frequency for second pass
+        $feedback[$index] = '+';
+        $freq[$guess[$index]]--;
+    }
+}
+
+// now check again and indicate "in the solution"
+foreach ($feedback as $index => $state) {
+    // only look at letters we haven't examined
+    if ($state !== '-') continue;
+    $letter = $guess[$index];
+
+    if (in_array($letter, $answer) && $freq[$letter] > 0) {
+        // only mark as in solution if we have uses left
+        $feedback[$index] = '?';
+        $freq[$letter]--;
+    }
+}
+
+echo "ANSWER:   " . implode('', $answer) . "\\n";
+echo "GUESS:    " . implode('', $guess) . "\\n";
+echo "FEEDBACK: " . implode('', $feedback) . "\\n";

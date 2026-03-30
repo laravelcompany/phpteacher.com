@@ -1,0 +1,15 @@
+class Currency
+{
+    public function __construct(
+        private string $code,
+    )
+}
+
+class Money
+{
+    public function __construct(
+        private int|string $amount,
+        private Currency $currency,
+    ) {
+    }
+}

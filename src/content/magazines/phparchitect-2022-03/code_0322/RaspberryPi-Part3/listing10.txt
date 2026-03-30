@@ -1,0 +1,11 @@
+[Unit]
+Description=Accelerometer Data Logging Service
+After=multi-user.target
+
+[Service]
+ExecStart=/root/log_accelerometer_data
+StandardOutput=null
+     
+[Install]
+WantedBy=multi-user.target
+Alias=accelerometerdatalogging.service

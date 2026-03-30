@@ -1,0 +1,57 @@
+FROM ubuntu:20.04
+
+RUN export DEBIAN_FRONTEND=noninteractive; \\
+    export DEBCONF_NONINTERACTIVE_SEEN=true; \\
+    echo 'tzdata tzdata/Areas select Etc' | debconf-set-selections; \\
+    echo 'tzdata tzdata/Zones/Etc select UTC' | debconf-set-selections; \\
+    apt-get update -qqy && apt-get install -qqy software-properties-common \\
+    && add-apt-repository -y ppa:ondrej/php \\
+ && apt-get install -qqy --no-install-recommends apt-utils apache2 apache2-bin \\
+libapache2-mod-php8.0 php8.0-curl php8.0-ldap php8.0-mysql php8.0-gd php8.0-xml php8.0-mbstring \\
+php8.0-zip php8.0-bcmath patch curl wget vim git cron mysql-client supervisor cron gcc make \\
+autoconf libc-dev pkg-config libmcrypt-dev php8.0-dev ca-certificates unzip \\
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN curl -L -O <https://github.com/pear/pearweb_phars/raw/master/go-pear.phar>
+RUN php go-pear.phar
+
+RUN phpenmod gd
+RUN phpenmod bcmath
+
+RUN sed -i 's/variables_order = .*/variables_order = "EGPCS"/' /etc/php/8.0/apache2/php.ini
+RUN sed -i 's/variables_order = .*/variables_order = "EGPCS"/' /etc/php/8.0/cli/php.ini
+
+RUN useradd -m --uid 1000 --gid 50 docker
+
+RUN echo export APACHE_RUN_USER=docker >> /etc/apache2/envvars
+RUN echo export APACHE_RUN_GROUP=staff >> /etc/apache2/envvars
+
+COPY docker/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+RUN mkdir -p /var/lib/ssl
+COPY docker/001-default-ssl.conf /etc/apache2/sites-available/001-default-ssl.conf
+
+RUN a2enmod ssl
+RUN a2ensite 001-default-ssl.conf
+
+COPY . /var/www/html
+RUN a2enmod rewrite
+WORKDIR /var/www/html
+
+COPY docker/docker.env /var/www/html/.env
+RUN chown -R docker /var/www/html
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+USER docker
+RUN composer install --no-dev --working-dir=/var/www/html
+USER root
+
+COPY docker/startup.sh docker/supervisord.conf /
+COPY docker/supervisor-exit-event-listener /usr/bin/supervisor-exit-event-listener
+RUN chmod +x /startup.sh /usr/bin/supervisor-exit-event-listener
+
+CMD ["/startup.sh"]
+
+EXPOSE 80
+EXPOSE 443

@@ -1,0 +1,12 @@
+use \\Phue\\Client;
+use \\Phue\\Command\\Ping;
+use \\Phue\\Command\\GetLights;
+use \\Phue\\Command\\SetGroupState;
+use \\Phue\\Command\\SetLightState;
+use \\Phue\\Command\\CreateScene;
+use \\Phue\\Command\\SetSceneLightState;
+use Phue\\Transport\\Exception\\ConnectionException;
+
+require_once '../vendor/autoload.php';
+
+$client = new Client('192.168.1.2', 'abcdefg123456');

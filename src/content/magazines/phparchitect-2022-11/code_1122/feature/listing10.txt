@@ -1,0 +1,19 @@
+class Total
+{
+    public function __construct(
+        public readonly int $value,
+    ) {
+    }
+
+    public function add(int $valueToAdd): self
+    {
+        return new self($this->value + $valueToAdd);
+    }
+}
+
+$originalTotal = new Total(2);
+$newTotal = $originalTotal;
+$newTotal = $newTotal->add(3);
+
+echo $originalTotal->value;    // 2
+echo $newTotal->value;      // 3

@@ -1,0 +1,36 @@
+class EventLoop {
+    public array $stack = [];
+
+    public function run(): void {
+        while (count($this->stack)) {
+            $invokable = array_shift($this->stack);
+            if ($invokable) {
+                $response = $invokable();
+                if (!is_null($response) && is_callable($response)) {
+                    $this->stack[] = $response;
+                }
+            }
+        };
+    }
+}
+
+$loop = new EventLoop();
+$loop->stack[] = function() {
+    echo "I was added to the stack first" . PHP_EOL;
+};
+$loop->stack[] = function() {
+    echo "I was added to the stack second" . PHP_EOL;
+    return function() {
+        echo "I was added from inside a function" . PHP_EOL;
+    };
+};
+$loop->stack[] = function() {
+    echo "I was added to the stack third" . PHP_EOL;
+};
+$loop->run();
+
+// Output
+I was added to the stack first
+I was added to the stack second
+I was added to the stack third
+I was added from inside a function

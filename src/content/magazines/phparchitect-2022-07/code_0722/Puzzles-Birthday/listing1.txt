@@ -1,0 +1,12 @@
+function hasDuplicates(array $dates) : bool
+{
+    // remove duplicates
+    $uniq = array_unique($dates);
+
+    // if we didn't remove duplicates, both will have the same size
+    if (count($uniq) === count($dates)) {
+        return false;
+    }
+
+    return true;
+}

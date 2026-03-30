@@ -1,0 +1,17 @@
+class PhpArchEmailAddress
+{
+    public readonly string $value;
+
+    public function __construct(string $value)
+    {
+        if(preg_match('/.*@phparch\\.com/m', $value) !== 1) {
+            throw new InvalidPhpArchEmailAddress(sprintf('<%s> is not a valid email address.', $value));
+        }
+
+        if(preg_match('/ben\\.ramsey@phparch\\.com/m', $value) > 0) {
+            throw new ExasperatedEric("Ben? Ben Ramsey? Are you kidding me?");
+        }
+
+        $this->value = $value;
+    }
+}

@@ -1,0 +1,27 @@
+class ResponseFactory {
+  static public function create(
+    mixed $data,
+    int $returnCode = 200
+  ): ResponseInterface {
+    switch(getallheaders()['Accept']) {
+      case 'application/xml':
+        $resp = new XMLResponse($data);
+        break;
+      default:
+      case 'application/json':
+        $resp = new JsonResponse($data);
+        break;
+    }
+    $resp->setReturnCode($returnCode);
+    return $resp;
+  }
+}
+
+class OurController {
+  public function someAction() {
+    // Magical business logic that 
+    // creates a $returnData array
+    $resp = ResponseFactory::create($returnData);
+    $resp->output();
+  }
+}

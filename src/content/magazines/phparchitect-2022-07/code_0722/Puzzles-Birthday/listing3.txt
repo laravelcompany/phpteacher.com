@@ -1,0 +1,9 @@
+$runs = 10;
+
+for ($size = 2; $size < 31; $size++) {
+    $dupesFound = doRuns($runs, $size);
+    echo sprintf(
+        "%3d %12d %12.4f",
+        $size, $dupesFound, $dupesFound/$runs
+    ) . PHP_EOL;
+}

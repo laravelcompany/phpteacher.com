@@ -1,0 +1,36 @@
+abstract class AbstractResponse 
+            implements ResponseInterface {
+  protected int $returnCode = 200;
+
+  public function __construct(
+    protected mixed $data,
+  ) { }
+
+  public function setReturnCode(int $code): static {
+    $this->returnCode = $code;
+    return $this;
+  }
+
+  abstract function output(): void;
+}
+
+class JsonResponse extends AbstractResponse {
+  public function output(): void {
+    header('Content-Type: application/json');
+    http_response_code($this->returnCode);
+    echo json_encode($this->data);
+  }
+}
+
+class XMLResponse extends AbstractResponse {
+  public function output(): void {
+    header('Content-Type: application/xml');
+    http_response_code($this->returnCode);
+    $xml = new SimpleXMLElement('<root/>');
+    array_walk_recursive(
+      array_flip($this->data), 
+      array ($xml, 'addChild')
+    );
+    print $xml->asXML();
+  }
+}

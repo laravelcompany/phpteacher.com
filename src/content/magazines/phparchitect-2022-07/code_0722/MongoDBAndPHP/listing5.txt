@@ -1,0 +1,14 @@
+<?php
+// Get the first speaker from the collection
+$speaker = $collection->findOne();
+// Output the speaker profile
+?>
+<h1><?= $speaker->name ?></h1>
+<h2>Socials</h2>
+<ul>
+<?php
+  foreach ($speaker->socials as $social => $link) { ?>
+    <li><a href="<?= $link ?>"><?= $social ?></a></li>
+  <?php
+  }
+?>

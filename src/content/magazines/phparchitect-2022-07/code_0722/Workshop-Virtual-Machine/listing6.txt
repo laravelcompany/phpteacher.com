@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  rfid_app:
+    image: svpernova09/rfid:latest
+    volumes:
+      - ./logs:/var/www/html/storage/logs
+    ports:
+      - "8000:80"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    env_file:
+      - docker/docker.env
+
+  mariadb:
+    image: mariadb:10.7.4-focal
+    volumes:
+      - type: volume
+        source: mariadb-data
+        target: /var/lib/mysql
+        volume:
+          nocopy: true
+    ports:
+      - "33060:3306"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 3s
+      timeout: 1s
+      retries: 5
+    env_file:
+      - docker/docker.env
+
+  redis:
+    image: redis:6.2.5-buster
+    ports:
+      - "6379:6379"
+    volumes:
+      - type: volume
+        source: redis-data
+        target: /data
+        volume:
+          nocopy: true
+
+volumes:
+  mariadb-data:
+  redis-data:

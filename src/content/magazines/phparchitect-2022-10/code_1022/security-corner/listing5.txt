@@ -1,0 +1,20 @@
+steps:
+  - name: Checkout Code
+    uses: actions/checkout@v1
+
+  - name: Setup PHP
+    uses: shivammathur/setup-php@2.9.0
+    with:
+      php-version: ${{ matrix.php }}
+      extensions: dom, curl, libxml, mbstring, zip, pcntl, ...
+      coverage: none
+
+  - name: Install dependencies & Setup App
+    run: make setup
+    env:
+      DB_PORT: ${{ job.services.mysql.ports[3306] }}
+
+  - name: Execute tests
+    run: make test
+    env:
+      DB_PORT: ${{ job.services.mysql.ports[3306] }}

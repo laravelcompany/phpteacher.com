@@ -1,0 +1,12 @@
+# config/services.yaml
+services:
+    acme.s3_client:
+        class: Aws\S3\S3Client
+        arguments:
+            -
+                version: '2006-03-01' # or 'latest'
+                region: "%env(AWS_REGION)%"
+                use_aws_shared_config_files: false
+                credentials:
+                    key: "%env(AWS_ACCESS_KEY)%"
+                    secret: "%env(AWS_SECRET_KEY)%"

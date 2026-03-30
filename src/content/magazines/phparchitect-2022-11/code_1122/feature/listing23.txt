@@ -1,0 +1,9 @@
+class MustacheColor extends Color
+{
+
+}
+
+$colorA = new Color(255, 255, 255, 1);
+$colorB = new MustacheColor(255, 255, 255, 1);
+
+var_dump($colorA == $colorB); // false

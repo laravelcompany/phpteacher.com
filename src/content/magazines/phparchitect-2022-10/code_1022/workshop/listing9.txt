@@ -1,0 +1,17 @@
+public function update(Request $request, Task $task)
+{
+    $this->authorize('update', $task);
+
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+    $task->update($validated);
+    return redirect(route('tasks.index'));
+}
+
+public function destroy(Task $task)
+{
+    $this->authorize('delete', $task);
+    $task->delete();
+    return redirect(route('tasks.index'));
+}

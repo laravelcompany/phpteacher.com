@@ -1,0 +1,13 @@
+class BlogPostString
+{
+    private string $state = PublishedStateString::DRAFT;
+
+    public function updateState(string $newState): void
+    {
+        if (!PublishedStateString::isValidTransition($this->state, $newState)) {
+            throw new Exception("Unable to transition from {$this->state} to {$newState}");
+        }
+
+        $this->state = $newState;
+    }
+}

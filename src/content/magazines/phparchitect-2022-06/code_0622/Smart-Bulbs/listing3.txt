@@ -1,0 +1,26 @@
+try {
+    $client->sendCommand(
+        new Ping
+    );
+
+    $lights = $client->getLights();
+    $groups = $client->getGroups();
+
+    foreach ($lights as $lightId => $light) {
+        echo "Id #{$lightId} - {$light->getName()}<br>";
+    }
+
+    echo('<hr>');
+
+    foreach ($groups as $group) {
+        $groupLightIds = implode(', ', $group->getLightIds());
+        echo <<<EOT
+            Id #{$group->getId()} - {$group->getName()}
+            (Type: {$group->getType()})
+            Lights: {$groupLightIds}<br>
+        EOT;
+    }
+
+} catch (ConnectionException $e) {
+    echo 'ERROR: There was a problem accessing Hue bridge.';
+}

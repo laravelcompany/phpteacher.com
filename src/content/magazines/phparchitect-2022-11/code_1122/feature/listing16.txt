@@ -1,0 +1,16 @@
+class VatRate
+{
+    // ...
+
+    public function calculateVat(Money $money): Money
+    {
+        return $money->multiply($this->rate);
+    }
+
+    public function applyVat(Money $money): Money
+    {
+        return $money->add($this->calculateVat($money));
+    }
+
+    // Money being immutable, the add() & multiply() methods will return new instances of Money
+}

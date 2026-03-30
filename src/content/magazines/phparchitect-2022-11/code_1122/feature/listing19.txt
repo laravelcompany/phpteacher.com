@@ -1,0 +1,9 @@
+$psr6CachePool = new Cache();
+
+if(!$psr6CachePool->hasItem(PhpArchEmailAddress::class . $emailAddressAsString)) {
+    $psr6CachePool->save(
+        $psr6CachePool->getItem(PhpArchEmailAddress::class . $emailAddressAsString)
+                    ->setValue(new PhpArchEmailAddress($emailAddressAsString))
+    );
+}
+$emailAddress = $psr6CachePool->getItem(PhpArchEmailAddress::class . $emailAddressAsString)->get();

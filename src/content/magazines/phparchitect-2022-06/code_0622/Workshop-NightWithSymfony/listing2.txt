@@ -1,0 +1,10 @@
+public function index(): Response
+{
+    $data = $this->dataService->getData();
+    $contents = $this->renderView(
+        'product/index.html.twig', [
+            'data' => $data
+        ]
+    );
+    return new Response($contents);
+}

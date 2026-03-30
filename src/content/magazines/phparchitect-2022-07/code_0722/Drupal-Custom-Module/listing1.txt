@@ -1,0 +1,32 @@
+health_sites.main:
+  path: '/admin/health_sites'
+  defaults:
+    _controller: '\Drupal\health_sites\Controller\HealthSitesController::index'
+    _title: 'Health Sites'
+  module_name: 'health_sites'
+  requirements:
+    _permission: 'health sites configure'
+
+health_sites.configure:
+  path: '/admin/health_sites/configure'
+  defaults:
+    _form: '\Drupal\health_sites\Form\HealthSitesConfigureForm'
+    _title: 'Health Sites configure'
+  requirements:
+    _permission: 'health sites configure'
+
+health_sites.configure_urls:
+  path: '/admin/health_sites/configure-urls'
+  defaults:
+    _form: '\Drupal\health_sites\Form\HealthSitesConfigureUrlsForm'
+    _title: 'Health Sites - Urls configure'
+  requirements:
+    _permission: 'health sites configure'
+
+health_sites.verify:
+  path: '/admin/health_sites/verify-health'
+  defaults:
+    _form: '\Drupal\health_sites\Form\HealthSitesVerifyHealthForm'
+    _title: 'Health Sites - Verify Urls'
+  requirements:
+    _permission: 'health sites verify urls'

@@ -1,0 +1,48 @@
+"
+" **** User Interface **************************
+"
+
+" Show real line numbers
+set number
+
+" Number the lines, relative to where your cursor is
+set norelativenumber
+
+" Control the left edge of the window
+set numberwidth=6
+
+" Always display the status bar
+set laststatus=2
+
+" custom status line, comment this out if/when you use a status bar plugin
+if has("statusline")
+    " Reset to empty string
+    set statusline=
+    " Display the buffer number
+    set statusline+=\<%n\>
+    " Base filename
+    set statusline+=\ %t
+    " Various flags
+    set statusline+=\ %m%r%h%w
+
+    " Separate left side from the right side
+    set statusline+=%=
+
+    " File format/type
+    set statusline+=(%{&ff})
+    " current line number / total lines
+    set statusline+=\ line:%l\/%L
+    " Percentage within file
+    set statusline+=\ (%p%%)
+    " Column number
+    set statusline+=\ col:%c
+endif
+
+"
+" ~~~~ Display Guide ~~~~~~~~~~
+"
+
+" Remember to add 1 to your desired maximum line length
+set colorcolumn=65
+" 235 is a very dark grey, good for dark backgrounds
+hi ColorColumn ctermbg=235

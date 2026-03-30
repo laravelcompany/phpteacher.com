@@ -1,0 +1,11 @@
+enum BookCover: string {
+    case HARDCOVER = 'hardcover';
+    case PAPERBACK = 'paperback';
+}
+
+enum BookSize: string {
+    case TRADE_5x8 = 't58';
+    case TRADE_6x9 = 't69';
+    case TRADE_8x10 = 't810';
+    CASE MAGAZINE = 'mag';
+}

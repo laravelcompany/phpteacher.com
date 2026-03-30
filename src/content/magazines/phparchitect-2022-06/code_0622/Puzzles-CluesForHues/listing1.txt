@@ -1,0 +1,13 @@
+function getAnswer(int $seed) {
+    mt_srand($seed);
+
+    $colors = ['R', 'G', 'B', 'Y', 'P', 'K'];
+    $max = count($colors) - 1;
+    $sequence = [];
+
+    for ($i = 0; $i < 6; $i++) {
+        $sequence[] = $colors[rand(0, $max)];
+    }
+
+    return $sequence;
+}

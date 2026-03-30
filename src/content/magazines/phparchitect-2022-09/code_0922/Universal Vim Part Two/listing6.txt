@@ -1,0 +1,11 @@
+" Search
+nnoremap <Leader>sc :Rg
+
+" Search in full screen
+nnoremap <Leader>sf :Rg!
+
+" Search lines in All Buffers
+nnoremap <Leader>sa :Lines<CR>
+
+" Search lines in Current Buffer
+nnoremap <Leader>sb :BLines<CR>

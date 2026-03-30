@@ -1,0 +1,13 @@
+public function show(ManagerRegistry $doctrine): Response
+{
+    $widget = $doctrine->getRepository(Widget::class)->find(1);
+
+    if (!$widget) {
+        throw $this->createNotFoundException(
+            'No widget information found for id 1'
+        );
+    }
+
+    return $this->render('widget/show.html.twig',
+        ['widget' => $widget]);
+}

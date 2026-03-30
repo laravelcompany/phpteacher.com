@@ -1,0 +1,42 @@
+class Color
+{
+    public function __construct(
+        public readonly int $red = 0,
+        public readonly int $blue = 0,
+        public readonly int $green = 0,
+        public readonly float $alpha = 1,
+    ) {
+    }
+
+    public function withRed(int $red): self
+    {
+        return new self($red, $this->blue, $this->green, $this->alpha);
+    }
+
+    public function withBlue(int $blue): self
+    {
+        return new self($this->red, $blue, $this->green, $this->alpha);
+    }
+
+    // etc with Green & Alpha
+}
+
+$color = new Color();
+var_dump($color);
+//  Color Object
+//  (
+//      [red] => 0
+//      [green] => 0
+//      [blue] => 0
+//      [alpha] => 1
+//  )
+
+$otherColor = $color->withRed(255);
+var_dump($otherColor);
+//  Color Object
+//  (
+//      [red] => 255
+//      [green] => 0
+//      [blue] => 0
+//      [alpha] => 1
+//  )

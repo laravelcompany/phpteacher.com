@@ -1,0 +1,27 @@
+mysql> describe game_tags;
++------------+-----------------+------+-----+---------+----------------+
+| Field      | Type            | Null | Key | Default | Extra          |
++------------+-----------------+------+-----+---------+----------------+
+| id         | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(255)    | NO   |     | NULL    |                |
+| game_id    | bigint unsigned | NO   | MUL | NULL    |                |
+| created_at | timestamp       | YES  |     | NULL    |                |
+| updated_at | timestamp       | YES  |     | NULL    |                |
++------------+-----------------+------+-----+---------+----------------+
+mysql> describe games;
++---------------+-----------------+------+-----+---------+----------------+
+| Field         | Type            | Null | Key | Default | Extra          |
++---------------+-----------------+------+-----+---------+----------------+
+| id            | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(255)    | NO   | MUL | NULL    |                |
+| slug          | varchar(255)    | NO   | MUL | NULL    |                |
+| site_url      | varchar(255)    | NO   |     | NULL    |                |
+| publisher_url | varchar(255)    | NO   |     | NULL    |                |
+| publisher     | varchar(255)    | NO   |     | NULL    |                |
+| description   | longtext        | NO   |     | NULL    |                |
+| thumbnail_url | varchar(255)    | NO   |     | NULL    |                |
+| screen_url    | varchar(255)    | NO   |     | NULL    |                |
+| published     | tinyint(1)      | NO   |     | NULL    |                |
+| created_at    | timestamp       | YES  |     | NULL    |                |
+| updated_at    | timestamp       | YES  |     | NULL    |                |
++---------------+-----------------+------+-----+---------+----------------+

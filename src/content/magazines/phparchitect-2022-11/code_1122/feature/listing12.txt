@@ -1,0 +1,11 @@
+class Price
+{
+    public function __construct(
+        public readonly float $price,
+        public readonly string $currency,
+        public readonly float $vatRate,
+        public readonly ?float $discountRate = null,
+        public readonly ?float $discountAmount = null,
+    ) {
+    }
+}

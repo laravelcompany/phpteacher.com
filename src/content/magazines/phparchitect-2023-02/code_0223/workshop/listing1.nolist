@@ -1,0 +1,10 @@
+laravel new app
+cd app/
+composer require laravel/ui
+php artisan ui bootstrap --auth
+composer require laravel/scout
+php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
+composer require league/csv
+composer require doctrine/dbal
+composer require laravel/browser-kit-testing --dev
+npm install && npm run dev

@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost 
+	ServerName paste.test 
+	DocumentRoot /home/vagrant/paste/public
+
+	<Directory /home/vagrant/paste/public>
+    AllowOverride All
+    Require all granted
+	</Directory>
+
+	<FilesMatch ".+\.ph(ar|p|tml)$">
+    SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost"
+	</FilesMatch>
+
+	ErrorLog ${APACHE_LOG_DIR}/paste.test-error.log
+	CustomLog ${APACHE_LOG_DIR}/paste.test-access.log combined
+</VirtualHost>

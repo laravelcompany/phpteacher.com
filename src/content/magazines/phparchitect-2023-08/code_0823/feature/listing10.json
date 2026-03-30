@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": "1234",
+      "type": "folders",
+      "attributes": {
+        "name": "Folder name",
+        "icon": "x-icon-name",
+        "parent": false,
+        "parent_id": "4321"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<?php
+
+function myCoroutine(): Generator {
+    echo "I did some work and will now wait." . PHP_EOL;
+    $value = yield;
+    echo "Thanks, I will print " . $value . PHP_EOL;
+}
+
+$cor = myCoroutine();
+$cor->current(); // Execute up to the yield
+echo "Now we wait" . PHP_EOL;
+sleep(1);
+$cor->send(1); // Finish execution
+
+// Output
+I did some work and will now wait.
+Now we wait
+Thanks, I will print 1

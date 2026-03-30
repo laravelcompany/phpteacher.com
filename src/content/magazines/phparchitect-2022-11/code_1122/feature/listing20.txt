@@ -1,0 +1,18 @@
+class ComplicatedMathematicalValueObject
+{
+    private ?float $result = null;
+
+    public function __construct(
+        public readonly float $val1,
+        public readonly float $val2,
+    ) {
+    }
+
+    public function complicatedOperation(): float
+    {
+        if(is_null($this->result)) {
+            $this->result = // very long operation goes here
+        }
+        return $this->result;
+    }
+}

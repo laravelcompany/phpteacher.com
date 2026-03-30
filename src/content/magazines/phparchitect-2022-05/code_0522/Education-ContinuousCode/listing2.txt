@@ -1,0 +1,17 @@
+$ vendor/bin/phpunit src/
+PHPUnit 9.5.20 #StandWithUkraine
+
+E                                                                   1 / 1 (100%)
+
+Time: 00:00.013, Memory: 4.00 MB
+
+There was 1 error:
+
+1) OpenWeatherClientTest::testGetWeather
+TypeError: OpenWeatherClient::getWeather(): Return value must be of type string, none returned
+
+/Users/ctankersley/Projects/tmp/src/OpenWeatherClient.php:7
+/Users/ctankersley/Projects/tmp/src/OpenWeatherClientTest.php:14
+
+ERRORS!
+Tests: 1, Assertions: 0, Errors: 1.

@@ -1,0 +1,16 @@
+class Color
+{
+    // ...
+    public function isEqual(Color $otherColor): bool
+    {
+        return $this->red === $otherColor->red
+            && $this->green === $otherColor->green
+            && $this->blue === $otherColor->blue
+            && $this->alpha === $otherColor->alpha;
+    }
+}
+
+$colorA = new Color(255, 255, 255, 1);
+$colorB = new MustacheColor(255, 255, 255, 1);
+
+var_dump($colorA->isEqual($colorB)); // true

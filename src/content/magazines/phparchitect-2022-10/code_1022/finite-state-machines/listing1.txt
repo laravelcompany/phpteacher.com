@@ -1,0 +1,9 @@
+// results in:
+// PHP Fatal error:  Duplicate value in enum PublishedState for 
+//        cases Draft and ReadyForReview
+enum PublishedState:string {
+    case Draft = "Draft";
+    case ReadyForReview = "Draft";
+    case Scheduled = "Scheduled";
+    case Published = "Published";
+}

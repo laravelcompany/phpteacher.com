@@ -1,0 +1,20 @@
+// Flickering candle effect.
+for ($i = 1; $i < 100; $i++) {
+    // Randomly choose values.
+    $brightness = rand(20, 50);
+    $colorTemp = rand(420, 450);
+    $transitionTime = rand(0, 3) / 10;
+    $waitTime = $transitionTime;
+
+    // Setup command.
+    $command = new SetLightState(1);
+    $command->brightness($brightness)
+        ->colorTemp($colorTemp)
+        ->transitionTime($transitionTime);
+
+    // Send command.
+    $client->sendCommand($command);
+
+    // Sleep for transition time plus extra for request time.
+    usleep($waitTime * 1000000 + 25000);
+}

@@ -1,0 +1,43 @@
+users:
+	id: UUID (primary key)
+	username: VARCHAR (unique)
+	password: VARCHAR
+	email: VARCHAR
+	phone: VARCHAR
+	two_factor_enabled: BOOLEAN
+	role: VARCHAR
+loans:
+	id: UUID (primary key)
+	user_id: FOREIGN_UUID (foreign key)
+	loan_amount: DECIMAL
+	interest_rate: DECIMAL
+	term: INTEGER
+	start_date: DATE
+payments:
+	id: UUID (primary key)
+	loan_id: FOREIGN_UUID (foreign key)
+	payment_date: DATE
+	principal: DECIMAL
+	interest: DECIMAL
+	balance: DECIMAL
+notifications:
+	id: UUID (primary key)
+	user_id: FOREIGN_UUID (foreign key)
+	notification_type: VARCHAR
+	notification_date: DATE
+	message: VARCHAR
+reports:
+	id: UUID (primary key)
+	report_type: VARCHAR
+	report_date: DATE
+	data: JSON
+audit_log:
+	id: UUID (primary key)
+	user_id: FOREIGN_UUID (foreign key)
+	action: VARCHAR
+	timestamp: DATETIME
+	data: JSON
+permissions:
+	id: UUID (primary key)
+	role: VARCHAR
+	permission: VARCHAR

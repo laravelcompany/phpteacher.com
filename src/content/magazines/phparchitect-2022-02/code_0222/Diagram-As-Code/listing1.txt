@@ -1,0 +1,21 @@
+@startuml
+!theme cerulean
+
+autonumber
+
+participant Alice
+box
+  participant Bob
+  participant Charlie
+end box
+
+Alice -> Bob ++ : says hello
+Alice -> Bob : asks the time it is
+Alice <-- Bob : replies hello
+Bob -> Charlie ++ : asks the time
+...
+Charlie -> Charlie : looks at wrist watch
+Bob <- Charlie -- : replies the time it is
+Alice <-- Bob -- : gives the time
+
+@enduml

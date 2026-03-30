@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\GameStoreRequest;
+use App\Models\Game;
+use Illuminate\Http\Request;
+
+class GameController extends Controller
+{
+    public function index(Request $request)
+    {
+        $games = Game::all();
+
+        return view('game.index', compact('games'));
+    }
+
+    public function create(Request $request)
+    {
+        return view('game.create');
+    }
+
+    public function store(GameStoreRequest $request)
+    {
+        $request->session()->flash('game.name', $game->name);
+
+        $game = Game::create($request->validated());
+
+        return redirect()->route('game.index');
+    }
+
+    public function destroy(Request $request, Game $game)
+    {
+        $game->delete();
+
+        return redirect()->route('game.index');
+    }
+}

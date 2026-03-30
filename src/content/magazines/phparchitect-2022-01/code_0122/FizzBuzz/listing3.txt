@@ -1,0 +1,33 @@
+php > var_dump($numbers);
+array(50) {
+  [0]=>
+  string(1) "1"
+  [1]=>
+  string(1) "2"
+  [2]=>
+  string(4) "Fizz"
+  [3]=>
+  string(1) "4"
+  [4]=>
+  string(4) "Buzz"
+  [5]=>
+  string(4) "Fizz"
+  [6]=>
+  string(1) "7"
+  [7]=>
+  string(1) "8"
+  [8]=>
+  string(4) "Fizz"
+  [9]=>
+  string(4) "Buzz"
+  [10]=>
+  string(2) "11"
+  [11]=>
+  string(4) "Fizz"
+  [12]=>
+  string(2) "13"
+  [13]=>
+  string(2) "14"
+  [14]=>
+  string(8) "FizzBuzz"
+  [15]=>

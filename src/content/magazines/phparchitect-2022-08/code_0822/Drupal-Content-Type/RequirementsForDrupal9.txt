@@ -1,0 +1,26 @@
+Requirements for Drupal 9:
+- PHP 7.3+. PHP 8 is supported from Drupal 9.1.0
+- Web Server
+    - Apache 2.4.7+
+    - Nginx 0.7.x+
+- Database Server
+    - MySQL or Percona 5.7.8+
+    - MariaDB 10.3.7+
+    - SQLite 3.26+ is required
+    - PostgreSQL 10+ with the pg_trgm extension
+- Drush
+    - version 10+ require PHP 7.1+
+    - version 11+ require PHP 7.4+
+
+Other Software:
+- Composer
+
+Related URLs:
+- MySQL - <https://dev.mysql.com/downloads/mysql/>
+- MariaDB - <https://mariadb.org/>
+- PHP - <http://www.php.net>
+- Apache - <http://www.apache.org>
+- Nginx - <http://www.nginx.org>
+- Drupal - <http://www.drupal.org>
+- Composer - <https://getcomposer.org>
+- Drush - <https://www.drush.org/latest/install>

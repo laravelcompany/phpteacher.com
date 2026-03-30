@@ -1,0 +1,13 @@
+rfid_app:
+    image: svpernova09/rfid:latest
+    volumes:
+      - ./logs:/var/www/html/storage/logs
+    ports:
+      - "8000:80"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    env_file:
+      - docker/docker.env

@@ -1,0 +1,18 @@
+{
+  service: 'database',
+  urls: [],
+  type: 'mysql',
+  healthy: true,
+  internal_connection:
+    { host: 'database', port: '3306' },
+  external_connection:
+    { host: '127.0.0.1', port: '64802' },
+  healthcheck: 'bash -c "[ -f .mysql_initialized ]"',
+  creds:
+    { database: 'db', password: 'pw', user: 'user' },
+  config: {},
+  version: '5.7',
+  meUser: 'www-data',
+  hasCerts: false,
+  hostnames: [ 'database.rfid.internal' ]
+},

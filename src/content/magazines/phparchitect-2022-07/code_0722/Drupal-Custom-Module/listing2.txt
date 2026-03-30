@@ -1,0 +1,9 @@
+health sites configure:
+  title: 'Configure health sites'
+  description: 'This permission is to configure hostnames and urls to verify'
+  restrict access: true
+   
+health sites verify urls:
+  title: 'Verify health of hostnames/urls'
+  description: 'This permission is to see if status urls are UP or DOWN'
+  restrict access: true

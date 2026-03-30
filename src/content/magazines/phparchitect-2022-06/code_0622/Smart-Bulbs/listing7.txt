@@ -1,0 +1,14 @@
+// Set up the scene and its lights.
+$client->sendCommand(new CreateScene('phparch', 'PHP Architect', [1, 2]));
+
+// Configure the state of light ID 1 in this scene.
+$command = new SetSceneLightState('phparch', 1);
+$command = $command->brightness(200)
+    ->rgb(220, 90, 33); // Orange
+$client->sendCommand($command);
+
+// Configure the state of light ID 2 in this scene.
+$command = new SetSceneLightState('phparch', 2);
+$command = $command->brightness(200)
+    ->rgb(60, 70, 175);  // Purple
+$client->sendCommand($command);

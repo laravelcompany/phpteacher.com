@@ -1,0 +1,22 @@
+syntax on
+
+" Pick a theme
+colorscheme default
+
+" Look for project specific config file
+set exrc
+
+" Ability to change buffers without saving first
+set hidden
+
+" Error settings
+set noerrorbells
+set novisualbell
+
+" Briefly jump to a matching bracket, then come back
+set showmatch
+
+" Useful when you split your current buffer
+set splitbelow
+set splitright
+

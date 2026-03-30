@@ -1,0 +1,26 @@
+create table color
+(
+    id                  int auto_increment primary key,
+    color_red           int          not null,
+    color_green         int          not null,
+    color_blue          int          not null,
+    color_alpha         float        not null,
+)
+
+create table price
+(
+    id                  int auto_increment primary key,
+    amount              char(10)     null,
+    price_currency      char(3)      null,
+)
+
+create table book
+(
+    -- ...
+    cover_color_id      int         null,
+    price_id            int         null,
+    -- ...
+    foreign key (cover_color_id) references color(id)
+    foreign key (price_id) references price(id)
+    -- ...
+)

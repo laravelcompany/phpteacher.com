@@ -1,0 +1,8 @@
+$ make test
+php vendor/bin/phpunit
+PHPUnit 9.5.20 #StandWithUkraine
+
+......................................... 41 / 41 (100%)
+
+Time: 00:01.827, Memory: 48.50 MB
+OK (41 tests, 250 assertions)

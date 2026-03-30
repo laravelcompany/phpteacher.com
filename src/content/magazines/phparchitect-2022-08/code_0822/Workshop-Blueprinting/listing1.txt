@@ -1,0 +1,16 @@
+models:
+  Game:
+    name: string index
+    slug: string index
+    site_url: string
+    publisher_url: string
+    publisher: string
+    description: longtext
+    thumbnail_url: string
+    screen_url: string
+    published: boolean
+    relationships:
+      hasMany: GameTag
+  GameTag:
+    name: string
+    game_id: id foreign:games

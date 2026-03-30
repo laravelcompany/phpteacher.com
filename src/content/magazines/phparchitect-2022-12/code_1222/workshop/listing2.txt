@@ -1,0 +1,14 @@
+---
+id: 975
+title: "Building Homestead in 2022"
+date: 2022-01-09T09:09:09-05:00
+author: Joe
+extends: _layouts.post
+categories:
+- vagrant
+- homestead
+- opensource
+- applesilicon
+---
+
+There are two parts to the Homestead ...

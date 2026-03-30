@@ -1,0 +1,16 @@
+.DEFAULT_GOAL := setup
+
+.PHONY: setup
+setup:
+cp .env.example .env
+	composer install # must be tab indent
+	npm install
+	npm run development
+	mysql -u root -e "CREATE DATABASE IF NOT EXISTS app;"
+	php artisan key:generate
+	php artisan migrate
+
+.PHONY: clean
+clean:
+	rm -rf vendor/
+	rm -rf node_modules/

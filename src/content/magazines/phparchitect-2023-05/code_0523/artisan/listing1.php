@@ -1,0 +1,32 @@
+resources/
+    templates/
+        blog/
+            index.php
+            create.php
+            read.php
+            update.php
+            delete.php
+            _comments.php
+src/
+    Domain/
+        Blog/
+            BlogModel.php
+						BlogService.php
+    Ui/
+        Web/
+            Blog/
+                Index/
+                    BlogIndexAction.php
+                    BlogIndexResponder.php
+                Create/
+                    BlogCreateAction.php
+                    BlogCreateResponder.php
+                Read/
+                    BlogReadAction.php
+                    BlogReadResponder.php
+                Update/
+                    BlogUpdateAction.php
+                    BlogUpdateResponder.php
+                Delete/
+                    BlogDeleteAction.php
+                    BlogDeleteResponder.php

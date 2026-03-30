@@ -1,0 +1,21 @@
+class VirtualPencilExtensionHandler
+{
+    public function __construct(
+        public Color $color,
+    ) {
+    }
+
+    public function handleExtension(TheExtensionInterface $extension): void
+    {
+        $extension->run($this->color);
+    }
+}
+
+class NastyExtensionThatChangesColor implements TheExtensionInterface
+{
+    public function run(Color $color): void
+    {
+        $color->blue = 255;
+        // ...
+    }
+}
