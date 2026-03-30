@@ -1,0 +1,15 @@
+health_sites.configure_sites:
+  title: Configure Health Sites list
+  route_name: health_sites.configure
+  base_route: health_sites.configure
+
+health_sites.configure_urls:
+  title: Health Sites - Urls configure
+  route_name: health_sites.configure_urls
+  base_route: health_sites.configure
+
+health_sites.verify_sites:
+   title: Verify Healt Sites
+   description: 'Verify Healt Sites'
+   route_name: health_sites.verify
+   base_route: health_sites.configure

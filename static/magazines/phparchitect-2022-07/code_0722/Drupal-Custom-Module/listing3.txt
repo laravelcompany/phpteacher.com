@@ -1,0 +1,23 @@
+health_sites.main:
+  title: Healt Sites
+  description: 'Health Sites'
+  parent: 'system.admin'
+  route_name: health_sites.main
+   
+health_sites.configure_sites:
+  title: Configure Healt Sites list
+  description: 'Configure Health Sites list'
+  parent: 'health_sites.main'
+  route_name: health_sites.configure
+
+health_sites.configure_urls:
+  title: Health Sites - Urls configure
+  description: 'Health Sites - Urls configure'
+  parent: 'health_sites.main'
+  route_name: health_sites.configure_urls
+
+health_sites.verify_sites:
+   title: Verify Healt Sites
+   description: 'Verify Healt Sites'
+   parent: 'health_sites.main'
+   route_name: health_sites.verify

@@ -1,0 +1,19 @@
+class PublishedStateString {
+    public const DRAFT = "Draft";
+    public const READY_FOR_REVIEW = "Ready For Review";
+    public const SCHEDULED = "Scheduled";
+    public const PUBLISHED = "Published";
+
+    public static function isValidTransition(string $currentState, string $newState):bool {
+        $transitions = [
+            PublishedStateString::DRAFT=> [PublishedStateString::READY_FOR_REVIEW],
+            PublishedStateString::READY_FOR_REVIEW=> [
+                PublishedStateString::DRAFT,
+                PublishedStateString::SCHEDULED
+            ],
+            PublishedStateString::SCHEDULED=> [PublishedStateString::PUBLISHED],
+        ];
+
+        return in_array($newState, $transitions[$currentState]);
+    }
+}

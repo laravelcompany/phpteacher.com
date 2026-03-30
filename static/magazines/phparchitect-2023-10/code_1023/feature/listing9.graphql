@@ -1,0 +1,12 @@
+# Fetch product details
+{
+  Product(id: 123) {
+    Name
+    Price
+    Description
+    Reviews {
+      Rating
+      Comment
+    }
+  }
+}

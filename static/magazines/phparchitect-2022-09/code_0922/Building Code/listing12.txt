@@ -1,0 +1,18 @@
+$magazineBuilder = (new BookBuilder())
+    ->setCover(BookCover::PAPERBACK)
+    ->setSize(BookSize::MAGAZINE);
+
+$jan2022 = $magazineBuilder
+    ->setTitle('php[architect] January 2022')
+    ->setCoverImage('jan2022.png')
+    ->setContents($archJan2022)
+    ->build();
+$devLeadBook = $magazineBuilder
+    ->setTitle('The Dev Lead Trenches')
+    ->setContents($devTrenches)
+    ->build();
+$feb2022 = $magazineBuilder
+    ->setTitle('php[architect] February 2022')
+    ->setCoverImage('feb2022.png')
+    ->setContents($archFeb2022)
+    ->build();

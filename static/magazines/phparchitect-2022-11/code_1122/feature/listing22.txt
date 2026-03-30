@@ -1,0 +1,18 @@
+class ComplicatedMathematicalValueObject
+{
+    // ...
+
+    public function isEqual(ComplicatedMathematicalValueObject $other): bool
+    {
+        return $this->val1 === $other->val1 && $this->val2 == $other->val2;
+    }
+}
+
+$var1 = new ComplicatedMathematicalValueObject(1.2, 1.3);
+$var2 = new ComplicatedMathematicalValueObject(1.2, 1.3);
+
+var_dump($var1->isEqual($var2));    // true
+
+$var1->complicatedOperation();
+
+var_dump($var1->isEqual($var2));    // true

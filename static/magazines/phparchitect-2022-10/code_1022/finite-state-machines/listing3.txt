@@ -1,0 +1,8 @@
+public function updateState(PublishedState $newState): void
+{
+    if (!$this->state->isValidTransition($newState)) {
+        throw new Exception("Unable to transition from {$this->state->value} to {$newState->value}");
+    }
+
+    $this->state = $newState;
+}

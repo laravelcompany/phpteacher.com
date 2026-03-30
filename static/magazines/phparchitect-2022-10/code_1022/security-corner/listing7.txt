@@ -1,0 +1,10 @@
+- name: Install SSH key
+  uses: shimataro/ssh-key-action@v2
+  with:
+    key: ${{ secrets.SSH_KEY }}
+    known_hosts: ${{ secrets.KNOWN_HOSTS }}
+  if: github.ref == 'refs/heads/master'
+
+- name: Deploy
+  run: make deploy
+  if: github.ref == 'refs/heads/master'

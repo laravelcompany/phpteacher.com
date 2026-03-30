@@ -1,0 +1,13 @@
+function doRuns(int $runs, int $size) : int
+{
+    $hasDuplicate = 0;
+
+    for ($i =0; $i < $runs; $i++) {
+        $group = makeGroup($size);
+        if (hasDuplicates($group)) {
+            $hasDuplicate++;
+        }
+    }
+
+    return $hasDuplicate;
+}

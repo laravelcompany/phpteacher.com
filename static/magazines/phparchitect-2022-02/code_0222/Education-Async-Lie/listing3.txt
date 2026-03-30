@@ -1,0 +1,16 @@
+function myGenerator(): Generator {
+    for($i = 1; $i <= 5; $i++) {
+        yield $i;
+    }
+}
+
+foreach (myGenerator() as $number) {
+    echo $number . PHP_EOL;
+}
+
+// Output
+1
+2
+3
+4
+5

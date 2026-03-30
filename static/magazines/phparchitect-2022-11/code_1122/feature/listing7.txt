@@ -1,0 +1,14 @@
+class Color
+{
+    // ...
+
+    public static function ofHsvColor(int $hue, int $saturation, int $value, float $opacity): self
+    {
+        // convert, validate, initiate here
+    }
+
+    public static function ofCmykColor(int $cyan, int $magenta, int $yellow, int $black, float $opacity): self
+    {
+        // convert, validate, initiate here
+    }
+}

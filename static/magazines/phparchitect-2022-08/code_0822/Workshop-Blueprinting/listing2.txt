@@ -1,0 +1,8 @@
+$php artisan blueprint:build
+Created:
+- database/factories/GameFactory.php
+- database/factories/GameTagFactory.php
+- database/migrations/1973_01_22_153133_create_games_table.php
+- database/migrations/1973_01_22_153134_create_game_tags_table.php
+- app/Models/Game.php
+- app/Models/GameTag.php

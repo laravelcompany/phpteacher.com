@@ -1,0 +1,15 @@
+$guess = str_split("KYRBPP");
+
+// loop to check the guesses
+$feedback = [];
+foreach ($guess as $index => $letter) {
+    // assume its wrong
+    $feedback[$index] = '-'; // not correct
+
+    // is it in the right spot?
+    if ($answer[$index] === $letter) {
+        $feedback[$index] = '+'; //+ for Correct
+    } elseif (in_array($letter, $answer, true)) {
+        $feedback[$index] = '?'; // close
+    }
+}

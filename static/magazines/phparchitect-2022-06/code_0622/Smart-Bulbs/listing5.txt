@@ -1,0 +1,8 @@
+$lights = $client->getLights();
+
+$light = $lights[1];
+
+$light->setOn(true);
+$light->setBrightness(255);
+
+$light->setEffect('colorloop');

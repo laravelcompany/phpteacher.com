@@ -1,0 +1,33 @@
+class BookBuilder {
+  // Our properties from before
+
+  public function setAuthor(string $author): static {
+    $this->author = $author;
+    return $this;
+  }
+
+  public function setContents(string $contents): static {
+    $this->contents = $contents;
+    return $this;
+  }
+
+  public function setCover(BookCover $cover): static {
+    $this->cover = $cover;
+    return $this;
+  }
+
+  public function setCoverImage(string $image): static {
+    $this->coverImage = $image;
+    return $this;
+  }
+
+  public function setSize(BookSize $size): static {
+    $this->size = $size;
+    return $this;
+  }
+
+  public function setTitle(string $title): static {
+    $this->title = $title;
+    return $this;
+  }
+}

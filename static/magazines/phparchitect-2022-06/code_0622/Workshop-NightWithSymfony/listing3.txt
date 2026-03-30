@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\WidgetRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: WidgetRepository::class)]
+class Widget
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type: 'integer')
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type: 'text')
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type: 'integer')
+     */
+    private $stock;
+
+    /**
+     * @ORM\Column(type: 'boolean')
+     */
+    private $sellable;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getSellable(): ?bool
+    {
+        return $this->sellable;
+    }
+
+    public function setSellable(bool $sellable): self
+    {
+        $this->sellable = $sellable;
+
+        return $this;
+    }
+}

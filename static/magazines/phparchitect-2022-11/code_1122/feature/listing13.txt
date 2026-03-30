@@ -1,0 +1,9 @@
+class Price
+{
+    public function __construct(
+        public readonly Money $price,
+        public readonly VatRate $vatRate,
+        public readonly Discount $discount,
+    ) {
+    }
+}

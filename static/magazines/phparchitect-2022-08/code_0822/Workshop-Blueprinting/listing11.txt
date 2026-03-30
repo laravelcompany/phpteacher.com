@@ -1,0 +1,16 @@
+controllers:
+  Game:
+    index:
+      query: all
+      render: game.index with:games
+    create:
+      render: game.create
+    store:
+      validate: name, slug, site_url, publisher_url, publisher, description,
+thumbnail_url, screen_url, published
+      save: game
+      flash: game.name
+      redirect: game.index
+    destroy:
+      delete: game
+      redirect: game.index

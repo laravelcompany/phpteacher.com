@@ -1,0 +1,8 @@
+$ php -a
+php > $price = (float) "105.00";
+php > $price = $price * 100;
+php > var_dump($price);
+float(10500)
+php > $price = (int) $price;
+php > var_dump($price);
+int(10500)

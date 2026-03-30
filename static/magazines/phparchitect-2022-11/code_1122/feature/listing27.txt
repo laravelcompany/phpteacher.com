@@ -1,0 +1,8 @@
+// Entity
+class Book
+{
+    // ...
+    private ?Color $coverColor;
+    private ?Money $price;
+    // ...
+}

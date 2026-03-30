@@ -1,0 +1,14 @@
+/etc/php$ tree -L 2
+.
+├── 7.4
+│   ├── cgi
+│   ├── cli
+│   ├── fpm
+│   ├── mods-available
+│   └── phpdbg
+├── 8.0
+│   ├── cgi
+│   ├── cli
+│   ├── fpm
+│   ├── mods-available
+│   └── phpdbg

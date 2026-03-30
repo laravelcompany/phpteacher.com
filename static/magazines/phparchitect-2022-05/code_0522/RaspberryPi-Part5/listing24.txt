@@ -1,0 +1,11 @@
+[Unit]
+Description=Dryer Status Notification Service
+After=multi-user.target
+
+[Service]
+ExecStart=/root/dryer_status_notify
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
+Alias=dryerstatusnotify.service

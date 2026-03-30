@@ -1,0 +1,16 @@
+/**
+  * @param array $data{
+  *       id:string,
+  *       type:string,
+  *       attributes:array{
+  *           name:string,
+  *           icon:string,
+  *           parent:bool,
+  *           parent_id:string
+  *       }
+  *  } The incoming data from the request
+  *  @return Folder
+  **/
+public static function fromResponse(
+    array $data
+): Folder

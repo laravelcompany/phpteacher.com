@@ -1,0 +1,17 @@
+<?php
+
+namespace Drupal\my_tamper\Plugin\Tamper;
+
+use Drupal\tamper\TamperBase;
+
+/**
+ * Plugin implementation for converting URL into Article field_id.
+ *
+ * @Tamper(
+ *   id = "url_to_article_ref",
+ *   label = @Translation("Convert URL into Article field_id"),
+ *   description = @Translation("Convert URL into Article field_id"),
+ *   category = "Text"
+ * )
+ */
+class UrlToID extends TamperBase {}

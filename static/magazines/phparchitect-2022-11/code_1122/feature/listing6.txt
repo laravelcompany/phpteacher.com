@@ -1,0 +1,34 @@
+class Color
+{
+    // ...
+
+    public static function ofHexColor(string $hexColor, float $opacity): self
+    {
+        $hexColor = ltrim($hexColor, '#');
+        $parts = match(strlen($hexColor)) {
+            3 => [
+                str_repeat(substr($hexColor, 0, 1), 2),
+                str_repeat(substr($hexColor, 1, 1), 2),
+                str_repeat(substr($hexColor, 2, 1), 2),
+            ],
+            6 => [
+                substr($hexColor, 0, 2),
+                substr($hexColor, 2, 2),
+                substr($hexColor, 4, 2),
+            ],
+            default => throw new InvalidColor(sprintf('%s is not a valid CSS color', $hexColor))
+        };
+
+        return new self(hexdec($parts[0]), hexdec($parts[1]), hexdec($parts[2]), $opacity);
+    }
+}
+
+var_dump(Color::ofHexColor("#f00", 1));
+
+//  Color Object
+//  (
+//      [red] => 255
+//      [green] => 0
+//      [blue] => 0
+//      [alpha] => 1
+//  )

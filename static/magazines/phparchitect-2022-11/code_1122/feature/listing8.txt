@@ -1,0 +1,16 @@
+class Color
+{
+    private function __construct(
+        public readonly int $red,
+        public readonly int $green,
+        public readonly int $blue,
+        public readonly float $alpha,
+    ) {
+    }
+
+    public static function ofRgbaColor(int $red, int $green, int $blue, float $alpha = 1.0): self
+    {
+        // validation
+        return new self($red, $green, $blue, $alpha);
+    }
+}

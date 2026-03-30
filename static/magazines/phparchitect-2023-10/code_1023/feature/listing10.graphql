@@ -1,0 +1,10 @@
+# Get blog post content
+{
+  Post(id: 456) {
+    Title
+    Content
+    Author {
+      Name
+    }
+  }
+}

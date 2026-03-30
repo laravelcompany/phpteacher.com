@@ -1,0 +1,64 @@
+<?php
+
+namespace Drupal\apcentral_course\Plugin\Tamper;
+
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\path_alias\AliasManagerInterface;
+use Drupal\tamper\SourceDefinitionInterface;
+use Drupal\tamper\TamperableItemInterface;
+use Drupal\tamper\TamperBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+/**
+ * Plugin implementation for converting URL into Article field_id.
+ *
+ * @Tamper(
+ *   id = "url_to_article_ref",
+ *   label = @Translation("Convert URL into Article field_id"),
+ *   description = @Translation("Convert URL into Article field_id"),
+ *   category = "Text"
+ * )
+ */
+class UrlToArticleRef extends TamperBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * Constructs a new URL To Article Ref Tamper object.
+   *
+   * @inheritDoc
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition,
+  SourceDefinitionInterface $source_definition, private AliasManagerInterface $path_alias_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $source_definition);
+  }
+
+  /**
+   * Dependency injection for Article Ref tamper object.
+   *
+   * @inheritDoc
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $configuration['source_definition'],
+      $container->get('path_alias.manager')
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function tamper($data, TamperableItemInterface $item = NULL) {
+    // Dump any Get paramaters on the URL to form a clean alias.
+    $data = strtok($data, '?');
+    $path = $this->pathAliasManager->getPathByAlias($data);
+    if (preg_match('/node\\/(\\d+)/', $path, $matches)) {
+      return $matches[1];
+    }
+
+    return '';
+  }
+
+}

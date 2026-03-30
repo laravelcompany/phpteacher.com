@@ -1,0 +1,8 @@
+@servers(['prod' => 'phparch@phparch.com'])
+
+@task('deploy', ['on' => 'prod'])
+cd /home/phparch/awesome-php
+git pull origin erics-best-branch
+/usr/bin/php8.1 /usr/bin/composer install --no-dev
+/usr/bin/php8.1 artisan migrate --force
+@endtask

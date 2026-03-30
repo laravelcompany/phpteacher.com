@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.html_page.field_content
+    - node.type.html_page
+  module:
+    - user
+id: node.html_page.teaser
+targetEntityType: node
+bundle: html_page
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_content: true
+  langcode: true

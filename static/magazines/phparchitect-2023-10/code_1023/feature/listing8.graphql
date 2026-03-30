@@ -1,0 +1,9 @@
+Type BlogPost {
+  postTitle: String
+  postContent: String
+}
+
+Type User {
+  userName: String
+  userEmail: String
+}

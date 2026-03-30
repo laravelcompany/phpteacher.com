@@ -1,0 +1,18 @@
+@startuml
+!theme cerulean
+skinparam handwritten true
+
+start
+- Open php[arch] issue
+
+if (Already seen?) then (yes)
+  - Read again
+  - Try the code examples
+else (no)
+  - Read now
+endif
+
+- Put back to drawer
+stop
+
+@enduml

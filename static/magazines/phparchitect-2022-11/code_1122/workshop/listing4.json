@@ -1,0 +1,9 @@
+services:
+  mailhog:
+    type: mailhog:v1.0.0
+    portforward: true
+    hogfrom:
+      - appserver
+  node:
+    type: node:16
+    command: npm run dev

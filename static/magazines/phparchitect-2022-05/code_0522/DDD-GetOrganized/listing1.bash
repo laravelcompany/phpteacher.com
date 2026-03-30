@@ -1,0 +1,16 @@
+# Documentation:
+# https://github.com/dereuromark/cakephp-ide-helper
+
+# Installation:
+# https://github.com/dereuromark/cakephp-ide-helper/tree/master/docs
+
+# Install:
+composer require --dev dereuromark/cakephp-ide-helper
+bin/cake plugin load IdeHelper
+
+# Use:
+
+bin/cake illuminator illuminate -v
+bin/cake annotate all -v
+bin/cake code_completion generate
+bin/cake phpstorm generate

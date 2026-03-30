@@ -1,0 +1,13 @@
+./bin/phue-bridge-finder
+
+# Output:
+
+Philips Hue Bridge Finder
+
+Checking meethue.com if the bridge has phoned home:
+	Request succeeded
+
+Number of bridges found: 1
+	Bridge #1
+		ID: 00123123123ea598f6
+		Internal IP Address: 192.168.1.2

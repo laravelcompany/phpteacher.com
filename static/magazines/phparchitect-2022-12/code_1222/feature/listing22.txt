@@ -1,0 +1,11 @@
+trait ValueObjectWithId
+{
+    private int $id;
+}
+
+class Color
+{
+    use ValueObjectWithId;
+
+    // ...
+}

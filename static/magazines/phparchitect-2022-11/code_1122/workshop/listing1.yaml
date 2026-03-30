@@ -1,0 +1,11 @@
+Your app has started up correctly.
+Here are some vitals:
+
+ NAME            rfid
+ LOCATION        /Users/halo/Code/rfid
+ SERVICES        appserver, database, cache, mailhog
+ APPSERVER URLS  https://localhost:64387
+                 http://localhost:64388
+                 http://rfid.lndo.site:8080/
+                 https://rfid.lndo.site/
+ MAILHOG URLS    http://localhost:64386

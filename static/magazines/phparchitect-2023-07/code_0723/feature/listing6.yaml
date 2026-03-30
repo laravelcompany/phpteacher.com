@@ -1,0 +1,9 @@
+# config/packages/vich_uploader.yaml
+vich_uploader:
+  db_driver: orm
+  storage: flysystem
+  mappings:
+    users:
+      # Defined in flysystem.yaml
+      upload_destination: acme.storage
+      namer: Vich\UploaderBundle\Naming\UniqidNamer

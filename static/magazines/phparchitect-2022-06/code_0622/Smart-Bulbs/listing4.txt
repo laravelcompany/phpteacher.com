@@ -1,0 +1,12 @@
+$lights = $client->getLights();
+
+$light = $lights[1];
+
+$light->setOn(true);
+$light->setBrightness(255);
+
+$light->setRGB(255, 0, 0); // Red
+sleep(2); // Wait for 2 seconds.
+$light->setRGB(0, 255, 0); // Green
+sleep(2); // Wait for 2 seconds.
+$light->setRGB(0, 0, 255); // Blue

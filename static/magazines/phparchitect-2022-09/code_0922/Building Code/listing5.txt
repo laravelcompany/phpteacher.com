@@ -1,0 +1,24 @@
+class RepositoryFactory {
+    public function __construct(protected \\PDO $pdo)
+    { }
+
+    public function create(
+        string $entityName,
+        string $idColumn = 'id',
+        ?string $tableName = null
+    ) {
+        if (is_null($tableName)) {
+            $tableName = $entityName;
+        }
+
+        if (class_exists($entityName . 'Repository')) {
+            $className = $entityName . 'Repository';
+            return new $className($this->pdo);
+        }
+
+        $repo = new GenericRepository($this->pdo);
+        $repo->setId($idColumn);
+        $repo->setTableName($tableName);
+        return $repo;
+    }
+}

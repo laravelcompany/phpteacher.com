@@ -1,0 +1,9 @@
+export FZF_DEFAULT_COMMAND='fd --type f'
+
+FZF_DEFAULT_OPTS=""
+FZF_DEFAULT_OPTS+=' --multi'
+FZF_DEFAULT_OPTS+=' --tabstop=4'
+FZF_DEFAULT_OPTS+=' --border=sharp'
+FZF_DEFAULT_OPTS+=' --layout=default'
+
+export FZF_DEFAULT_OPTS

@@ -1,0 +1,34 @@
+class XMLResponse {
+  public function __construct(
+    protected array $data = [],
+    protected int $returnCode = 200,
+  ) { }
+
+  public function output() {
+    header('Content-Type: application/xml');
+    http_response_code($this->returnCode);
+    $xml = new SimpleXMLElement('<root/>');
+    array_walk_recursive(
+      array_flip($this->data), 
+      array ($xml, 'addChild')
+    );
+    print $xml->asXML();
+  }
+}
+
+class OurController {
+  public function someAction() {
+    // Magical business logic that 
+    // creates a $returnData array
+    switch(getallheaders()['Accept']) {
+      case 'application/xml':
+        $resp = new XMLResponse($returnData);
+        break;
+      default:
+      case 'application/json':
+        $resp = new JsonResponse($returnData);
+        break;
+    }
+    $resp->output();
+  }
+}

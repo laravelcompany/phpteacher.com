@@ -1,0 +1,18 @@
+class PublishedStateString {
+    public readonly $value;
+
+    public function __construct(string $value) {
+        $valid = [
+            "Draft",
+            "Ready For Review",
+            "Scheduled",
+            "Published",
+        ];
+
+        if (!in_array($value, $valid)) {
+            throw new Exception ("{$value} is not a valid state");
+        }
+
+        $this->value = $value;
+    }
+}

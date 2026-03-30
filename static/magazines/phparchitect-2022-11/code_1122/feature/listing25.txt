@@ -1,0 +1,9 @@
+// Entity
+class Book
+{
+    public readonly Uuid $uid;
+    private Author $author;
+    private Title $title;
+    private ?Color $coverColor;
+    // ...
+}

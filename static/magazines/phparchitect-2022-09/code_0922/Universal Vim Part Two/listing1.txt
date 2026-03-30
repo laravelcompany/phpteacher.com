@@ -1,0 +1,9 @@
+# Display processes
+$ ps -ef | fzf
+
+# Choose one or more processes to kill
+kill $(fzf --multi)
+
+# Filter RipGrep results
+# search for "function" in the bash files of your dotfiles
+rg --type sh ^function  ~/dotfiles | fzf

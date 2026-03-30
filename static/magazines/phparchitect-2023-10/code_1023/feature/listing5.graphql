@@ -1,0 +1,11 @@
+# Fetch user details along with their posts
+{
+  User(id: 123) {
+    Name
+    Email
+    Posts {
+      Title
+      Content
+    }
+  }
+}

@@ -1,0 +1,8 @@
+class BookBuilder {
+protected string $author = 'Anonymous';
+    protected string $contents;
+    protected BookCover $cover = BookCover::PAPERBACK;
+    protected string $coverImage = 'generic.png';
+    protected BookSize $size = BookSize::TRADE_5x8;
+    protected string $title;
+}

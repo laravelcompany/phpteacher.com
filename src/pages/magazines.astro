@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro'
+import MainSection from '@components/ui/sections/MainSection.astro'
+import { SITE } from '@/config'
+import fs from 'node:fs'
+import path from 'node:path'
+
+const magazinesDir = path.join(process.cwd(), 'static/magazines')
+
+const folders = fs.readdirSync(magazinesDir, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => {
+        const folderName = dirent.name
+        const match = folderName.match(/phparchitect-(\d{4})-(\d{2})/)
+        const year = match?.[1]
+        const month = match?.[2]
+        
+        const files = fs.readdirSync(path.join(magazinesDir, folderName))
+        const pdf = files.find(f => f.endsWith('.pdf'))
+        const epub = files.find(f => f.endsWith('.epub'))
+        const mobi = files.find(f => f.endsWith('.mobi'))
+        
+        const date = month && year ? new Date(parseInt(year), parseInt(month) - 1) : new Date()
+        
+        return {
+            slug: folderName,
+            year,
+            month,
+            date,
+            pdf,
+            epub,
+            mobi,
+        }
+    })
+    .sort((a, b) => b.date.valueOf() - a.date.valueOf())
+
+const description = 'Download php|architect magazine editions - PHP tutorials, articles, and best practices.'
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="Magazines"
+    description={description}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'inLanguage': 'en-US',
+        '@id': URL,
+        'url': URL,
+        'name': `Magazines - ${SITE.title}`,
+        'description': description,
+        'isPartOf': {
+            '@type': 'WebSite',
+            'url': SITE.url,
+            'name': SITE.title,
+            'description': SITE.description,
+        },
+    }}
+>
+    <MainSection
+        title="php|architect Magazines"
+        subTitle="Download PDF, EPUB, and MOBI editions"
+        btnExists={false}
+    />
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {folders.map((mag) => (
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <h3 class="text-xl font-semibold mb-2">
+                        php|architect {mag.year} {mag.month ? `Q${Math.ceil(parseInt(mag.month) / 3)}` : ''}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        {mag.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        {mag.pdf && (
+                            <a 
+                                href={`/magazines/${mag.slug}/${mag.pdf}`}
+                                class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm"
+                            >
+                                PDF
+                            </a>
+                        )}
+                        {mag.epub && (
+                            <a 
+                                href={`/magazines/${mag.slug}/${mag.epub}`}
+                                class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm"
+                            >
+                                EPUB
+                            </a>
+                        )}
+                        {mag.mobi && (
+                            <a 
+                                href={`/magazines/${mag.slug}/${mag.mobi}`}
+                                class="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors text-sm"
+                            >
+                                MOBI
+                            </a>
+                        )}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+</BaseLayout>

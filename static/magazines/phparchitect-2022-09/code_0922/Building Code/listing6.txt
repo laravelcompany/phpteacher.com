@@ -1,0 +1,11 @@
+class OurController {
+    protected RepositoryInstance $userRepo;
+    public function __construct(RepositoryFactory $factory) {
+        $this->userRepo = $factory->create(User::class);
+    }
+
+    public function indexAction() {
+        $user = $this->userRepo->find(1);
+        // Do something with the user
+    }
+}

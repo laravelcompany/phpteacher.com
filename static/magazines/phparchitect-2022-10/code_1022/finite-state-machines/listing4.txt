@@ -1,0 +1,18 @@
+enum PublishedState:string {
+    public function isValidTransition(PublishedState $newState):bool {
+        $transitions = [
+            PublishedState::Draft->value => [
+                PublishedState::ReadyForReview,
+            ],
+            PublishedState::ReadyForReview->value => [
+                PublishedState::Draft,
+                PublishedState::Scheduled,
+            ],
+            PublishedState::Scheduled->value => [
+                PublishedState::Published
+            ],
+        ];
+
+        return in_array($newState, $transitions[$this->value]);
+    }
+}

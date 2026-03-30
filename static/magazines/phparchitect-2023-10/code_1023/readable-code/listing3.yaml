@@ -1,0 +1,46 @@
+POST /login: Log in to an existing account.
+POST /logout: Log out of the current account.
+POST /register: Register a new account.
+POST /forgot_password: Initiate the process of
+    resetting a forgotten password.
+POST /reset_password: Complete the process of
+    resetting a forgotten password.
+POST /enable_two_factor: Enable two-factor
+    authentication for the current account.
+POST /disable_two_factor: Disable two-factor
+    authentication for the current account.
+POST /verify_two_factor: Verify the two-factor
+    authentication code for the current account.
+GET /users: Retrieve a list of users.
+POST /users: Create a new user.
+GET /users/id: Retrieve the details of a specific user.
+POST /users/id: Update the details of a specific user.
+DELETE /users/id: Delete a specific user.
+POST /users/id/loans: Create a new loan for a user.
+GET /users/id/loans: Retrieve loans for a user.
+GET /users/id/loans/loan_id: Retrieve the details of a
+    specific loan for a user.
+POST /users/id/loans/loan_id: Update the details of a
+    specific loan for a user.
+POST /users/id/loans/loan_id/payments: Create a new
+    payment for a specific loan for a user.
+GET /users/id/loans/loan_id/payments: Retrieve a list
+    of payments for a specific loan for a user.
+GET /users/id/loans/loan_id/payments/payment_id:
+    Retrieve the details of a specific payment for
+    a loan for a user.
+POST /users/id/loans/loan_id/payments/payment_id:
+    Update the details of a specific payment for a
+    loan for a user.
+DELETE /users/id/loans/loan_id/payments/payment_id:
+    Delete a specific payment for a loan for a user.
+POST /users/id/notifications: Create a new
+    notification for a user.
+GET /users/id/notifications: Retrieve a list of
+    notifications for a user.
+GET /users/id/notifications/notification_id: Retrieve
+    the details of a specific notification for a user.
+DELETE /users/id/notifications/notification_id: Delete
+    a specific notification for a user.
+POST /reports: Create a new report.
+GET /reports: Retrieve a list

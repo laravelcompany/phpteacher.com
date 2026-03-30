@@ -1,0 +1,53 @@
+interface Discount
+{
+    public function asRate(Money $money): float;
+
+    public function asMoney(Money $money): Money;
+
+    public function applyDiscount(Money $money): Money;
+}
+
+class RateDiscount implements Discount
+{
+    public function __construct(
+        public readonly float $rate,
+    )
+
+    public function asRate(Money $money): float
+    {
+        return $this->rate;
+    }
+
+    public function asMoney(Money $money): Money
+    {
+        return $money->multiply($this->rate);
+    }
+
+    public function applyDiscount(Money $money): Money
+    {
+        return $money->subtract($this->asMoney());
+    }
+}
+
+class FixedAmountDiscount implements Discount
+{
+    public function __construct(
+        public readonly Money $amount
+    ) {
+    }
+
+    public function asRate(Money $money): float
+    {
+        return $this->amount->getAmount() / $money->getAmount();
+    }
+
+    public function asMoney(Money $money): Money
+    {
+        return $this->amount;
+    }
+
+    public function applyDiscount(Money $money): Money
+    {
+        return $money->subtract($this->asMoney());
+    }
+}

@@ -1,0 +1,13 @@
+class Price
+{
+    // ...
+
+    public function total(): Money
+    {
+        return $this->vatRate->applyVat(
+            $this->discount->applyDiscount(
+                $this->price
+            )
+        );
+    }
+}

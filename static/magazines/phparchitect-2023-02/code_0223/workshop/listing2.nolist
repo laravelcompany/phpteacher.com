@@ -1,0 +1,9 @@
+$ php vendor/bin/phpunit
+
+PHPUnit 9.5.26 by Sebastian Bergmann and contributors.
+
+.......                                   7 / 7 (100%)
+
+Time: 1.07 seconds, Memory: 22.00MB
+
+OK (7 tests, 28 assertions)

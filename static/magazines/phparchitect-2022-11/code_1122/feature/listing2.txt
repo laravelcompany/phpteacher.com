@@ -1,0 +1,28 @@
+enum Sharpness {
+    case VerySharp;
+    case NotSoSharp;
+    case NotSharpAtAll;
+}
+
+enum Hardness {
+    case OhSoHard;
+    case RegularHard;
+    case Medium;
+    case Soft;
+}
+
+class VirtualPencil
+{
+    public function __construct(
+        public Color $color,
+        public Sharpness $sharpness,
+        public Hardness $hardness,
+    ) {
+    }
+}
+
+$virtualPencilToDrawAMustachOnMarcInMeta = new VitualPencil(
+                                                new Color(0, 0, 0, 1),
+                                                Sharpness::VerySharp,
+                                                Hardness::OhSoHard,
+                                            );

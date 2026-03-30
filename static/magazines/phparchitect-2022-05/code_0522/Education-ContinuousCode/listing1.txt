@@ -1,0 +1,14 @@
+require_once 'OpenWeatherClient.php';
+
+use PHPUnit\Framework\TestCase as TestCase;
+
+class OpenWeatherClientTest extends TestCase
+{
+    public function testGetWeather()
+    {
+        $client = new OpenWeatherClient();
+        $weather = $client->getWeather('20001');
+        $match = '/It is \\d+F and [a-zA-Z0-9_ ].*/';
+        $this->assertMatchesRegularExpression($match, $weather);
+    }
+}

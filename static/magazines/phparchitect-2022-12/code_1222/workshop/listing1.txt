@@ -1,0 +1,24 @@
+<div id="vue-search"
+          class="flex flex-1 justify-end items-center">
+            <search></search>
+
+            @include('_nav.menu')
+
+            @include('_nav.menu-toggle')
+        </div>
+    </div>
+</header>
+
+@include('_nav.menu-responsive')
+
+<main role="main" class="flex w-full container
+                         max-w-12xl mx-auto py-8 px-6">
+  <div class="flex flex-wrap w-full">
+    <div class="md:w-9/12 xl:w-9/12 px-5 overflow-y-auto">
+      @yield('body')
+    </div>
+    <div class="md:w-3/12 xl:w-3/12 px-5">
+      @include('_components.sidebar')
+    </div>
+  </div>
+</main>

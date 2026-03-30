@@ -1,0 +1,12 @@
+Hi John, I think you can implement the **following algorithm**:
+
+mermaid
+stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+
+What do you think?

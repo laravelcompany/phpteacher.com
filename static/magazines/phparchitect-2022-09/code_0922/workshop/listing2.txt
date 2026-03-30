@@ -1,0 +1,12 @@
+$ make clean
+rm -rf vendor/
+rm -rf node_modules/
+
+$ make setup
+composer install
+Installing dependencies from lock file (including require-dev)
+Verifying lock file contents can be installed on current platform.
+// ...
+webpack compiled successfully
+php artisan migrate
+Nothing to migrate.

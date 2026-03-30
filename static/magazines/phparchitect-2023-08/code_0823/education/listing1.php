@@ -1,0 +1,13 @@
+if ($user) {
+       if ($user->isActive()) {
+             if ($order->hasItems()) {
+                   // ...
+             } else {
+                   // ...
+             }
+       } else {
+             // ...
+       }
+} else {
+       // ...
+}

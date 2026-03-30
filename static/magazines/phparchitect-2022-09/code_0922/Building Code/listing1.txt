@@ -1,0 +1,21 @@
+class JsonResponse {
+  public function __construct(
+    protected array $data = [],
+    protected int $returnCode = 200,
+  ) { }
+
+  public function output() {
+    header('Content-Type: application/json');
+    http_response_code($this->returnCode);
+    echo json_encode($this->data);
+  }
+}
+
+class OurController {
+  public function someAction() {
+    // Magical business logic that 
+    // creates a $returnData array
+    $resp = JsonResponse($returnData);
+    $resp->output();
+  }
+}

@@ -1,0 +1,11 @@
+# Fetch user data along with their posts in one go
+{
+  User(id: 123) {
+    Name
+    Email
+    Posts {
+      Title
+      Content
+    }
+  }
+}

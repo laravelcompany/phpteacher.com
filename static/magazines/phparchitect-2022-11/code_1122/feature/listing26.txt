@@ -1,0 +1,10 @@
+create table book
+(
+    uid                 varchar(36)  not null,
+    author_uid          varchar(36)  not null,
+    title               varchar(255) not null,
+    cover_color_rgba    char(8)      null,
+    -- ...
+    foreign key (author_uid) references author(uid)
+    -- ...
+);

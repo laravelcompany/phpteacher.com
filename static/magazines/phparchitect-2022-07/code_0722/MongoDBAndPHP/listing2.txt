@@ -1,0 +1,17 @@
+[
+  {
+    _id: 1,
+    name: "Joel Lord",
+    bio: "Joel Lord is a developer advocate at MongoDB…",
+    socials: [
+      {
+        social: "Twitter",
+        link: "<https://twitter.com/joel__lord>"
+      },
+      {
+        social: "Github",
+        link: "<https://github.com/joellord>"
+      }
+    ]
+  }
+]

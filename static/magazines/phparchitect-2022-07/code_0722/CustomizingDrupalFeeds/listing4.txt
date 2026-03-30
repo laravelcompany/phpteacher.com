@@ -1,0 +1,13 @@
+   /**
+   * {@inheritdoc}
+   */
+   public function tamper($data, TamperableItemInterface $item = NULL) {
+    // Dump any get parameters on the URL for a clean alias.
+    $data = strtok($data, '?');
+    $path = $this->pathAliasManager->getPathByAlias($data);
+    if (preg_match('/node\\/(\\d+)/', $path, $matches)) {
+      return $matches[1];
+    }
+
+    return '';
+  }

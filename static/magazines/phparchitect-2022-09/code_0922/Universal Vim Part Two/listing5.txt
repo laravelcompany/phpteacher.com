@@ -1,0 +1,8 @@
+" Open the buffers list
+nnoremap <Leader>ob :Buffers<CR>
+
+" Open any of our project files
+nnoremap <Leader>of :Files<CR>
+
+" Open any of our Git managed files
+nnoremap <Leader>og :GFiles<CR>

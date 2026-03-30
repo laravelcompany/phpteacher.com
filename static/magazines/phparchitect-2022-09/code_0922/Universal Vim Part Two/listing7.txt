@@ -1,0 +1,11 @@
+" Git status
+nnoremap <Leader>dg :GFiles?<CR>
+
+" Display Marks
+nnoremap <Leader>db :Marks<CR>
+
+" Display Mappings
+nnoremap <Leader>dm :Maps<CR>
+
+" Choose from the themes (colorschemes) list
+nnoremap <Leader>dt :Colors<CR>

@@ -1,0 +1,9 @@
+$lights[1]->setOn(true);
+$lights[1]->setRGB(0, 255, 0); // Green
+$lights[2]->setOn(true);
+$lights[2]->setRGB(0, 255, 0); // Green
+sleep(2);
+
+$command = new SetGroupState($groups[1]);
+$command->scene('phparch');
+$client->sendCommand($command);

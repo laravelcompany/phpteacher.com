@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerName fresh.test
+    DocumentRoot /var/www/fresh/public
+    ErrorLog ${APACHE_LOG_DIR}/fresh-error.log
+    CustomLog ${APACHE_LOG_DIR}/fresh-access.log combined
+</VirtualHost>
+<VirtualHost *:443>
+    ServerName fresh.test
+    DocumentRoot /var/www/fresh/public
+    SSLEngine on    
+		SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+    SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+</VirtualHost>
