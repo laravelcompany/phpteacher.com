@@ -1,0 +1,127 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import booksData from "../../content/books-laravel.json";
+
+export function getStaticPaths() {
+  return booksData.books.map((book) => ({
+    params: { id: book.id.toString() },
+    props: { book },
+  }));
+}
+
+const { book } = Astro.props;
+
+const formatPrice = (price: number, currency: string) => {
+  return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(price);
+};
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+};
+
+const getLevelColor = (level: string) => {
+  if (level.includes('Beginner')) return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+  if (level.includes('Intermediate')) return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+  if (level.includes('Advanced')) return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+  return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+};
+---
+
+<BaseLayout title={book.title} description={`Learn more about ${book.title} by ${book.author}`}>
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <div class="mx-auto max-w-4xl">
+      <a href="/books-laravel" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to all books
+      </a>
+      
+      <div class="bg-white dark:bg-neutral-900 rounded-2xl shadow-lg overflow-hidden">
+        <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-32"></div>
+        
+        <div class="px-8 pb-8">
+          <div class="flex flex-col md:flex-row -mt-16 gap-8">
+            <div class="shrink-0">
+              <div class="w-40 h-56 bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-lg flex items-center justify-center border-4 border-white dark:border-neutral-900">
+                <svg class="w-16 h-16 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+            </div>
+            
+            <div class="flex-1 pt-4">
+              <h1 class="text-3xl font-bold text-neutral-800 dark:text-neutral-100 mb-2">{book.title}</h1>
+              <p class="text-lg text-neutral-600 dark:text-neutral-300 mb-4">by {book.author}</p>
+              
+              <div class="flex flex-wrap items-center gap-4 mb-4">
+                {book.rating && (
+                  <div class="flex items-center gap-2">
+                    <div class="flex">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <svg class={`w-5 h-5 ${star <= Math.round(book.rating) ? 'text-yellow-400' : 'text-neutral-300 dark:text-neutral-600'}`} fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span class="text-neutral-700 dark:text-neutral-300 font-medium">{book.rating}</span>
+                    <span class="text-neutral-500 dark:text-neutral-400 text-sm">({book.reviews} reviews)</span>
+                  </div>
+                )}
+                
+                <span class={`px-3 py-1 rounded-full text-sm font-medium ${getLevelColor(book.level)}`}>
+                  {book.level}
+                </span>
+                
+                <span class="text-neutral-500 dark:text-neutral-400 text-sm">
+                  {book.language}
+                </span>
+              </div>
+              
+              <p class="text-neutral-500 dark:text-neutral-400 text-sm">
+                Published {formatDate(book.publication_date)}
+              </p>
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <h2 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Topics</h2>
+            <div class="flex flex-wrap gap-2">
+              {book.topics.map((topic) => (
+                <span class="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-sm rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors cursor-default">
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <h2 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Available Formats</h2>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {Object.entries(book.formats).map(([format, details]) => (
+                <div class={`p-4 rounded-xl border-2 ${details.available ? 'border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20' : 'border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800'}`}>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-lg font-semibold capitalize text-neutral-800 dark:text-neutral-200">{format}</span>
+                    {details.kindle_unlimited && (
+                      <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs font-medium rounded">
+                        Kindle Unlimited
+                      </span>
+                    )}
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+                      {details.available ? formatPrice(details.price, details.currency) : 'N/A'}
+                    </span>
+                    <span class={`text-sm font-medium ${details.available ? 'text-green-600' : 'text-red-500'}`}>
+                      {details.available ? 'Available' : 'Out of stock'}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

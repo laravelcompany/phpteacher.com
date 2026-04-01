@@ -27,6 +27,7 @@ const bodyContent = fullHtml
   .replace(/<head>[\s\S]*<\/head>/i, '')
   .replace(/<body[^>]*>/i, '')
   .replace(/<\/body>/i, '')
+  .replace(/href="([^"#]+)\.html"/g, 'href="/manual/$1/"')
 ---
 
 <BaseLayout title="PHP Manual">

@@ -1,0 +1,490 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Laravel: Up & Running: A Framework for Building Modern PHP Apps",
+      "author": "Matt Stauffer",
+      "publication_date": "2023-09-22",
+      "rating": 4.4,
+      "reviews": 41,
+      "formats": {
+        "paperback": {
+          "price": 33.65,
+          "currency": "GBP",
+          "available": true
+        },
+        "kindle": {
+          "price": 40.99,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner to Intermediate",
+      "topics": ["Laravel", "PHP", "Web Development", "Modern PHP Apps"]
+    },
+    {
+      "id": 2,
+      "title": "Build a Multi Vendor Marketplace With Laravel",
+      "author": "Douglas Darwin",
+      "publication_date": "2026-01-16",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "paperback": {
+          "price": 10.15,
+          "currency": "GBP",
+          "available": true
+        },
+        "kindle": {
+          "price": 4.22,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Intermediate",
+      "topics": ["Laravel", "Marketplace", "E-commerce", "Multi-Vendor"]
+    },
+    {
+      "id": 3,
+      "title": "Laravel 12 for Beginners & Beyond",
+      "author": "Roderick A. Reeves",
+      "publication_date": "2025-09-01",
+      "rating": 5.0,
+      "reviews": 1,
+      "formats": {
+        "kindle": {
+          "price": 5.82,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        },
+        "hardcover": {
+          "price": 21.41,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner",
+      "topics": ["Laravel 12", "PHP", "Clean Architecture", "Best Practices"]
+    },
+    {
+      "id": 4,
+      "title": "Laravel for the rest of us",
+      "author": "Pete Heslop",
+      "publication_date": "2025-11-18",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "paperback": {
+          "price": 20.00,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner",
+      "topics": ["Laravel", "PHP", "Web Development"]
+    },
+    {
+      "id": 5,
+      "title": "Laravel 12 Mastery: Build High-Performance Web Apps for Production",
+      "author": "John R. Coleman",
+      "publication_date": "2025-08-06",
+      "rating": 5.0,
+      "reviews": 1,
+      "formats": {
+        "paperback": {
+          "price": 18.51,
+          "currency": "GBP",
+          "available": true
+        },
+        "kindle": {
+          "price": 5.92,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        },
+        "hardcover": {
+          "price": 27.39,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Advanced",
+      "topics": ["Laravel 12", "SaaS", "Real-Time Apps", "Testing", "Scalable Architecture"]
+    },
+    {
+      "id": 6,
+      "title": "The Complete Laravel 12 Guide: Build, Scale, and Deploy Modern Web Applications",
+      "author": "Allen Qwiz",
+      "publication_date": "2025-10-25",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 5.71,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 28.55,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Intermediate",
+      "topics": ["Laravel 12", "Web Applications", "Deployment", "Scaling"]
+    },
+    {
+      "id": 7,
+      "title": "Advanced Practical Laravel: Become a Senior Laravel Developer in the Age of AI",
+      "author": "Pietro Curatola",
+      "publication_date": "2025-06-18",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 9.99,
+          "currency": "GBP",
+          "available": true
+        },
+        "hardcover": {
+          "price": 59.00,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 28.64,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Advanced",
+      "topics": ["Laravel", "AI", "Senior Development", "Best Practices"]
+    },
+    {
+      "id": 8,
+      "title": "Laravel for SaaS Applications: Designing, Building, and Scaling Subscription Based Systems",
+      "author": "Rodney S. Campbell",
+      "publication_date": "2026-01-13",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 6.68,
+          "currency": "GBP",
+          "available": true
+        },
+        "hardcover": {
+          "price": 22.28,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 30.57,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Advanced",
+      "topics": ["Laravel", "SaaS", "Subscription Systems", "Scaling"]
+    },
+    {
+      "id": 9,
+      "title": "Practical Laravel: Develop clean MVC web applications",
+      "author": "Daniel Correa and Paola Vallejo",
+      "publication_date": "2022-02-12",
+      "rating": 4.0,
+      "reviews": 34,
+      "formats": {
+        "kindle": {
+          "price": 7.37,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 12.53,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner to Intermediate",
+      "topics": ["Laravel", "MVC", "Clean Code", "Web Applications"]
+    },
+    {
+      "id": 10,
+      "title": "Mastering Laravel 12: Build Real-World Web Applications with Livewire, Inertia, and Modern PHP Best Practices",
+      "author": "Osbert A. Shaw",
+      "publication_date": "2025-11-03",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 5.71,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        },
+        "hardcover": {
+          "price": 21.92,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 13.71,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Intermediate",
+      "topics": ["Laravel 12", "Livewire", "Inertia", "PHP Best Practices"]
+    },
+    {
+      "id": 11,
+      "title": "Laravel 12 for Beginners and Professionals: From Beginner to Advanced",
+      "author": "Roderick A. Reeves",
+      "publication_date": "2025-12-05",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 6.00,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        },
+        "hardcover": {
+          "price": 21.77,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 14.26,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner to Advanced",
+      "topics": ["Laravel 12", "React", "Vue", "Livewire", "Clean Architecture"]
+    },
+    {
+      "id": 12,
+      "title": "Laravel 12 for Beginners: Build Modern Web Apps with PHP the Easy Way",
+      "author": "Haider Koele",
+      "publication_date": "2025-08-14",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 5.80,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 19.85,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner",
+      "topics": ["Laravel 12", "PHP", "Web Apps", "Beginner Friendly"]
+    },
+    {
+      "id": 13,
+      "title": "Laravel: Learn By Coding",
+      "author": "Scott Hughes",
+      "publication_date": "2017-11-03",
+      "rating": 4.0,
+      "reviews": 22,
+      "formats": {
+        "kindle": {
+          "price": 2.26,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner",
+      "topics": ["Laravel", "PHP", "Hands-On Learning"]
+    },
+    {
+      "id": 14,
+      "title": "Architecture of complex web applications. Second Edition.",
+      "author": "Adel Faizrakhmanov",
+      "publication_date": "2024-06-24",
+      "rating": 4.5,
+      "reviews": 2,
+      "formats": {
+        "paperback": {
+          "price": 6.48,
+          "currency": "GBP",
+          "available": true
+        },
+        "kindle": {
+          "price": 0.77,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        }
+      },
+      "language": "English",
+      "level": "Advanced",
+      "topics": ["Laravel", "Architecture", "Complex Web Applications", "PHP"]
+    },
+    {
+      "id": 15,
+      "title": "Laravel Web Development: 68 Things Beginners Need to Know",
+      "author": "Sarah Williams, Emily Davis, et al.",
+      "publication_date": "2024-09-16",
+      "rating": 5.0,
+      "reviews": 1,
+      "formats": {
+        "kindle": {
+          "price": 3.63,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner",
+      "topics": ["Laravel", "Web Development", "Beginner Guide"]
+    },
+    {
+      "id": 16,
+      "title": "Laravel 12 Clean Architecture: Designing Scalable and Maintainable Web Applications",
+      "author": "Stan Walton",
+      "publication_date": "2025-11-13",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 5.71,
+          "currency": "GBP",
+          "available": true,
+          "kindle_unlimited": true
+        },
+        "hardcover": {
+          "price": 24.38,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 16.00,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Advanced",
+      "topics": ["Laravel 12", "Clean Architecture", "SOLID Principles", "Domain-Driven Design", "Testing"]
+    },
+    {
+      "id": 17,
+      "title": "Mastering Laravel for Beginners: A Step-by-Step Guide to Modern PHP Development",
+      "author": "Dr. Quinn Miles",
+      "publication_date": "2025-08-12",
+      "rating": 5.0,
+      "reviews": 1,
+      "formats": {
+        "kindle": {
+          "price": 5.91,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 21.39,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner",
+      "topics": ["Laravel", "PHP", "Modern Development", "Step-by-Step"]
+    },
+    {
+      "id": 18,
+      "title": "Laravel 12 and Vue 3 from Scratch: Your step-by-step guide to modern full-stack development",
+      "author": "Dr. Adrian Devlin",
+      "publication_date": "2025-11-11",
+      "rating": null,
+      "reviews": 0,
+      "formats": {
+        "kindle": {
+          "price": 6.82,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 22.77,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner to Intermediate",
+      "topics": ["Laravel 12", "Vue 3", "Full-Stack", "JavaScript"]
+    },
+    {
+      "id": 19,
+      "title": "Ultimate Laravel for Modern Web Development",
+      "author": "Drishti Jain",
+      "publication_date": "2024-01-22",
+      "rating": 4.2,
+      "reviews": 18,
+      "formats": {
+        "kindle": {
+          "price": 16.21,
+          "currency": "GBP",
+          "available": true
+        },
+        "paperback": {
+          "price": 28.46,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Intermediate",
+      "topics": ["Laravel", "MVC", "Authentication", "APIs", "Cloud Deployment"]
+    },
+    {
+      "id": 20,
+      "title": "Laravel: Up & Running, 2e",
+      "author": "Matt Stauffer",
+      "publication_date": "2019-04-26",
+      "rating": 4.6,
+      "reviews": 169,
+      "formats": {
+        "paperback": {
+          "price": 5.98,
+          "currency": "GBP",
+          "available": true
+        }
+      },
+      "language": "English",
+      "level": "Beginner to Intermediate",
+      "topics": ["Laravel", "PHP", "Modern PHP Apps"]
+    }
+  ],
+  "metadata": {
+    "total_books": 20,
+    "last_updated": "2026-01-15",
+    "website": "phpteacher",
+    "category": "Laravel & PHP Development",
+    "currency": "GBP",
+    "languages_available": ["English", "German", "French", "Spanish", "Portuguese", "Japanese", "Italian", "Russian", "Turkish", "Polish", "Chinese", "Indonesian", "Catalan", "Dutch"]
+  }
+}

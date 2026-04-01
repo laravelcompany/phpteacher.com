@@ -25,6 +25,12 @@ export const FooterLinks = [
         ],
     },
     {
+        section: 'Resources',
+        links: [
+            { name: 'Laravel Books', url: '/books-laravel' },
+        ],
+    },
+    {
         section: 'Other',
         links: [
             { name: 'RSS', url: '/rss.xml' },
