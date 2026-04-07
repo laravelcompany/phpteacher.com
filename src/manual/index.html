@@ -1,186 +1,728 @@
-    <!DOCTYPE HTML>
-    <html>
-     <head>
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <style>
-        .navbar__local {
-          flex-grow: 1;
-          display: grid;
-          grid-auto-flow: column;
-          grid-auto-columns: 1fr min-content 1fr;
-          margin: 0;
-          height: 100%;
-          
-          .navbar__item {
-            align-content: center;
-          }
-          .navbar__link {
-            display: inline;
-          }
-          .search {
-            text-align: center;
-          }
-          .next {
-            text-align: right;
-          }
-        }
-      </style>
-      <title>PHP Manual</title>
-      <link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
-<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHP Manual</title>
+  <link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+  <link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
 
-     </head>
-     <body class="docs">    <div class="navbar navbar-fixed-top">
-      <div class="navbar__inner clearfix">
-          <ul class="navbar__local">
-            <li class="navbar__item"></li>
-            <li class="navbar__item search">
-              <!-- Desktop encanced search -->
-              <button
-                id="navbar__search-button"
-                class="navbar__search-button"
-                hidden
-              >
-                    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        width="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-    >
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-    </svg>
-                Search
-              </button>
-            </li>
-            <li class="navbar__item next"><a href="copyright.html" class="navbar__link">Copyright »</a></li>
-          </ul>
-      </div>
-    </div>    <div id="breadcrumbs" class="clearfix">
-      <ul class="breadcrumbs-container">
-        <li><a href="index.html">PHP Manual</a></li>
-        
-        <li>PHP Manual</li>
+  <style>
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--dark-blue-color);
+      color: white;
+      padding: 8px 16px;
+      z-index: 1000;
+      transition: top 0.15s ease;
+    }
+    .skip-to-content:focus {
+      top: 0;
+    }
+
+    #manual {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .manual-search-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .manual-search {
+      width: 100%;
+      padding: 10px 36px 10px 36px;
+      font-size: 1rem;
+      border: 1px solid var(--dark-grey-color);
+      border-radius: 4px;
+    }
+
+    .manual-search:focus {
+      outline: 2px solid var(--dark-blue-color);
+      outline-offset: 1px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dark-grey-color);
+      pointer-events: none;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--dark-grey-color);
+      cursor: pointer;
+      padding: 4px 8px;
+      font-size: 14px;
+    }
+
+    .search-clear:hover {
+      color: var(--dark-blue-color);
+    }
+
+    .search-clear:not(.visible) {
+      display: none;
+    }
+
+    .manual-nav .chunklist_children {
+      display: none;
+      padding-left: 20px;
+      margin: 0.5rem 0;
+    }
+
+    .manual-nav .chunklist_children.expanded {
+      display: block;
+    }
+
+    .manual-nav .accordion-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px 0;
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+    }
+
+    .manual-nav .accordion-trigger:hover {
+      color: var(--dark-blue-color);
+    }
+
+    .manual-nav .accordion-trigger:focus {
+      outline: 2px solid var(--dark-blue-color);
+      outline-offset: 2px;
+    }
+
+    .manual-nav .accordion-trigger .chevron {
+      transition: transform 0.15s ease;
+    }
+
+    .manual-nav .accordion-trigger[aria-expanded="true"] .chevron {
+      transform: rotate(90deg);
+    }
+
+    .manual-nav .chunklist_children a {
+      display: block;
+      padding: 4px 0;
+      color: var(--dark-grey-color);
+      text-decoration: none;
+    }
+
+    .manual-nav .chunklist_children a:hover {
+      color: var(--dark-blue-color);
+      text-decoration: underline;
+    }
+
+    .manual-nav > .chunklist > li {
+      margin-bottom: 0.5rem;
+    }
+
+    .manual-nav > .chunklist > li > a {
+      font-weight: 600;
+      color: var(--dark-blue-color);
+      text-decoration: none;
+    }
+
+    .manual-nav > .chunklist > li > a:hover {
+      text-decoration: underline;
+    }
+
+    .manual-toc {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .manual-toc {
+        display: block;
+        position: sticky;
+        top: 60px;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding-right: 1rem;
+      }
+
+      .manual-toc h3 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--dark-grey-color);
+        margin-bottom: 0.75rem;
+      }
+
+      .manual-toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .manual-toc li {
+        margin-bottom: 0.25rem;
+      }
+
+      .manual-toc a {
+        display: block;
+        padding: 4px 8px;
+        color: var(--dark-grey-color);
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+
+      .manual-toc a:hover {
+        background: var(--light-blue-color);
+        color: var(--dark-blue-color);
+      }
+
+      #layout-content {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: var(--dark-blue-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      z-index: 100;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background: var(--dark-magenta-color);
+    }
+
+    @media (max-width: 1023px) {
+      .manual-nav .chunklist_children {
+        display: block;
+      }
+
+      .manual-nav .accordion-trigger {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .manual-nav .accordion-trigger .chevron,
+      .skip-to-content,
+      .scroll-top {
+        transition: none;
+      }
+    }
+  </style>
+ </head>
+ <body class="docs">
+  <a href="#manual" class="skip-to-content">Skip to content</a>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar__inner clearfix">
+      <ul class="navbar__local">
+        <li class="navbar__item"></li>
+        <li class="navbar__item search">
+          <button id="navbar__search-button" class="navbar__search-button" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Search
+          </button>
+        </li>
+        <li class="navbar__item next"><a href="copyright.html" class="navbar__link">Copyright »</a></li>
       </ul>
-    </div>    <div id="layout">
-      <div id="layout-content"><div id="index" class="set">
-  <h1 class="title">PHP Manual</h1>
-  
-  <div class="info">
-    <h2 class="title">Welcome to the PHP Manual</h2>
-    <p>The PHP manual is a comprehensive resource for learning PHP, from the basics to advanced topics.</p>
-    <p>Use the navigation below or the search function to find what you need.</p>
+    </div>
   </div>
 
+  <div id="breadcrumbs" class="clearfix">
+    <ul class="breadcrumbs-container">
+      <li><a href="index.html">PHP Manual</a></li>
+      <li>PHP Manual</li>
+    </ul>
+  </div>
 
+  <div id="layout">
+    <div id="layout-content">
+      <aside class="manual-toc" aria-label="Table of Contents">
+        <h3>Contents</h3>
+        <ul id="toc-list"></ul>
+      </aside>
 
+      <main id="manual" class="book">
+        <h1 class="title">PHP Manual</h1>
 
- <div class="info">
-  
-  <div class="pubdate">2026-03-27</div>
-  
-
-  
-
- </div>
- 
-
-
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
-<ul class="chunklist chunklist_set"><li><a href="copyright.html">Copyright</a></li><li><a href="getting-started.html">Getting Started</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="introduction.html">Introduction</a> — What is PHP and what can it do?</li><li><a href="tutorial.html">A simple tutorial</a></li></ul></li><li><a href="install.html">Installation and Configuration</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="install.general.html">General Installation Considerations</a></li><li><a href="install.unix.html">Installation on Unix systems</a></li><li><a href="install.macosx.html">Installation on macOS</a></li><li><a href="install.windows.html">Installation on Windows systems</a></li><li><a href="install.cloud.html">Installation on Cloud Computing platforms</a></li><li><a href="install.fpm.html">FastCGI Process Manager (FPM)</a></li><li><a href="install.pecl.html">Installation of PECL extensions</a></li><li><a href="install.composer.intro.html">Introduction to Composer</a></li><li><a href="install.pie.intro.html">Introduction to PIE</a></li><li><a href="configuration.html">Runtime Configuration</a></li></ul></li><li><a href="langref.html">Language Reference</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="language.basic-syntax.html">Basic syntax</a></li><li><a href="language.types.html">Types</a></li><li><a href="language.variables.html">Variables</a></li><li><a href="language.constants.html">Constants</a></li><li><a href="language.expressions.html">Expressions</a></li><li><a href="language.operators.html">Operators</a></li><li><a href="language.control-structures.html">Control Structures</a></li><li><a href="language.functions.html">Functions</a></li><li><a href="language.oop5.html">Classes and Objects</a></li><li><a href="language.namespaces.html">Namespaces</a></li><li><a href="language.enumerations.html">Enumerations</a></li><li><a href="language.errors.html">Errors</a></li><li><a href="language.exceptions.html">Exceptions</a></li><li><a href="language.fibers.html">Fibers</a></li><li><a href="language.generators.html">Generators</a></li><li><a href="language.attributes.html">Attributes</a></li><li><a href="language.references.html">References Explained</a></li><li><a href="reserved.variables.html">Predefined Variables</a></li><li><a href="reserved.exceptions.html">Predefined Exceptions</a></li><li><a href="reserved.interfaces.html">Predefined Interfaces and Classes</a></li><li><a href="reserved.attributes.html">Predefined Attributes</a></li><li><a href="context.html">Context options and parameters</a></li><li><a href="wrappers.html">Supported Protocols and Wrappers</a></li></ul></li><li><a href="security.html">Security</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="security.intro.html">Introduction</a></li><li><a href="security.general.html">General considerations</a></li><li><a href="security.cgi-bin.html">Installed as CGI binary</a></li><li><a href="security.apache.html">Installed as an Apache module</a></li><li><a href="security.sessions.html">Session Security</a></li><li><a href="security.filesystem.html">Filesystem Security</a></li><li><a href="security.database.html">Database Security</a></li><li><a href="security.errors.html">Error Reporting</a></li><li><a href="security.variables.html">User Submitted Data</a></li><li><a href="security.hiding.html">Hiding PHP</a></li><li><a href="security.current.html">Keeping Current</a></li></ul></li><li><a href="features.html">Features</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="features.http-auth.html">HTTP authentication with PHP</a></li><li><a href="features.cookies.html">Cookies</a></li><li><a href="features.sessions.html">Sessions</a></li><li><a href="features.file-upload.html">Handling file uploads</a></li><li><a href="features.remote-files.html">Using remote files</a></li><li><a href="features.connection-handling.html">Connection handling</a></li><li><a href="features.persistent-connections.html">Persistent Database Connections</a></li><li><a href="features.commandline.html">Command line usage</a> — Using PHP from the command line</li><li><a href="features.gc.html">Garbage Collection</a></li><li><a href="features.dtrace.html">DTrace Dynamic Tracing</a></li></ul></li><li><a href="funcref.html">Function Reference</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="refs.basic.php.html">Affecting PHP's Behaviour</a></li><li><a href="refs.utilspec.audio.html">Audio Formats Manipulation</a></li><li><a href="refs.remote.auth.html">Authentication Services</a></li><li><a href="refs.utilspec.cmdline.html">Command Line Specific Extensions</a></li><li><a href="refs.compression.html">Compression and Archive Extensions</a></li><li><a href="refs.crypto.html">Cryptography Extensions</a></li><li><a href="refs.database.html">Database Extensions</a></li><li><a href="refs.calendar.html">Date and Time Related Extensions</a></li><li><a href="refs.fileprocess.file.html">File System Related Extensions</a></li><li><a href="refs.international.html">Human Language and Character Encoding Support</a></li><li><a href="refs.utilspec.image.html">Image Processing and Generation</a></li><li><a href="refs.remote.mail.html">Mail Related Extensions</a></li><li><a href="refs.math.html">Mathematical Extensions</a></li><li><a href="refs.utilspec.nontext.html">Non-Text MIME Output</a></li><li><a href="refs.fileprocess.process.html">Process Control Extensions</a></li><li><a href="refs.basic.other.html">Other Basic Extensions</a></li><li><a href="refs.remote.other.html">Other Services</a></li><li><a href="refs.search.html">Search Engine Extensions</a></li><li><a href="refs.utilspec.server.html">Server Specific Extensions</a></li><li><a href="refs.basic.session.html">Session Extensions</a></li><li><a href="refs.basic.text.html">Text Processing</a></li><li><a href="refs.basic.vartype.html">Variable and Type Related Extensions</a></li><li><a href="refs.webservice.html">Web Services</a></li><li><a href="refs.utilspec.windows.html">Windows Only Extensions</a></li><li><a href="refs.xml.html">XML Manipulation</a></li><li><a href="refs.ui.html">GUI Extensions</a></li></ul></li><li><a href="faq.html">FAQ</a> — Frequently Asked Questions<ul class="chunklist chunklist_set chunklist_children"><li><a href="faq.general.html">General Information</a></li><li><a href="faq.mailinglist.html">Mailing lists</a></li><li><a href="faq.obtaining.html">Obtaining PHP</a></li><li><a href="faq.databases.html">Database issues</a></li><li><a href="faq.installation.html">Installation</a></li><li><a href="faq.build.html">Build Problems</a></li><li><a href="faq.using.html">Using PHP</a></li><li><a href="faq.passwords.html">Password Hashing</a> — Hashing passwords safely and securely</li><li><a href="faq.html.html">PHP and HTML</a></li><li><a href="faq.com.html">PHP and COM</a></li><li><a href="faq.misc.html">Miscellaneous Questions</a></li></ul></li><li><a href="appendices.html">Appendices</a><ul class="chunklist chunklist_set chunklist_children"><li><a href="history.html">History of PHP and Related Projects</a></li><li><a href="examples.html">About manual examples</a></li><li><a href="migration85.html">Migrating from PHP 8.4.x to PHP 8.5.x</a></li><li><a href="migration84.html">Migrating from PHP 8.3.x to PHP 8.4.x</a></li><li><a href="migration83.html">Migrating from PHP 8.2.x to PHP 8.3.x</a></li><li><a href="migration82.html">Migrating from PHP 8.1.x to PHP 8.2.x</a></li><li><a href="migration81.html">Migrating from PHP 8.0.x to PHP 8.1.x</a></li><li><a href="migration80.html">Migrating from PHP 7.4.x to PHP 8.0.x</a></li><li><a href="migration74.html">Migrating from PHP 7.3.x to PHP 7.4.x</a></li><li><a href="migration73.html">Migrating from PHP 7.2.x to PHP 7.3.x</a></li><li><a href="migration72.html">Migrating from PHP 7.1.x to PHP 7.2.x</a></li><li><a href="migration71.html">Migrating from PHP 7.0.x to PHP 7.1.x</a></li><li><a href="migration70.html">Migrating from PHP 5.6.x to PHP 7.0.x</a></li><li><a href="migration56.html">Migrating from PHP 5.5.x to PHP 5.6.x</a></li><li><a href="debugger.html">Debugging in PHP</a></li><li><a href="configure.html">Configure options</a></li><li><a href="ini.html">php.ini directives</a></li><li><a href="extensions.html">Extension List/Categorization</a></li><li><a href="aliases.html">List of Function Aliases</a></li><li><a href="reserved.html">List of Reserved Words</a></li><li><a href="resource.html">List of Resource Types</a></li><li><a href="filters.html">List of Available Filters</a></li><li><a href="transports.html">List of Supported Socket Transports</a></li><li><a href="types.comparisons.html">PHP type comparison tables</a></li><li><a href="tokens.html">List of Parser Tokens</a></li><li><a href="userlandnaming.html">Userland Naming Guide</a></li><li><a href="about.html">About the manual</a></li><li><a href="cc.license.html">Creative Commons Attribution 3.0</a></li><li><a href="indexes.html">Index listing</a></li><li><a href="doc.changelog.html">Changelog</a></li></ul></li></ul></div></div></div><script type="text/javascript" src="search-combined.js"></script><script type="text/javascript" src="js/67ae199ee27cc87120cab9ba49d1b776-FuzzySearch.min.js"></script><script type="text/javascript" src="js/f5555778cd757f2cb49676062898832b-search.js"></script>    <div id="search-modal__backdrop" class="search-modal__backdrop">
-      <div
-        role="dialog"
-        aria-label="Search modal"
-        id="search-modal"
-        class="search-modal"
-      >
-        <div class="search-modal__header">
-          <div class="search-modal__form">
-            <div class="search-modal__input-icon">
-              <!-- https://feathericons.com search -->
-              <svg xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                width="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </div>
-            <input
-              type="search"
-              id="search-modal__input"
-              class="search-modal__input"
-              placeholder="Search docs"
-              aria-label="Search docs"
-            />
-          </div>
-    
-          <button aria-label="Close" class="search-modal__close">
-            <!-- https://pictogrammers.com/library/mdi/icon/close/ -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              width="24"
-              viewBox="0 0 24 24"
-            >
-              <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
-            </svg>
-          </button>
+        <div class="manual-search-wrap">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="search" id="manual-search" class="manual-search" placeholder="Search documentation..." aria-label="Search documentation">
+          <button id="search-clear" class="search-clear" aria-label="Clear search">✕</button>
         </div>
-        <div
-          role="listbox"
-          aria-label="Search results"
-          id="search-modal__results"
-          class="search-modal__results"
-        ></div>
-        <div class="search-modal__helper-text">
-          <div>
-            <kbd>↑</kbd> and <kbd>↓</kbd> to navigate •
-            <kbd>Enter</kbd> to select •
-            <kbd>Esc</kbd> to close • <kbd>/</kbd> to open
+
+        <div class="info">
+          <h2 class="title">Welcome to the PHP Manual</h2>
+          <p>The PHP manual is a comprehensive resource for learning PHP, from the basics to advanced topics.</p>
+          <p>Use the navigation below or the search function to find what you need.</p>
+        </div>
+
+        <div class="info">
+          <span class="pubdate">Last updated: 2026-03-27</span>
+        </div>
+
+        <nav class="manual-nav" aria-label="Documentation sections">
+          <ul class="chunklist chunklist_set">
+            <li><a href="copyright.html">Copyright</a></li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-getting-started">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Getting Started
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-getting-started">
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="introduction.html">Introduction</a> — What is PHP and what can it do?</li>
+                <li><a href="tutorial.html">A simple tutorial</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-install">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Installation and Configuration
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-install">
+                <li><a href="install.html">Installation and Configuration</a></li>
+                <li><a href="install.general.html">General Installation Considerations</a></li>
+                <li><a href="install.unix.html">Installation on Unix systems</a></li>
+                <li><a href="install.macosx.html">Installation on macOS</a></li>
+                <li><a href="install.windows.html">Installation on Windows systems</a></li>
+                <li><a href="install.cloud.html">Installation on Cloud Computing platforms</a></li>
+                <li><a href="install.fpm.html">FastCGI Process Manager (FPM)</a></li>
+                <li><a href="install.pecl.html">Installation of PECL extensions</a></li>
+                <li><a href="install.composer.intro.html">Introduction to Composer</a></li>
+                <li><a href="install.pie.intro.html">Introduction to PIE</a></li>
+                <li><a href="configuration.html">Runtime Configuration</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-langref">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Language Reference
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-langref">
+                <li><a href="langref.html">Language Reference</a></li>
+                <li><a href="language.basic-syntax.html">Basic syntax</a></li>
+                <li><a href="language.types.html">Types</a></li>
+                <li><a href="language.variables.html">Variables</a></li>
+                <li><a href="language.constants.html">Constants</a></li>
+                <li><a href="language.expressions.html">Expressions</a></li>
+                <li><a href="language.operators.html">Operators</a></li>
+                <li><a href="language.control-structures.html">Control Structures</a></li>
+                <li><a href="language.functions.html">Functions</a></li>
+                <li><a href="language.oop5.html">Classes and Objects</a></li>
+                <li><a href="language.namespaces.html">Namespaces</a></li>
+                <li><a href="language.enumerations.html">Enumerations</a></li>
+                <li><a href="language.errors.html">Errors</a></li>
+                <li><a href="language.exceptions.html">Exceptions</a></li>
+                <li><a href="language.fibers.html">Fibers</a></li>
+                <li><a href="language.generators.html">Generators</a></li>
+                <li><a href="language.attributes.html">Attributes</a></li>
+                <li><a href="language.references.html">References Explained</a></li>
+                <li><a href="reserved.variables.html">Predefined Variables</a></li>
+                <li><a href="reserved.exceptions.html">Predefined Exceptions</a></li>
+                <li><a href="reserved.interfaces.html">Predefined Interfaces and Classes</a></li>
+                <li><a href="reserved.attributes.html">Predefined Attributes</a></li>
+                <li><a href="context.html">Context options and parameters</a></li>
+                <li><a href="wrappers.html">Supported Protocols and Wrappers</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-security">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Security
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-security">
+                <li><a href="security.html">Security</a></li>
+                <li><a href="security.intro.html">Introduction</a></li>
+                <li><a href="security.general.html">General considerations</a></li>
+                <li><a href="security.cgi-bin.html">Installed as CGI binary</a></li>
+                <li><a href="security.apache.html">Installed as an Apache module</a></li>
+                <li><a href="security.sessions.html">Session Security</a></li>
+                <li><a href="security.filesystem.html">Filesystem Security</a></li>
+                <li><a href="security.database.html">Database Security</a></li>
+                <li><a href="security.errors.html">Error Reporting</a></li>
+                <li><a href="security.variables.html">User Submitted Data</a></li>
+                <li><a href="security.hiding.html">Hiding PHP</a></li>
+                <li><a href="security.current.html">Keeping Current</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-features">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Features
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-features">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="features.http-auth.html">HTTP authentication with PHP</a></li>
+                <li><a href="features.cookies.html">Cookies</a></li>
+                <li><a href="features.sessions.html">Sessions</a></li>
+                <li><a href="features.file-upload.html">Handling file uploads</a></li>
+                <li><a href="features.remote-files.html">Using remote files</a></li>
+                <li><a href="features.connection-handling.html">Connection handling</a></li>
+                <li><a href="features.persistent-connections.html">Persistent Database Connections</a></li>
+                <li><a href="features.commandline.html">Command line usage</a> — Using PHP from the command line</li>
+                <li><a href="features.gc.html">Garbage Collection</a></li>
+                <li><a href="features.dtrace.html">DTrace Dynamic Tracing</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-funcref">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Function Reference
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-funcref">
+                <li><a href="funcref.html">Function Reference</a></li>
+                <li><a href="refs.basic.php.html">Affecting PHP's Behaviour</a></li>
+                <li><a href="refs.utilspec.audio.html">Audio Formats Manipulation</a></li>
+                <li><a href="refs.remote.auth.html">Authentication Services</a></li>
+                <li><a href="refs.utilspec.cmdline.html">Command Line Specific Extensions</a></li>
+                <li><a href="refs.compression.html">Compression and Archive Extensions</a></li>
+                <li><a href="refs.crypto.html">Cryptography Extensions</a></li>
+                <li><a href="refs.database.html">Database Extensions</a></li>
+                <li><a href="refs.calendar.html">Date and Time Related Extensions</a></li>
+                <li><a href="refs.fileprocess.file.html">File System Related Extensions</a></li>
+                <li><a href="refs.international.html">Human Language and Character Encoding Support</a></li>
+                <li><a href="refs.utilspec.image.html">Image Processing and Generation</a></li>
+                <li><a href="refs.remote.mail.html">Mail Related Extensions</a></li>
+                <li><a href="refs.math.html">Mathematical Extensions</a></li>
+                <li><a href="refs.utilspec.nontext.html">Non-Text MIME Output</a></li>
+                <li><a href="refs.fileprocess.process.html">Process Control Extensions</a></li>
+                <li><a href="refs.basic.other.html">Other Basic Extensions</a></li>
+                <li><a href="refs.remote.other.html">Other Services</a></li>
+                <li><a href="refs.search.html">Search Engine Extensions</a></li>
+                <li><a href="refs.utilspec.server.html">Server Specific Extensions</a></li>
+                <li><a href="refs.basic.session.html">Session Extensions</a></li>
+                <li><a href="refs.basic.text.html">Text Processing</a></li>
+                <li><a href="refs.basic.vartype.html">Variable and Type Related Extensions</a></li>
+                <li><a href="refs.webservice.html">Web Services</a></li>
+                <li><a href="refs.utilspec.windows.html">Windows Only Extensions</a></li>
+                <li><a href="refs.xml.html">XML Manipulation</a></li>
+                <li><a href="refs.ui.html">GUI Extensions</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-faq">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                FAQ
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-faq">
+                <li><a href="faq.html">FAQ</a> — Frequently Asked Questions</li>
+                <li><a href="faq.general.html">General Information</a></li>
+                <li><a href="faq.mailinglist.html">Mailing lists</a></li>
+                <li><a href="faq.obtaining.html">Obtaining PHP</a></li>
+                <li><a href="faq.databases.html">Database issues</a></li>
+                <li><a href="faq.installation.html">Installation</a></li>
+                <li><a href="faq.build.html">Build Problems</a></li>
+                <li><a href="faq.using.html">Using PHP</a></li>
+                <li><a href="faq.passwords.html">Password Hashing</a> — Hashing passwords safely and securely</li>
+                <li><a href="faq.html.html">PHP and HTML</a></li>
+                <li><a href="faq.com.html">PHP and COM</a></li>
+                <li><a href="faq.misc.html">Miscellaneous Questions</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-trigger" aria-expanded="false" aria-controls="section-appendices">
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                Appendices
+              </button>
+              <ul class="chunklist chunklist_set chunklist_children" id="section-appendices">
+                <li><a href="appendices.html">Appendices</a></li>
+                <li><a href="history.html">History of PHP and Related Projects</a></li>
+                <li><a href="examples.html">About manual examples</a></li>
+                <li><a href="migration85.html">Migrating from PHP 8.4.x to PHP 8.5.x</a></li>
+                <li><a href="migration84.html">Migrating from PHP 8.3.x to PHP 8.4.x</a></li>
+                <li><a href="migration83.html">Migrating from PHP 8.2.x to PHP 8.3.x</a></li>
+                <li><a href="migration82.html">Migrating from PHP 8.1.x to PHP 8.2.x</a></li>
+                <li><a href="migration81.html">Migrating from PHP 8.0.x to PHP 8.1.x</a></li>
+                <li><a href="migration80.html">Migrating from PHP 7.4.x to PHP 8.0.x</a></li>
+                <li><a href="migration74.html">Migrating from PHP 7.3.x to PHP 7.4.x</a></li>
+                <li><a href="migration73.html">Migrating from PHP 7.2.x to PHP 7.3.x</a></li>
+                <li><a href="migration72.html">Migrating from PHP 7.1.x to PHP 7.2.x</a></li>
+                <li><a href="migration71.html">Migrating from PHP 7.0.x to PHP 7.1.x</a></li>
+                <li><a href="migration70.html">Migrating from PHP 5.6.x to PHP 7.0.x</a></li>
+                <li><a href="migration56.html">Migrating from PHP 5.5.x to PHP 5.6.x</a></li>
+                <li><a href="debugger.html">Debugging in PHP</a></li>
+                <li><a href="configure.html">Configure options</a></li>
+                <li><a href="ini.html">php.ini directives</a></li>
+                <li><a href="extensions.html">Extension List/Categorization</a></li>
+                <li><a href="aliases.html">List of Function Aliases</a></li>
+                <li><a href="reserved.html">List of Reserved Words</a></li>
+                <li><a href="resource.html">List of Resource Types</a></li>
+                <li><a href="filters.html">List of Available Filters</a></li>
+                <li><a href="transports.html">List of Supported Socket Transports</a></li>
+                <li><a href="types.comparisons.html">PHP type comparison tables</a></li>
+                <li><a href="tokens.html">List of Parser Tokens</a></li>
+                <li><a href="userlandnaming.html">Userland Naming Guide</a></li>
+                <li><a href="about.html">About the manual</a></li>
+                <li><a href="cc.license.html">Creative Commons Attribution 3.0</a></li>
+                <li><a href="indexes.html">Index listing</a></li>
+                <li><a href="doc.changelog.html">Changelog</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <div id="search-modal__backdrop" class="search-modal__backdrop">
+    <div role="dialog" aria-label="Search modal" id="search-modal" class="search-modal">
+      <div class="search-modal__header">
+        <div class="search-modal__form">
+          <div class="search-modal__input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
           </div>
+          <input type="search" id="search-modal__input" class="search-modal__input" placeholder="Search docs" aria-label="Search docs">
+        </div>
+        <button aria-label="Close" class="search-modal__close">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" viewBox="0 0 24 24">
+            <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+          </svg>
+        </button>
+      </div>
+      <div role="listbox" aria-label="Search results" id="search-modal__results" class="search-modal__results"></div>
+      <div class="search-modal__helper-text">
+        <div>
+          <kbd>↑</kbd> and <kbd>↓</kbd> to navigate •
+          <kbd>Enter</kbd> to select •
+          <kbd>Esc</kbd> to close • <kbd>/</kbd> to open
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            /*{{{Search Modal*/
-            const language = 'local';
-            initSearchModal();
-            initPHPSearch(language).then((searchCallback) => {
-                initSearchUI({language, searchCallback, limit: 30});
-            });
-            /*}}}*/
+  </div>
+
+  <script type="text/javascript" src="search-combined.js"></script>
+  <script type="text/javascript" src="js/67ae199ee27cc87120cab9ba49d1b776-FuzzySearch.min.js"></script>
+  <script type="text/javascript" src="js/f5555778cd757f2cb49676062898832b-search.js"></script>
+
+  <script>
+    (function() {
+      const STORAGE_KEY = 'phpmanual_accordion_state';
+      const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+      const manualNav = document.querySelector('.manual-nav');
+      const searchInput = document.getElementById('manual-search');
+      const searchClear = document.getElementById('search-clear');
+      const scrollTop = document.getElementById('scroll-top');
+      const tocList = document.getElementById('toc-list');
+
+      function loadAccordionState() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveAccordionState(state) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {}
+      }
+
+      function toggleAccordion(button, force) {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const newExpanded = force !== undefined ? force : !isExpanded;
+        const targetId = button.getAttribute('aria-controls');
+        const target = document.getElementById(targetId);
+
+        button.setAttribute('aria-expanded', newExpanded);
+        if (target) {
+          target.classList.toggle('expanded', newExpanded);
+        }
+
+        const state = loadAccordionState();
+        state[targetId] = newExpanded;
+        saveAccordionState(state);
+      }
+
+      accordionTriggers.forEach(trigger => {
+        const targetId = trigger.getAttribute('aria-controls');
+        const state = loadAccordionState();
+        if (state[targetId]) {
+          toggleAccordion(trigger, true);
+        }
+
+        trigger.addEventListener('click', () => toggleAccordion(trigger));
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleAccordion(trigger);
+          }
         });
-    </script></body></html>
+      });
+
+      function buildTOC() {
+        const sections = [
+          { id: 'section-getting-started', label: 'Getting Started' },
+          { id: 'section-install', label: 'Installation & Config' },
+          { id: 'section-langref', label: 'Language Reference' },
+          { id: 'section-security', label: 'Security' },
+          { id: 'section-features', label: 'Features' },
+          { id: 'section-funcref', label: 'Function Reference' },
+          { id: 'section-faq', label: 'FAQ' },
+          { id: 'section-appendices', label: 'Appendices' }
+        ];
+
+        sections.forEach(section => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + section.id;
+          a.textContent = section.label;
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.getElementById(section.id);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              if (window.innerWidth < 1024) {
+                target.classList.add('expanded');
+                const trigger = document.querySelector('[aria-controls="' + section.id + '"]');
+                if (trigger) trigger.setAttribute('aria-expanded', 'true');
+              }
+            }
+          });
+          li.appendChild(a);
+          tocList.appendChild(li);
+        });
+      }
+
+      buildTOC();
+
+      function filterNavigation(query) {
+        const normalizedQuery = query.toLowerCase().trim();
+        const allItems = manualNav.querySelectorAll('li');
+        const allLinks = manualNav.querySelectorAll('a');
+        let visibleCount = 0;
+
+        if (!normalizedQuery) {
+          allItems.forEach(li => li.style.display = '');
+          searchClear.classList.remove('visible');
+          return;
+        }
+
+        searchClear.classList.add('visible');
+
+        allLinks.forEach(link => {
+          const text = link.textContent.toLowerCase();
+          if (text.includes(normalizedQuery)) {
+            visibleCount++;
+            link.style.display = '';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+
+        allItems.forEach(li => {
+          const hasVisibleLinks = Array.from(li.querySelectorAll('a')).some(
+            a => a.style.display !== 'none'
+          );
+          if (li.querySelector('.accordion-trigger')) {
+            li.style.display = '';
+          } else {
+            li.style.display = hasVisibleLinks ? '' : 'none';
+          }
+        });
+
+        let noResultsMsg = document.getElementById('no-results');
+        if (visibleCount === 0 && !noResultsMsg) {
+          noResultsMsg = document.createElement('div');
+          noResultsMsg.id = 'no-results';
+          noResultsMsg.style.cssText = 'padding:1rem;text-align:center;color:var(--dark-grey-color);font-style:italic;';
+          noResultsMsg.textContent = 'No results found for "' + query + '"';
+          manualNav.parentNode.insertBefore(noResultsMsg, manualNav);
+        } else if (noResultsMsg) {
+          noResultsMsg.style.display = visibleCount > 0 ? 'none' : '';
+          noResultsMsg.textContent = 'No results found for "' + query + '"';
+        }
+      }
+
+      searchInput.addEventListener('input', (e) => filterNavigation(e.target.value));
+
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        filterNavigation('');
+        searchInput.focus();
+      });
+
+      window.addEventListener('scroll', () => {
+        scrollTop.classList.toggle('visible', window.scrollY > 300);
+      });
+
+      scrollTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const language = 'local';
+        if (typeof initSearchModal === 'function') initSearchModal();
+        if (typeof initPHPSearch === 'function') {
+          initPHPSearch(language).then((searchCallback) => {
+            if (typeof initSearchUI === 'function') {
+              initSearchUI({language, searchCallback, limit: 30});
+            }
+          });
+        }
+      });
+    })();
+  </script>
+ </body>
+</html>

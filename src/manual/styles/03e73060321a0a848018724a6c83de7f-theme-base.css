@@ -71,6 +71,27 @@ html {
 a {
   border-bottom:1px solid;
 }
+/* Navbar local navigation */
+.navbar__local {
+  flex-grow: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr min-content 1fr;
+  margin: 0;
+  height: 100%;
+}
+.navbar__local .navbar__item {
+  align-content: center;
+}
+.navbar__local .navbar__link {
+  display: inline;
+}
+.navbar__local .search {
+  text-align: center;
+}
+.navbar__local .next {
+  text-align: right;
+}
 a:focus {
   outline: thin dotted var(--dark-grey-color);
   outline-offset: -2px;
@@ -1497,5 +1518,116 @@ td {
     display: block;
     unicode-bidi: isolate;
     content: attr(data-label);
+  }
+}
+
+/* Manual content styling */
+.docs .book {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.docs .title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--dark-grey-color, #333);
+}
+
+.docs h1.title {
+  font-size: 2.25rem;
+}
+
+.docs h2.title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.docs .info {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.docs .info .title {
+  font-size: 1.25rem;
+}
+
+.docs .simpara {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.docs .para {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.docs p {
+  line-height: 1.7;
+}
+
+.docs .sect1 {
+  margin-bottom: 2rem;
+}
+
+.docs .sect1 > h2.title {
+  font-size: 1.75rem;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 0.5rem;
+}
+
+.docs ul.chunklist,
+.docs ul.chunklist_children {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.docs ul.chunklist_children {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.docs ul.chunklist li,
+.docs ul.chunklist_children li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.docs a {
+  color: var(--dark-blue-color, #4F5B93);
+}
+
+.docs a:hover {
+  text-decoration: underline;
+}
+
+/* Code blocks */
+.docs pre {
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .docs .book {
+    padding: 1rem;
+  }
+
+  .docs h1.title {
+    font-size: 1.75rem;
+  }
+
+  .docs h2.title {
+    font-size: 1.25rem;
   }
 }
