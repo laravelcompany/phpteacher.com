@@ -1,4 +1,4 @@
 ---
 title: 'Golang 🚀'
-description: 'Go learn the in and outs of Go'
+description: 'Dive into Go programming with tutorials, code examples, and best practices. Learn Go concurrency, Goroutines, channels, and build high-performance applications with Golang.'
 ---

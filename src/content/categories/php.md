@@ -1,4 +1,4 @@
 ---
 title: 'PHP 🐘'
-description: 'PHP is a popular general-purpose scripting language that is especially suited to web development.'
+description: 'Explore PHP programming tutorials, from beginner basics to advanced concepts. Covering PHP 8 features, OOP, design patterns, performance optimization, and modern PHP development practices.'
 ---

@@ -1,4 +1,4 @@
 ---
-title: 'MySQL'
-description: 'MySQL is an open-source relational database management system (RDBMS).'
+title: 'MySQL 🗄️'
+description: 'Learn MySQL database management, optimization, and best practices. Cover SQL queries, indexing, stored procedures, replication, and performance tuning for efficient database operations.'
 ---
