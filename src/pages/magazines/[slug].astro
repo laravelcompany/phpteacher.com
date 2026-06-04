@@ -4,36 +4,23 @@ import { SITE } from '@/config'
 import fs from 'node:fs'
 import path from 'node:path'
 
-const magazinesDir = path.join(process.cwd(), 'static/magazines')
-
-const folders = fs.readdirSync(magazinesDir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => {
-        const folderName = dirent.name
-        const match = folderName.match(/phparchitect-(\d{4})-(\d{2})/)
-        const year = match?.[1]
-        const month = match?.[2]
-
-        const files = fs.readdirSync(path.join(magazinesDir, folderName))
-        const pdf = files.find(f => f.endsWith('.pdf'))
-        const epub = files.find(f => f.endsWith('.epub'))
-        const mobi = files.find(f => f.endsWith('.mobi'))
-
-        const date = month && year ? new Date(parseInt(year), parseInt(month) - 1) : new Date()
-
-        return {
-            slug: folderName,
-            year,
-            month,
-            date,
-            pdf,
-            epub,
-            mobi,
-        }
-    })
-
 export function getStaticPaths() {
-    return folders.map((mag) => ({
+    const dir = path.join(process.cwd(), 'static/magazines')
+    const magazines = fs.readdirSync(dir, { withFileTypes: true })
+        .filter(d => d.isDirectory())
+        .map(d => {
+            const name = d.name
+            const m = name.match(/phparchitect-(\d{4})-(\d{2})/)
+            const files = fs.readdirSync(path.join(dir, name))
+            const dt = m?.[2] && m?.[1] ? new Date(parseInt(m[1]), parseInt(m[2]) - 1) : new Date()
+            return {
+                slug: name, year: m?.[1], month: m?.[2], date: dt,
+                pdf: files.find(f => f.endsWith('.pdf')),
+                epub: files.find(f => f.endsWith('.epub')),
+                mobi: files.find(f => f.endsWith('.mobi')),
+            }
+        })
+    return magazines.map(mag => ({
         params: { slug: mag.slug },
         props: { mag },
     }))
