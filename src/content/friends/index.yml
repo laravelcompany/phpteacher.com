@@ -23,3 +23,17 @@
   title: 'Emergency Response Service Management System'
   name: 'Public SOS'
   description: "This comprehensive application delivers a strategic and operational framework for your incident management team, ensuring strict adherence to Public Safety and rescue service guidelines."
+
+- avatar: 'https://laravelseo.com/logo.svg'
+  social:
+    blog: 'https://laravelseo.com/'
+  title: 'Laravel SEO Tools & Services'
+  name: 'Laravel SEO'
+  description: "SEO optimization tools and services built specifically for Laravel applications."
+
+- avatar: 'https://laravelsocial.com/logo.svg'
+  social:
+    blog: 'https://laravelsocial.com/'
+  title: 'Laravel Social Media Management'
+  name: 'Laravel Social'
+  description: "Social media management and integration platform for Laravel applications."

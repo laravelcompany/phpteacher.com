@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro'
+import { SITE } from '@/config'
+import fs from 'node:fs'
+import path from 'node:path'
+
+const magazinesDir = path.join(process.cwd(), 'static/magazines')
+
+const folders = fs.readdirSync(magazinesDir, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => {
+        const folderName = dirent.name
+        const match = folderName.match(/phparchitect-(\d{4})-(\d{2})/)
+        const year = match?.[1]
+        const month = match?.[2]
+
+        const files = fs.readdirSync(path.join(magazinesDir, folderName))
+        const pdf = files.find(f => f.endsWith('.pdf'))
+        const epub = files.find(f => f.endsWith('.epub'))
+        const mobi = files.find(f => f.endsWith('.mobi'))
+
+        const date = month && year ? new Date(parseInt(year), parseInt(month) - 1) : new Date()
+
+        return {
+            slug: folderName,
+            year,
+            month,
+            date,
+            pdf,
+            epub,
+            mobi,
+        }
+    })
+
+export function getStaticPaths() {
+    return folders.map((mag) => ({
+        params: { slug: mag.slug },
+        props: { mag },
+    }))
+}
+
+const { mag } = Astro.props
+const quarter = mag.month ? `Q${Math.ceil(parseInt(mag.month) / 3)}` : ''
+const formattedDate = mag.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+---
+
+<BaseLayout
+    title={`php|architect ${mag.year} ${quarter}`}
+    description={`Download php|architect ${formattedDate} magazine edition in PDF, EPUB, and MOBI formats.`}
+>
+    <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div class="mx-auto max-w-4xl">
+            <a href="/magazines" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to all magazines
+            </a>
+
+            <div class="bg-white dark:bg-neutral-900 rounded-2xl shadow-lg overflow-hidden border-t-4 border-orange-500">
+                <div class="h-32 bg-gradient-to-r from-orange-500 to-amber-600 flex items-center justify-center">
+                    <img src="/logo.svg" alt="" class="w-20 h-20 text-white/30" />
+                </div>
+
+                <div class="px-8 pb-8">
+                    <div class="-mt-8 mb-8">
+                        <div class="inline-block bg-white dark:bg-neutral-800 rounded-xl shadow-lg px-8 py-6 border-2 border-white dark:border-neutral-900">
+                            <h1 class="text-3xl font-bold text-neutral-800 dark:text-neutral-100">
+                                php|architect {mag.year} {quarter}
+                            </h1>
+                            <p class="text-lg text-neutral-600 dark:text-neutral-300 mt-2">
+                                {formattedDate}
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Download Formats</h2>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {mag.pdf && (
+                            <a href={`/magazines/${mag.slug}/${mag.pdf}`} download
+                               class="block p-6 rounded-xl border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors group">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-200">PDF</span>
+                                    <svg class="w-5 h-5 text-blue-600 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <p class="text-sm text-blue-600 dark:text-blue-400 font-medium">Download PDF</p>
+                            </a>
+                        )}
+                        {mag.epub && (
+                            <a href={`/magazines/${mag.slug}/${mag.epub}`} download
+                               class="block p-6 rounded-xl border-2 border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors group">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-200">EPUB</span>
+                                    <svg class="w-5 h-5 text-green-600 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <p class="text-sm text-green-600 dark:text-green-400 font-medium">Download EPUB</p>
+                            </a>
+                        )}
+                        {mag.mobi && (
+                            <a href={`/magazines/${mag.slug}/${mag.mobi}`} download
+                               class="block p-6 rounded-xl border-2 border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-colors group">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-200">MOBI</span>
+                                    <svg class="w-5 h-5 text-orange-600 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">Download MOBI</p>
+                            </a>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
