@@ -37,3 +37,10 @@
   title: 'Laravel Social Media Management'
   name: 'Laravel Social'
   description: "Social media management and integration platform for Laravel applications."
+
+- avatar: 'https://laravelgpt.com/logo.svg'
+  social:
+    blog: 'https://laravelgpt.com/'
+  title: 'Self-Hosted AI Infrastructure'
+  name: 'Laravel GPT'
+  description: "Self-hosted AI platform built on Laravel. Deploy enterprise-grade AI chatbots with zero API costs, complete data privacy, and 3D VRM avatars."
