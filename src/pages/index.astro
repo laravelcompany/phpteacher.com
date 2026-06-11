@@ -21,7 +21,72 @@ const recentPosts = posts.slice(1, 7);
     <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiM0QjM5MUYiIGZpbGwtb3BhY2l0eT0iLjAyIi8+PC9nPjwvc3ZnPg==')] opacity-40 dark:opacity-20"></div>
     <div class="absolute top-20 right-10 w-72 h-72 bg-orange-400/10 rounded-full blur-3xl"></div>
     <div class="absolute bottom-10 left-10 w-96 h-96 bg-orange-300/10 rounded-full blur-3xl"></div>
-    
+
+    <!-- Decorative Code Snippets - Left -->
+    <div class="absolute top-32 left-8 hidden xl:block opacity-30">
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="text-neutral-400">&lt;?php</div>
+        <div class="text-orange-500">function</div>
+        <div class="text-neutral-600">  <span class="text-orange-400">greet</span>(<span class="text-yellow-500">$name</span>)</div>
+        <div class="text-neutral-600">&#123;</div>
+        <div class="text-neutral-600">  <span class="text-orange-400">echo</span> <span class="text-yellow-500">"Hello, $name"</span>;</div>
+        <div class="text-neutral-600">&#125;</div>
+      </div>
+    </div>
+
+    <div class="absolute top-1/2 -translate-y-1/2 left-8 hidden xl:block opacity-30">
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="text-neutral-400">// PDO Query</div>
+        <div class="text-neutral-600"><span class="text-orange-500">$stmt</span> = <span class="text-orange-400">$pdo</span>-><span class="text-orange-500">prepare</span>(</div>
+        <div class="text-neutral-600">  <span class="text-yellow-500">"SELECT * FROM users"</span></div>
+        <div class="text-neutral-600">);</div>
+        <div class="text-neutral-600"><span class="text-orange-500">$stmt</span>-><span class="text-orange-500">execute</span>();</div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-32 left-8 hidden xl:block opacity-30">
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="text-neutral-400">// Array map</div>
+        <div class="text-neutral-600"><span class="text-orange-500">$result</span> = <span class="text-orange-400">array_map</span>(</div>
+        <div class="text-neutral-600">  <span class="text-orange-500">fn</span>(<span class="text-yellow-500">$item</span>) => <span class="text-orange-500">$item</span> * <span class="text-yellow-500">2</span>,</div>
+        <div class="text-neutral-600">  <span class="text-orange-500">$numbers</span></div>
+        <div class="text-neutral-600">);</div>
+      </div>
+    </div>
+
+    <!-- Decorative Code Snippets - Right -->
+    <div class="absolute top-32 right-8 hidden xl:block opacity-30">
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="text-neutral-400">// Class example</div>
+        <div class="text-neutral-600"><span class="text-orange-500">class</span> <span class="text-orange-400">User</span></div>
+        <div class="text-neutral-600">&#123;</div>
+        <div class="text-neutral-600">  <span class="text-orange-500">public function</span> <span class="text-orange-400">__construct</span>(</div>
+        <div class="text-neutral-600">    <span class="text-orange-500">private string</span> <span class="text-yellow-500">$name</span></div>
+        <div class="text-neutral-600">  ) &#123;&#125;</div>
+        <div class="text-neutral-600">&#125;</div>
+      </div>
+    </div>
+
+    <div class="absolute top-1/2 translate-y-4 right-8 hidden xl:block opacity-30">
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="text-neutral-400">// try-catch</div>
+        <div class="text-neutral-600"><span class="text-orange-500">try</span> &#123;</div>
+        <div class="text-neutral-600">  <span class="text-orange-500">throw</span> <span class="text-orange-400">new</span> <span class="text-orange-500">Exception</span>(<span class="text-yellow-500">"Error"</span>);</div>
+        <div class="text-neutral-600">&#125; <span class="text-orange-500">catch</span> (<span class="text-orange-500">Exception</span> <span class="text-yellow-500">$e</span>) &#123;</div>
+        <div class="text-neutral-600">  <span class="text-orange-400">echo</span> <span class="text-yellow-500">$e-&gt;getMessage()</span>;</div>
+        <div class="text-neutral-600">&#125;</div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-24 right-8 hidden xl:block opacity-30">
+      <div class="font-mono text-xs leading-relaxed">
+        <div class="text-neutral-400">// Laravel Eloquent</div>
+        <div class="text-neutral-600"><span class="text-orange-500">User</span>::<span class="text-orange-400">where</span>(</div>
+        <div class="text-neutral-600">  <span class="text-yellow-500">'status'</span>, <span class="text-yellow-500">'active'</span></div>
+        <div class="text-neutral-600">)-&gt;<span class="text-orange-400">latest</span>()-&gt;<span class="text-orange-400">get</span>();</div>
+      </div>
+    </div>
+
     <div class="grid px-4 py-16 mx-auto lg:gap-12 xl:gap-16 lg:py-24 lg:grid-cols-12 relative">
       <div class="mr-auto place-self-center lg:col-span-7">
         <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium text-orange-700 bg-orange-100 rounded-full dark:bg-orange-900/40 dark:text-orange-300 ring-1 ring-orange-200/50 dark:ring-orange-700/30">
@@ -38,6 +103,32 @@ const recentPosts = posts.slice(1, 7);
           From beginner to advanced tutorials, framework deep dives, and real-world projects. 
          Level up your development career with practical, hands-on learning resources.
         </p>
+
+        <!-- Popular Topics -->
+        <div class="mb-6">
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-3 font-medium">Popular Topics:</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="/categories/" class="px-4 py-2 text-sm font-medium bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 rounded-full hover:bg-orange-50 dark:hover:bg-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition cursor-pointer text-neutral-700 dark:text-neutral-300">
+              PHP Basics
+            </a>
+            <a href="/posts/" class="px-4 py-2 text-sm font-medium bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 rounded-full hover:bg-orange-50 dark:hover:bg-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition cursor-pointer text-neutral-700 dark:text-neutral-300">
+              Laravel
+            </a>
+            <a href="/posts/" class="px-4 py-2 text-sm font-medium bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 rounded-full hover:bg-orange-50 dark:hover:bg-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition cursor-pointer text-neutral-700 dark:text-neutral-300">
+              OOP
+            </a>
+            <a href="/posts/" class="px-4 py-2 text-sm font-medium bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 rounded-full hover:bg-orange-50 dark:hover:bg-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition cursor-pointer text-neutral-700 dark:text-neutral-300">
+              Databases
+            </a>
+            <a href="/posts/" class="px-4 py-2 text-sm font-medium bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 rounded-full hover:bg-orange-50 dark:hover:bg-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition cursor-pointer text-neutral-700 dark:text-neutral-300">
+              Testing
+            </a>
+            <a href="/posts/" class="px-4 py-2 text-sm font-medium bg-white/80 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 rounded-full hover:bg-orange-50 dark:hover:bg-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition cursor-pointer text-neutral-700 dark:text-neutral-300">
+              APIs
+            </a>
+          </div>
+        </div>
+
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="/posts" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl hover:from-orange-600 hover:to-orange-700 focus:ring-4 focus:ring-orange-300 dark:from-orange-600 dark:to-orange-700 dark:hover:from-orange-500 dark:hover:to-orange-600 dark:focus:ring-orange-800 transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40">
             Browse Articles
@@ -47,7 +138,7 @@ const recentPosts = posts.slice(1, 7);
             Partner with Us
           </a>
         </div>
-        
+
         <div class="flex items-center gap-8 mt-10 text-sm text-neutral-500 dark:text-neutral-400">
           <div class="flex items-center gap-3">
             <div class="flex -space-x-2">
@@ -73,6 +164,80 @@ const recentPosts = posts.slice(1, 7);
           loading="eager"
           disableBlur={true}
         />
+      </div>
+    </div>
+  </section>
+
+  <!-- What You'll Learn Section -->
+  <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-neutral-900">
+    <div class="max-w-[85rem] mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-neutral-800 dark:text-neutral-200 mb-4">What You'll Learn</h2>
+        <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          Comprehensive PHP resources covering everything from the fundamentals to advanced framework concepts.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2">PHP Basics & Syntax</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Variables, data types, control structures, functions, and modern PHP features.</p>
+        </div>
+
+        <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2">OOP & Design Patterns</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Classes, inheritance, interfaces, traits, and proven design patterns in PHP.</p>
+        </div>
+
+        <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2">Databases & SQL</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">PDO, MySQL, query optimization, Eloquent ORM, and database design patterns.</p>
+        </div>
+
+        <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2">Testing & TDD</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">PHPUnit, Pest, test-driven development, mocking, and continuous integration.</p>
+        </div>
+
+        <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2">APIs & Integration</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">RESTful APIs, GraphQL, HTTP clients, authentication, and third-party services.</p>
+        </div>
+
+        <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2">Security & Best Practices</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">Authentication, authorization, validation, XSS/CSRF prevention, and secure coding.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -136,6 +301,90 @@ const recentPosts = posts.slice(1, 7);
         View All Articles
         <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
       </a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900">
+    <div class="max-w-[85rem] mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-neutral-800 dark:text-neutral-200 mb-4">
+          Loved by the Community
+        </h2>
+        <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          Real feedback from developers who use our resources to level up their PHP skills.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300">
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+            "The tutorials here are incredibly practical. I went from knowing basic PHP to building full Laravel applications in just a few months. The step-by-step approach is exactly what I needed."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              JD
+            </div>
+            <div>
+              <div class="font-semibold text-neutral-800 dark:text-neutral-200 text-sm">James D.</div>
+              <div class="text-xs text-neutral-500">Full-Stack Developer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300">
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+            "I've been a PHP developer for years, but this site helped me fill in knowledge gaps I didn't even know I had. The advanced Laravel content and testing tutorials are top-notch."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              SK
+            </div>
+            <div>
+              <div class="font-semibold text-neutral-800 dark:text-neutral-200 text-sm">Sarah K.</div>
+              <div class="text-xs text-neutral-500">Senior Backend Engineer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300">
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+            "The free resources here are amazing. I especially love the magazine issues and the practical code examples. This is my go-to recommendation for anyone learning PHP."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+              MR
+            </div>
+            <div>
+              <div class="font-semibold text-neutral-800 dark:text-neutral-200 text-sm">Marcus R.</div>
+              <div class="text-xs text-neutral-500">Junior Developer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-br from-orange-500 to-orange-700 dark:from-orange-700 dark:to-orange-900">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-3xl mx-auto text-center relative z-10">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-white">
+        Ready to Master PHP?
+      </h2>
+      <p class="text-lg lg:text-xl text-orange-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Join thousands of developers learning PHP and modern frameworks. Start building better applications today, for free.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/posts" class="inline-flex items-center justify-center px-10 py-4 bg-white text-orange-700 rounded-xl font-bold text-base lg:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+          Browse All Articles
+        </a>
+        <a href="/partners" class="inline-flex items-center justify-center px-10 py-4 bg-white/10 text-white border-2 border-white/30 rounded-xl font-bold text-base lg:text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+          Partner with Us
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
