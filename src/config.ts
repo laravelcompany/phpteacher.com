@@ -18,16 +18,19 @@ export const NavigationLinks: NavigationLink[] = [
 
 export const FooterLinks = [
     {
-        section: 'Blog',
+        section: 'Learn PHP',
         links: [
             { name: 'Posts', url: '/posts/' },
             { name: 'Categories', url: '/categories/' },
+            { name: 'Manual', url: '/manual/' },
         ],
     },
     {
         section: 'Resources',
         links: [
             { name: 'Laravel Books', url: '/books-laravel' },
+            { name: 'Magazines', url: '/magazines/' },
+            { name: 'Partners', url: '/partners/' },
         ],
     },
     {

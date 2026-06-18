@@ -44,9 +44,40 @@ const isNewBook = (date: string) => {
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
   return pubDate > sixMonthsAgo;
 };
+
+const getFirstFormat = (formats: any) => {
+  const keys = Object.keys(formats);
+  return keys.length > 0 ? formats[keys[0]] : null;
+};
+
+const itemListStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": books.map((book, index) => {
+    const firstFormat = getFirstFormat(book.formats);
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Book",
+        "name": book.title,
+        "author": { "@type": "Person", "name": book.author },
+        "datePublished": book.publication_date,
+        "inLanguage": "en",
+        "offers": firstFormat ? {
+          "@type": "Offer",
+          "priceCurrency": firstFormat.currency,
+          "price": firstFormat.price,
+        } : undefined,
+      }
+    };
+  })
+};
 ---
 
 <BaseLayout title="Laravel Books" description="A curated list of Laravel books for developers of all levels">
+  <!-- Books structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(itemListStructuredData)} />
   <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
     <div class="mx-auto mb-8 max-w-3xl text-center">
       <h1 class="text-4xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">

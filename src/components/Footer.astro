@@ -1,31 +1,71 @@
 ---
 import BrandLogo from '@components/ui/logos/BrandLogo.astro'
-import Image from '@components/ui/images/Image.astro'
-import footerBanner from '@images/logo2.svg'
 import { FooterLinks, SITE } from '@/config'
+
+const socialLinks = [
+    { name: 'GitHub', url: 'https://github.com/laravelcompany', icon: 'github' },
+    { name: 'Twitter / X', url: 'https://x.com/laravelcompany', icon: 'twitter' },
+]
+
+const footerNavigationLinks = [
+    { name: 'Posts', url: '/posts/' },
+    { name: 'Categories', url: '/categories/' },
+    { name: 'Partners', url: '/partners/' },
+    { name: 'Manual', url: '/manual/' },
+    { name: 'Magazines', url: '/magazines/' },
+    { name: 'Laravel Books', url: '/books-laravel' },
+    { name: 'Privacy Policy', url: '/privacy-policy' },
+    { name: 'Terms of Service', url: '/terms-of-service' },
+]
 ---
 
-<footer class="w-full bg-neutral-300 dark:bg-neutral-900 border-t border-neutral-400/30 dark:border-neutral-700/50">
+<footer class="w-full bg-neutral-300 dark:bg-neutral-900 border-t border-neutral-400/30 dark:border-neutral-700/50" itemscope itemtype="https://schema.org/WPFooter">
     <div class="mx-auto w-full max-w-[85rem] px-4 py-12 sm:px-6 lg:px-16 lg:pt-16 2xl:max-w-screen-2xl">
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 md:grid-cols-4 lg:grid-cols-5">
             <div class="col-span-full sm:col-span-1 flex flex-col items-center sm:items-start">
-                <BrandLogo class="h-12 w-auto mb-4" />
+                <a href="/" aria-label="PHP Teacher Home">
+                    <BrandLogo class="h-12 w-auto mb-4" />
+                </a>
                 <p class="text-sm text-neutral-600 dark:text-neutral-400 text-center sm:text-left">
-                    Free PHP learning resources for developers of all levels.
+                    Free PHP learning resources for developers of all levels. Learn PHP programming from beginner to advanced with tutorials, books, and magazines.
                 </p>
+                <div class="flex gap-3 mt-4">
+                    {socialLinks.map(social => (
+                        <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-neutral-500 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-400 transition-colors"
+                            aria-label={`Follow PHP Teacher on ${social.name}`}
+                            title={`${social.name} - PHP Teacher`}
+                        >
+                            {social.icon === 'github' && (
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                </svg>
+                            )}
+                            {social.icon === 'twitter' && (
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                            )}
+                        </a>
+                    ))}
+                </div>
             </div>
             {
                 FooterLinks.map(section => (
-                    <div class="col-span-1 text-center sm:text-left">
+                    <div class="col-span-1 text-center sm:text-left" itemscope itemtype="https://schema.org/SiteNavigationElement">
                         <h3 class="font-semibold text-neutral-800 dark:text-neutral-200 mb-4">
                             {section.section}
                         </h3>
                         <ul class="space-y-3">
                                 {section.links.map((link, _index) => (
-                                        <li>
+                                        <li itemprop="url">
                                             <a
                                                 href={link.url}
                                                 class="inline-flex text-neutral-600 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-400 transition-colors text-sm"
+                                                title={`${link.name} - PHP Teacher`}
                                             >
                                                 {link.name}
                                             </a>
@@ -35,21 +75,73 @@ import { FooterLinks, SITE } from '@/config'
                     </div>
                 ))
             }
+
+            <div class="col-span-1 text-center sm:text-left" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                <h3 class="font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Legal</h3>
+                <ul class="space-y-3">
+                    <li itemprop="url">
+                        <a
+                            href="/privacy-policy"
+                            class="inline-flex text-neutral-600 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-400 transition-colors text-sm"
+                            title="Privacy Policy - PHP Teacher"
+                        >
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li itemprop="url">
+                        <a
+                            href="/terms-of-service"
+                            class="inline-flex text-neutral-600 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-400 transition-colors text-sm"
+                            title="Terms of Service - PHP Teacher"
+                        >
+                            Terms of Service
+                        </a>
+                    </li>
+                    <li itemprop="url">
+                        <a
+                            href="/sitemap-index.xml"
+                            class="inline-flex text-neutral-600 hover:text-orange-600 dark:text-neutral-400 dark:hover:text-orange-400 transition-colors text-sm"
+                            title="Sitemap - PHP Teacher"
+                        >
+                            Sitemap
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="mt-12 pt-8 border-t border-neutral-400/30 dark:border-neutral-700/50">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                    <a href="https://laravelcompany.com" class="flex items-center gap-2">
-                        <img alt="Laravel Company Logo" src="https://laravelcompany.com/logo.svg" class="h-6">
+                    <a href="https://laravelcompany.com" class="flex items-center gap-2" rel="noopener noreferrer" aria-label="Laravel Company - Parent organization">
+                        <img alt="Laravel Company Logo" src="https://laravelcompany.com/logo.svg" class="h-6" loading="lazy" width="24" height="24">
                         <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">Laravel Company</span>
                     </a>
                 </div>
                 <p class="text-sm text-neutral-500 dark:text-neutral-500">
-                    Part of the Laravel Company ecosystem delivering integrated messaging, e-commerce, and SEO solutions.
+                    Part of the <a href="https://laravelcompany.com" class="text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300 transition-colors" rel="noopener noreferrer">Laravel Company</a> ecosystem delivering integrated messaging, e-commerce, and SEO solutions.
                 </p>
-                <span class="text-sm text-neutral-500 dark:text-neutral-500">© 2026 Laravel Software. All Rights Reserved.</span>
+                <span class="text-sm text-neutral-500 dark:text-neutral-500">© {new Date().getFullYear()} Laravel Software. All Rights Reserved.</span>
             </div>
         </div>
     </div>
 </footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": "Footer Navigation",
+    "url": "https://phpteacher.com",
+    "hasPart": [
+        { "@type": "WebPage", "name": "Posts", "url": "https://phpteacher.com/posts/" },
+        { "@type": "WebPage", "name": "Categories", "url": "https://phpteacher.com/categories/" },
+        { "@type": "WebPage", "name": "Partners", "url": "https://phpteacher.com/partners/" },
+        { "@type": "WebPage", "name": "Manual", "url": "https://phpteacher.com/manual/" },
+        { "@type": "WebPage", "name": "Magazines", "url": "https://phpteacher.com/magazines/" },
+        { "@type": "WebPage", "name": "Laravel Books", "url": "https://phpteacher.com/books-laravel" },
+        { "@type": "WebPage", "name": "Privacy Policy", "url": "https://phpteacher.com/privacy-policy" },
+        { "@type": "WebPage", "name": "Terms of Service", "url": "https://phpteacher.com/terms-of-service" }
+    ]
+}
+</script>
