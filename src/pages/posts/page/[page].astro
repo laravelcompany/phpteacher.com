@@ -7,21 +7,42 @@ import Pagination from '@components/blog/Pagination.astro'
 import MainSection from '@components/ui/sections/MainSection.astro'
 import { SITE } from '@/config'
 
+export async function getStaticPaths() {
+    const POSTS_PER_PAGE = 10
+
+    const allPosts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
+        (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    )
+
+    const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
+    const pages = []
+
+    for (let page = 2; page <= totalPages; page++) {
+        pages.push({
+            params: { page: String(page) },
+            props: { currentPage: page, totalPages, posts: allPosts },
+        })
+    }
+
+    return pages
+}
+
+type Props = {
+    currentPage: number
+    totalPages: number
+    posts: CollectionEntry<'posts'>[]
+}
+
 const POSTS_PER_PAGE = 10
-
-const allPosts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
-    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-)
-
-const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
-const pagePosts = allPosts.slice(0, POSTS_PER_PAGE)
+const { currentPage, totalPages, posts: allPosts } = Astro.props
+const pagePosts = allPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE)
 
 const description = 'Here are some articles that Stefan believes are not bad, hope you enjoy them.'
 const URL = Astro.url.href
 ---
 
 <BaseLayout
-    title="All Blogs"
+    title={`All Blogs - Page ${currentPage}`}
     description={description}
     structuredData={{
         '@context': 'https://schema.org',
@@ -29,7 +50,7 @@ const URL = Astro.url.href
         'inLanguage': 'en-US',
         '@id': URL,
         'url': URL,
-        'name': `All Blogs - ${SITE.title}`,
+        'name': `All Blogs - Page ${currentPage} - ${SITE.title}`,
         'description': description,
         'isPartOf': {
             '@type': 'WebSite',
@@ -53,5 +74,5 @@ const URL = Astro.url.href
         </div>
     </section>
 
-    <Pagination currentPage={1} totalPages={totalPages} baseUrl="/posts/" />
+    <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/posts/" />
 </BaseLayout>

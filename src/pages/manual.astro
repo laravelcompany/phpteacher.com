@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro'
+import MainSection from '@components/ui/sections/MainSection.astro'
+
+const description = 'Browse the official PHP manual and learn PHP programming from beginner to advanced.'
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="PHP Manual"
+    description={description}
+>
+    <MainSection
+        title="PHP Manual"
+        subTitle="Your complete reference for PHP programming language"
+    />
+
+    <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mb-10 2xl:max-w-full">
+        <div class="grid gap-6 grid-cols-1 lg:grid-cols-3 sm:grid-cols-2">
+            <a href="https://www.php.net/manual/en/langref.php" target="_blank" rel="noopener noreferrer"
+                class="group block rounded-xl p-6 bg-white dark:bg-neutral-900/30 border border-neutral-300 dark:border-neutral-700 hover:border-orange-400 dark:hover:border-orange-400 transition-colors"
+            >
+                <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 group-hover:text-orange-400 dark:group-hover:text-orange-300">
+                    Language Reference
+                </h3>
+                <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+                    Types, variables, functions, classes, namespaces, and more — the complete PHP language reference.
+                </p>
+            </a>
+
+            <a href="https://www.php.net/manual/en/funcref.php" target="_blank" rel="noopener noreferrer"
+                class="group block rounded-xl p-6 bg-white dark:bg-neutral-900/30 border border-neutral-300 dark:border-neutral-700 hover:border-orange-400 dark:hover:border-orange-400 transition-colors"
+            >
+                <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 group-hover:text-orange-400 dark:group-hover:text-orange-300">
+                    Function Reference
+                </h3>
+                <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+                    All built-in PHP functions — arrays, strings, files, databases, cryptography, and more.
+                </p>
+            </a>
+
+            <a href="https://www.php.net/manual/en/book.php" target="_blank" rel="noopener noreferrer"
+                class="group block rounded-xl p-6 bg-white dark:bg-neutral-900/30 border border-neutral-300 dark:border-neutral-700 hover:border-orange-400 dark:hover:border-orange-400 transition-colors"
+            >
+                <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 group-hover:text-orange-400 dark:group-hover:text-orange-300">
+                    Extensions
+                </h3>
+                <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+                    PHP extensions and their APIs — PDO, cURL, GD, XML, JSON, and hundreds more.
+                </p>
+            </a>
+
+            <a href="https://www.php.net/manual/en/security.php" target="_blank" rel="noopener noreferrer"
+                class="group block rounded-xl p-6 bg-white dark:bg-neutral-900/30 border border-neutral-300 dark:border-neutral-700 hover:border-orange-400 dark:hover:border-orange-400 transition-colors"
+            >
+                <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 group-hover:text-orange-400 dark:group-hover:text-orange-300">
+                    Security
+                </h3>
+                <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+                    Best practices for secure PHP applications — SQL injection, XSS, CSRF, and more.
+                </p>
+            </a>
+
+            <a href="https://www.php.net/manual/en/migration.php" target="_blank" rel="noopener noreferrer"
+                class="group block rounded-xl p-6 bg-white dark:bg-neutral-900/30 border border-neutral-300 dark:border-neutral-700 hover:border-orange-400 dark:hover:border-orange-400 transition-colors"
+            >
+                <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 group-hover:text-orange-400 dark:group-hover:text-orange-300">
+                    Migration Guides
+                </h3>
+                <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+                    Upgrade guides between PHP versions — learn about new features and breaking changes.
+                </p>
+            </a>
+
+            <a href="https://www.php.net/manual/en/faq.php" target="_blank" rel="noopener noreferrer"
+                class="group block rounded-xl p-6 bg-white dark:bg-neutral-900/30 border border-neutral-300 dark:border-neutral-700 hover:border-orange-400 dark:hover:border-orange-400 transition-colors"
+            >
+                <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 group-hover:text-orange-400 dark:group-hover:text-orange-300">
+                    FAQs
+                </h3>
+                <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+                    Frequently asked questions about PHP — installation, configuration, and common problems.
+                </p>
+            </a>
+        </div>
+    </section>
+</BaseLayout>
