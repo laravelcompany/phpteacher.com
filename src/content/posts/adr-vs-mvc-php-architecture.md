@@ -5,7 +5,7 @@ pubDate: "2023-05-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["ADR", "MVC", "PHP", "Architecture", "Action-Domain-Response", "Design Patterns", "Web Development", "Application Design"]
-```
+---
 
 MVC has been the dominant web application architecture for decades. Controllers receive requests, models represent data, and views render responses. It is familiar, widely documented, and supported by every major PHP framework.
 

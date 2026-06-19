@@ -5,7 +5,7 @@ pubDate: "2023-06-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["Observability", "Timing", "PHP", "DDD", "DDD Alley", "Performance", "Microtime", "Profiling", "Edward Barnard"]
-```
+---
 
 Observability starts with measurement. Before you can optimize code, you must understand how it behaves at runtime. Before you can fix performance issues, you must know they exist. Edward Barnard's approach to local timing provides a simple, effective way to create observability in your PHP applications.
 

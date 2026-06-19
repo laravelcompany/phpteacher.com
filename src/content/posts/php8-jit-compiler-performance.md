@@ -5,7 +5,7 @@ pubDate: "2023-07-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["PHP 8", "JIT", "Just-In-Time Compilation", "Performance", "Optimization", "OPcache", "Compiler", "PHP Performance"]
-```
+---
 
 PHP 8.0 introduced one of the most significant performance features in the language's history: the Just-In-Time (JIT) compiler. JIT compilation translates PHP bytecode directly into machine code at runtime, offering the potential for dramatic performance improvements in CPU-bound operations.
 

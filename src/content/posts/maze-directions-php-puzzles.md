@@ -5,7 +5,7 @@ pubDate: "2023-07-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["PHP", "Maze", "PHP Puzzles", "Pathfinding", "Directions", "Navigation", "Algorithms", "Grid Solving"]
-```
+---
 
 Maze Directions is the final installment in Oscar Merida's maze rat series. The puzzle shifts from generating and solving mazes to something more practical: given a solved maze, output human-readable turn-by-turn directions from the entrance to the exit.
 

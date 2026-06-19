@@ -5,7 +5,7 @@ pubDate: "2023-05-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["PSR-20", "Clock Interface", "PHP", "PHP-FIG", "DateTime", "Testing", "Immutability", "Time Abstraction"]
-```
+---
 
 Time is one of the hardest dependencies to manage in software. Every call to `new DateTime()` or `time()` creates an implicit dependency on the system clock. In testing, this means you cannot reliably assert behavior without controlling time itself.
 

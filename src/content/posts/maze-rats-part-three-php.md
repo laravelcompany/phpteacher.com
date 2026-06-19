@@ -5,7 +5,7 @@ pubDate: "2023-06-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["PHP", "Maze", "Algorithms", "PHP Puzzles", "Dead-End Filling", "Recursive Solving", "Pathfinding", "Bit Manipulation"]
-```
+---
 
 Maze Rats Part Three concludes Oscar Merida's maze-solving trilogy with the complete dead-end filling algorithm. This installment focuses on optimization, edge cases, and integration with maze generation.
 

@@ -5,7 +5,7 @@ pubDate: "2023-07-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["PostgreSQL", "PHP", "Database", "SQL", "CRUD", "PDO", "Relational Database", "Web Development"]
-```
+---
 
 PostgreSQL has earned a reputation as the most advanced open-source relational database. Its feature set rivals commercial databases, with support for JSON, full-text search, custom data types, and advanced indexing. For PHP developers, PostgreSQL offers a robust alternative to MySQL with stronger SQL standards compliance and better support for complex queries.
 

@@ -5,7 +5,7 @@ pubDate: "2023-07-20 21:00:00"
 category: "php"
 banner: "/logo.svg"
 tags: ["Symfony", "Image Uploads", "AWS S3", "Cloud Storage", "Flysystem", "PHP", "Object Storage", "DigitalOcean Spaces"]
-```
+---
 
 Storing uploaded files on the local filesystem worked when applications ran on a single server. Modern PHP applications deploy across multiple servers, use auto-scaling groups, and run in containerized environments. Local file storage breaks in all these scenarios.
 
