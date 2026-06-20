@@ -1,13 +1,32 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
+import { SITE } from '@/config'
+const URL = Astro.url.href
 ---
 
 <BaseLayout title="Software Products" description="Our software products">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': URL,
+    'url': URL,
+    'name': `Software Products - ${SITE.title}`,
+    'description': 'Our software products',
+    'isPartOf': { '@type': 'WebSite', 'url': SITE.url, 'name': SITE.title },
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE.url },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Software', 'item': URL },
+    ],
+  })} />
   <section class="py-20 bg-slate-900/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-20 text-white">
+      <h1 class="text-3xl md:text-4xl font-bold text-center mb-20 text-white">
         Our <span class="gradient-text">Software Products</span>
-      </h2>
+      </h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <!-- Laravel Mail Card -->
         <div>

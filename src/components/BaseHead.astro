@@ -52,13 +52,10 @@ const organizationSchema = {
     "url": SITE.url,
     "logo": Astro.url.origin + "/logo.svg",
     "sameAs": [
-        "https://github.com/laravelcompany"
+        "https://github.com/laravelcompany",
+        "https://twitter.com/laravelcompany",
+        "https://www.linkedin.com/company/laravelcompany",
     ],
-    "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-555-555-5555",
-        "contactType": "Customer Service"
-    }
 }
 
 const websiteSchema = {
@@ -137,6 +134,7 @@ const websiteSchema = {
 <!-- Links -->
 <link href={canonicalURL} rel="canonical" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="PHP Teacher RSS Feed" href="/rss.xml" />
 <!--<link href="/manifest.json" rel="manifest" />-->
 <link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon" />
 <link href={faviconSvg.src} rel="icon" type="image/svg+xml" sizes="any" />

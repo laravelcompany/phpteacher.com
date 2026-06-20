@@ -10,6 +10,35 @@ export function getStaticPaths() {
 }
 
 const { book } = Astro.props;
+const URL = Astro.url.href
+
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  '@id': URL,
+  'url': URL,
+  'name': book.title,
+  'author': { '@type': 'Person', 'name': book.author },
+  'datePublished': book.publication_date,
+  'inLanguage': book.language || 'en',
+  ...(book.isbn ? { 'isbn': book.isbn } : {}),
+  ...(book.rating ? {
+    'aggregateRating': {
+      '@type': 'AggregateRating',
+      'ratingValue': book.rating,
+      'reviewCount': book.reviews || 0,
+      'bestRating': 5,
+    },
+  } : {}),
+  'offers': Object.entries(book.formats).filter(([, d]: any) => d.available).map(([format, details]: [string, any]) => ({
+    '@type': 'Offer',
+    'name': format,
+    'price': details.price,
+    'priceCurrency': details.currency,
+    'availability': 'https://schema.org/InStock',
+    ...(details.kindle_unlimited ? { 'eligiblePromotion': { '@type': 'Promotion', 'name': 'Kindle Unlimited' } } : {}),
+  })),
+}
 
 const formatPrice = (price: number, currency: string) => {
   return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(price);
@@ -50,6 +79,16 @@ const getPriceColor = (price: number) => {
 ---
 
 <BaseLayout title={book.title} description={`Learn more about ${book.title} by ${book.author}`}>
+  <script type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://phpteacher.com' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Laravel Books', 'item': 'https://phpteacher.com/books-laravel' },
+      { '@type': 'ListItem', 'position': 3, 'name': book.title, 'item': URL },
+    ],
+  })} />
   <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
     <div class="mx-auto max-w-4xl">
       <a href="/books-laravel" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors">

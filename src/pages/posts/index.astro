@@ -7,11 +7,13 @@ import Pagination from '@components/blog/Pagination.astro'
 import MainSection from '@components/ui/sections/MainSection.astro'
 import { SITE } from '@/config'
 
-const POSTS_PER_PAGE = 10
+const POSTS_PER_PAGE = 12
 
 const allPosts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
     (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 )
+
+const categories = [...new Set(allPosts.map(p => p.data.category))].sort()
 
 const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
 const pagePosts = allPosts.slice(0, POSTS_PER_PAGE)
@@ -39,6 +41,14 @@ const URL = Astro.url.href
         },
     }}
 >
+    <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE.url },
+            { '@type': 'ListItem', 'position': 2, 'name': 'Posts', 'item': URL },
+        ],
+    })} />
     <MainSection
         title="Latest programming news and articles"
         subTitle="Learn what is happening in the world of programming"
@@ -47,11 +57,56 @@ const URL = Astro.url.href
         btnURL="/posts"
     />
 
-    <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 2xl:max-w-full">
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section class="max-w-8xl mx-auto px-4 pb-12">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div class="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span><strong class="text-neutral-800 dark:text-neutral-200">{allPosts.length}</strong> posts</span>
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                    <span><strong class="text-neutral-800 dark:text-neutral-200">{categories.length}</strong> categories</span>
+                </span>
+            </div>
+
+            <div class="flex flex-wrap gap-2" id="categoryFilters">
+                <button data-cat="all" class="cat-filter active px-3 py-1.5 text-xs font-semibold rounded-lg bg-orange-500 text-white shadow-sm transition-all">All</button>
+                {categories.map(c => (
+                    <button data-cat={c} class="cat-filter px-3 py-1.5 text-xs font-semibold rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all">{c}</button>
+                ))}
+            </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="postGrid">
             {pagePosts.map(post => <BlogCard blog={post} />)}
         </div>
     </section>
 
     <Pagination currentPage={1} totalPages={totalPages} baseUrl="/posts/" />
 </BaseLayout>
+
+<script>
+    const filters = document.querySelectorAll('.cat-filter')
+    const cards = document.querySelectorAll('#postGrid > a')
+
+    filters.forEach((btn: any) => {
+        btn.addEventListener('click', () => {
+            filters.forEach((b: any) => {
+                b.classList.remove('active', 'bg-orange-500', 'text-white')
+                b.classList.add('bg-neutral-100', 'dark:bg-neutral-800', 'text-neutral-600', 'dark:text-neutral-300')
+            })
+            btn.classList.add('active', 'bg-orange-500', 'text-white')
+            btn.classList.remove('bg-neutral-100', 'dark:bg-neutral-800', 'text-neutral-600', 'dark:text-neutral-300')
+
+            const cat = btn.dataset.cat
+            cards.forEach((card: any) => {
+                if (cat === 'all' || card.dataset.category === cat) {
+                    card.style.display = ''
+                } else {
+                    card.style.display = 'none'
+                }
+            })
+        })
+    })
+</script>

@@ -3,7 +3,9 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import MainSection from '@components/ui/sections/MainSection.astro'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { SITE } from '@/config'
 
+const URL = Astro.url.href
 const friendsData: CollectionEntry<'friends'>[] = await getCollection('friends')
 if (friendsData?.length === 0) {
     return Astro.redirect('/')
@@ -13,6 +15,23 @@ const friends = friendsData[0].data
 ---
 
 <BaseLayout title="Our partners" description="Our partners">
+    <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': URL,
+        'url': URL,
+        'name': `Partners - ${SITE.title}`,
+        'description': 'Our partners and friends',
+        'isPartOf': { '@type': 'WebSite', 'url': SITE.url, 'name': SITE.title },
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE.url },
+            { '@type': 'ListItem', 'position': 2, 'name': 'Partners', 'item': URL },
+        ],
+    })} />
     <MainSection title="Hey Friends" subTitle="Email me if you want to show your link here." />
 
     <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mb-10 2xl:max-w-full">
