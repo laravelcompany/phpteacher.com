@@ -1,4 +1,5 @@
 ---
+import NetworkExtras from '../components/NetworkExtras.astro';
 import BaseHead from '@components/BaseHead.astro'
 import Footer from '@components/Footer.astro'
 import Header from '@components/Header.astro'
@@ -90,5 +91,6 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
                 pointer-events: none;
             }
         </style>
-    </body>
+      <NetworkExtras />
+</body>
 </html>
