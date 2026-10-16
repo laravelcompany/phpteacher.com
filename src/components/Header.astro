@@ -1,7 +1,6 @@
 ---
 import NavLink from '@components/ui/links/NavLink.astro'
 import BrandLogo from '@components/ui/logos/BrandLogo.astro'
-import Theme from '@components/ui/logos/Theme.astro'
 import AlgoliaDocSearch from './support/search/AlgoliaDocSearch'
 import { NavigationLinks } from '@/config'
 ---
@@ -58,7 +57,6 @@ import { NavigationLinks } from '@/config'
                         <path d="m6 6 12 12"></path>
                     </svg>
                 </button>
-                <Theme />
             </div>
 
             <div
@@ -74,9 +72,6 @@ import { NavigationLinks } from '@/config'
                     <div class="hidden md:block">
                         <AlgoliaDocSearch client:only="react" />
                     </div>
-                    <span class="hidden md:inline-block">
-                        <Theme />
-                    </span>
                 </div>
             </div>
         </div>
@@ -217,3 +212,4 @@ window.addEventListener('load', () => {
 })
 </script>
 <script is:inline src="/vendor/preline/collapse2.1.0.min.js"></script>
+

@@ -22,7 +22,7 @@ const { title, description = SITE.description, ogImage, lang = 'en', structuredD
 const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
 ---
 
-<html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
+<html lang={lang} class="dark scrollbar-hide lenis lenis-smooth scroll-pt-16">
     <head>
         <title>{normalizeTitle}</title>
         <meta name="google-adsense-account" content="ca-pub-8913172270497177">
@@ -39,12 +39,12 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
             author={author}
         />
         <script is:inline>
-         if (localStorage.getItem('hs_theme') === 'dark' || (!('hs_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-             document.documentElement.classList.add('dark')
-         } else {
-             document.documentElement.classList.remove('dark')
-         }
+         localStorage.setItem('hs_theme', 'dark')
+         document.documentElement.classList.add('dark')
          </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700;800&display=swap" />
         <script is:inline src="/vendor/lenis/lenis1.1.5.min.js"></script>
         <script is:inline>
         const lenis = new Lenis()
@@ -58,7 +58,7 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8913172270497177"
      crossorigin="anonymous"></script>
     </head>
-    <body class="bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800">
+    <body class="bg-neutral-900 text-neutral-100 selection:bg-orange-500/30 selection:text-white">
         <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
             <Header />
             <main>
@@ -67,6 +67,11 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
         </div>
         <Footer />
         <style>
+            body {
+                font-family: 'Nunito', system-ui, sans-serif;
+                background: linear-gradient(135deg, #0f172a 0%, #2a1030 100%);
+                background-attachment: fixed;
+            }
             .scrollbar-hide::-webkit-scrollbar {
                 display: none;
             }
@@ -94,3 +99,4 @@ const normalizeTitle = !title ? SITE.title : `${title} | ${SITE.title}`
       <NetworkExtras />
 </body>
 </html>
+
