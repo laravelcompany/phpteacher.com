@@ -23,3 +23,6 @@ pnpm-debug.log*
 .vscode
 
 src/content/posts/test-markdown.md
+
+# Local rollback archives
+backups/

@@ -7,18 +7,18 @@ const current = Astro.url.pathname
 const isActive = (url: string) => current === url || current.startsWith(url)
 ---
 
-<header id="main-header" class="site-header sticky top-0 z-50 -mx-4 sm:-mx-6 lg:-mx-8" role="banner">
-    <div class="header-bar mx-auto flex h-20 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<header id="main-header" class="site-header fixed inset-x-0 top-0 z-50" role="banner">
+    <div class="header-bar mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-[60px]">
         <a
             href="/"
             aria-label="PHP Teacher home"
             class="flex items-center gap-3 rounded transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
         >
             <BrandLogo class="h-10 w-auto" />
-            <span class="text-xl font-black tracking-tight text-white">PHP Teacher</span>
+            <span class="text-xl font-extrabold tracking-tight text-white">PHP Teacher</span>
         </a>
 
-        <nav class="hidden items-center space-x-2 lg:flex" aria-label="Main navigation">
+        <nav class="hidden items-center space-x-1 lg:flex" aria-label="Main navigation">
             {NavigationLinks.map(link => (
                 <a
                     href={link.url}
@@ -54,7 +54,7 @@ const isActive = (url: string) => current === url || current.startsWith(url)
     </div>
 
     <div id="mobile-menu" class="mobile-menu">
-        <nav class="mx-auto flex max-w-screen-2xl flex-col space-y-2 px-4 py-6 sm:px-6" aria-label="Mobile navigation">
+        <nav class="mx-auto flex max-w-7xl flex-col space-y-2 px-4 py-6 sm:px-6" aria-label="Mobile navigation">
             {NavigationLinks.map(link => (
                 <a href={link.url} class="mobile-menu-item">{link.name}</a>
             ))}
@@ -65,9 +65,9 @@ const isActive = (url: string) => current === url || current.startsWith(url)
 
 <style is:global>
     .site-header {
-        background: rgba(15, 23, 42, 0.8);
+        background: rgba(10, 8, 24, 0.85);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(139, 92, 246, 0.12);
     }
     .site-header .nav-link {
         position: relative;
@@ -93,13 +93,13 @@ const isActive = (url: string) => current === url || current.startsWith(url)
     .site-header .nav-link.active::after { width: 100%; }
     .site-header .btn-cta {
         align-items: center;
-        padding: 0.65rem 1.4rem;
+        padding: 0.85rem 1.5rem;
         border-radius: 0.75rem;
         background: #7c3aed;
         color: #fff;
         font-weight: 700;
         font-size: 0.9rem;
-        box-shadow: 0 10px 15px -3px #0000001a, 0 0 0 4px rgba(124, 58, 237, 0.25);
+        box-shadow: 0 0 20px rgba(108, 63, 255, 0.25);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .site-header .btn-cta:hover {
@@ -127,12 +127,13 @@ const isActive = (url: string) => current === url || current.startsWith(url)
     .site-header .menu-toggle.open .line-3 { transform: translateY(-8px) rotate(-45deg); }
     .site-header .mobile-menu {
         display: none;
-        background: rgba(15, 23, 42, 0.95);
+        background: rgba(10, 8, 24, 0.98);
         backdrop-filter: blur(20px);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
-    .site-header .mobile-menu.active { display: block; }
+    .site-header .mobile-menu.active { display: block; max-height: calc(100dvh - 80px); overflow-y: auto; }
+    @media (min-width:1024px) { .site-header .mobile-menu.active { display:none; } }
     .site-header .mobile-menu-item {
         display: block;
         color: #fff;
@@ -168,6 +169,14 @@ const isActive = (url: string) => current === url || current.startsWith(url)
             var open = menu.classList.toggle('active')
             btn.classList.toggle('open', open)
             btn.setAttribute('aria-expanded', open ? 'true' : 'false')
+        })
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && menu.classList.contains('active')) {
+                menu.classList.remove('active')
+                btn.classList.remove('open')
+                btn.setAttribute('aria-expanded', 'false')
+                btn.focus()
+            }
         })
     })()
 </script>

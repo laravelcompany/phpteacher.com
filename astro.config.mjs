@@ -28,6 +28,8 @@ export default defineConfig({
         tailwind(),
         react(),
         (await import('@playform/compress')).default({
+            // The bundled upstream manual is copied unchanged, not rebuilt with the site.
+            Exclude: [(file) => file.includes('/manual/') || file.includes('/magazines/')],
             CSS: true,
             JavaScript: true,
             HTML: {
