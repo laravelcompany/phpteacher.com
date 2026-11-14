@@ -1,0 +1,11 @@
+{
+  "title": "Laravel Sanctum: How to configure the expiration date of the token?",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Laravel Sanctum: How to Configure the Expiration Date of the Token ## Context and Need In my `api` routes file, I've written the following code following the...",
+  "image": null,
+  "tags": [],
+  "content": "# Laravel Sanctum: How to Configure the Expiration Date of the Token\n\n## Context and Need\n\nIn my `api` routes file, I've written the following code following the documentation:\n\n```php\nRoute::post('/tokens/create', function (Request $request) {\n    $token = $request->user()->createToken($request->token_name);\n    return ['token' => $token->plainTextToken];\n});\n```\n\nI would want to set an expiration delay that would be used to compare the date of the creation of the token with the date of the current check of the token expiration: the token had a creation date of `x`, the current date is `y`, and the delay is `d`, so the token would expire if `y > x + d`.\n\n## What I've Done\n\nSo I've read some code in the directory `vendor/laravel/sanctum`, and I've found the class `Guard.php`.\n\nThe class `Guard.php` contains an object attribute named `$expiration`, a constructor that sets it (among other things), and the `__invoke` method that contains the following expiration check:\n\n```php\nif (! $accessToken ||\n            ($this->expiration &&\n             $accessToken->created_at->lte(now() - >subMinutes($this->expiration))) ||\n            ! $this->hasValidProvider($accessToken->tokenable)) {\n    return;\n}\n```\n\nAs you can see, it does exactly what I want. However, I can't figure out how to set my own value for the attribute `$expiration`.\n\nIn this same file, there are some allusions to an existing configuration file, like this one: `config('sanctum.guard', 'web')`. Also, the class `SanctumServiceProvider` instantiates `Guard` and passes to its constructor the following value: `config"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "I am getting Laravel Mysql Connection Error",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Solving the Dreaded Error: `SQLSTATE[42S01]: Base table or view already exists` During Laravel Migrations As a senior developer working with the Laravel...",
+  "image": null,
+  "tags": [],
+  "content": "# Solving the Dreaded Error: `SQLSTATE[42S01]: Base table or view already exists` During Laravel Migrations\n\nAs a senior developer working with the Laravel ecosystem, we often encounter frustrating errors when deploying or setting up database schemas. One of the most common stumbling blocks developers face is the error: `SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'users' already exists`. This error typically pops up when running `php artisan migrate`, and while it seems like a fatal roadblock, understanding its root cause allows us to solve it quickly and ensure our application structure remains sound.\n\nThis post will dissect"
+}

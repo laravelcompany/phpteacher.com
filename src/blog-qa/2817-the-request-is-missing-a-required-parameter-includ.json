@@ -1,0 +1,11 @@
+{
+  "title": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Deciphering the OAuth Error: Troubleshooting Passport Token Requests in Laravel As a senior developer working with authentication systems in the Laravel...",
+  "image": null,
+  "tags": [],
+  "content": "# Deciphering the OAuth Error: Troubleshooting Passport Token Requests in Laravel\n\nAs a senior developer working with authentication systems in the Laravel ecosystem, you’ve likely encountered various frustrating errors when integrating services like Laravel Passport. The error message you are seeing—`invalid_request`, coupled with the hint to check the `username` parameter—is a very common roadblock when dealing with OAuth 2.0 token requests.\n\nThis post will dissect why you are encountering this specific error while attempting to log in via Postman and provide a comprehensive, step-by-step solution based on your provided setup. We will move beyond simply guessing parameters and dive into the configuration of Laravel Passport and the nuances of the OAuth flow.\n\n## Understanding the `invalid_request` Error in OAuth\n\nThe error message: `\"The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed\"` originates from the OAuth server (in this case, Laravel Passport) rejecting the token request sent to the `/oauth/token` endpoint.\n\nWhen using the Password Grant flow (`grant_type: password`), the client must provide specific credentials that Passport uses to validate your application and grant access. Even though you are sending `email` and `pssword`, the server is failing validation against its defined OAuth scope, client registration, or driver settings. The hint pointing to `username` suggests an internal check within the Passport guard mechanism failed, often related to how the user identifier (which might be mapped from email or a custom field) is being processed."
+}

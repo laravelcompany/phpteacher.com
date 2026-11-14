@@ -1,0 +1,72 @@
+---
+import { sortedBlogQa } from '@support/blog-qa'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogQaCard from '@components/blog/BlogQaCard.astro'
+import Pagination from '@components/blog/Pagination.astro'
+
+const POSTS_PER_PAGE = 24
+
+export async function getStaticPaths() {
+    const POSTS_PER_PAGE = 24
+    const allPosts = sortedBlogQa()
+    const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
+    const pages = []
+    for (let page = 2; page <= totalPages; page++) {
+        // Pass only this page's slice as props - serializing the whole
+        // collection into every route's props blows the build heap.
+        pages.push({
+            params: { page: String(page) },
+            props: {
+                currentPage: page,
+                totalPages,
+                pagePosts: allPosts.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE).map(p => ({
+                    id: p.id,
+                    title: p.title,
+                    excerpt: p.excerpt,
+                    date: p.date,
+                })),
+            },
+        })
+    }
+    return pages
+}
+
+type PagePost = { id: string; title: string; excerpt: string; date: string }
+
+type Props = {
+    currentPage: number
+    totalPages: number
+    pagePosts: PagePost[]
+}
+
+const { currentPage, totalPages, pagePosts } = Astro.props
+
+const description = `PHP and Laravel questions answered - page ${currentPage} of ${totalPages}.`
+---
+
+<BaseLayout title={`Blog - Page ${currentPage}`} description={description}>
+    <section class="mx-auto max-w-7xl px-4 pt-28 pb-16 sm:px-6 lg:px-[60px]">
+        <nav class="mb-8 flex items-center justify-center gap-2 text-sm text-neutral-400" aria-label="Breadcrumb">
+            <a href="/" class="transition-colors hover:text-white">Home</a>
+            <span>/</span>
+            <a href="/blog/" class="transition-colors hover:text-white">Blog</a>
+            <span>/</span>
+            <span class="text-white">Page {currentPage}</span>
+        </nav>
+
+        <h1 class="text-center text-4xl font-extrabold tracking-tight text-white">PHP Q&amp;A Blog</h1>
+        <p class="mx-auto mt-4 max-w-2xl text-center text-lg text-neutral-400">
+            Page {currentPage} of {totalPages}
+        </p>
+
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {pagePosts.map(post => (
+                <BlogQaCard id={post.id} title={post.title} excerpt={post.excerpt} date={post.date} />
+            ))}
+        </div>
+
+        <div class="mt-12">
+            <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog/" />
+        </div>
+    </section>
+</BaseLayout>

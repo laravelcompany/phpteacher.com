@@ -1,0 +1,11 @@
+{
+  "title": "Laravel Pagination links() not working",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Laravel Pagination Links() Not Working: A Deep Dive into Paginator Issues Dealing with pagination in Laravel is a fundamental task, but sometimes the...",
+  "image": null,
+  "tags": [],
+  "content": "# Laravel Pagination Links() Not Working: A Deep Dive into Paginator Issues\n\nDealing with pagination in Laravel is a fundamental task, but sometimes the navigation links simply refuse to appear. You've implemented the standard pattern—using `->paginate()` in the controller and calling `->links()` in the view—yet the result is blank or broken links. As a senior developer, I’ve seen this happen repeatedly. The issue is rarely with Laravel itself, but often lies in how the Paginator object is being handled or rendered in the Blade file.\n\nThis post will diagnose why your `links()` method might be failing and provide the definitive, production-ready solution.\n\n## Understanding the Pagination Mechanism\n\nWhen you use methods like `paginate(n)` on a Eloquent query in your controller, Laravel returns a `LengthAwarePaginator` object. This object contains not only the data but also the necessary metadata to generate the pagination links (the \"next,\" \"previous,\" and page number links).\n\nThe core principle is that you must call the `links()` method on this object to render those navigation elements. If these links are missing, it almost always means one of two things: either the Paginator object isn't correctly accessible in the view scope, or there’s an issue with how the view attempts to iterate over the data versus rendering the pagination wrapper.\n\n## Diagnosing Your Specific Scenario\n\nYou mentioned performing the following steps:\n\n**Controller Logic:**\n```php\n$activities = Package::where('attraction', 1)\n              ->where('hotel', 0"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "SQLSTATE[42S02]: Base table or view not found: 1146 Table X doesn't exist",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Deciphering SQLSTATE[42S02]: Solving the \"Base table or view not found\" Error in Laravel As a senior developer, I frequently encounter errors that seem...",
+  "image": null,
+  "tags": [],
+  "content": "# Deciphering SQLSTATE[42S02]: Solving the \"Base table or view not found\" Error in Laravel\n\nAs a senior developer, I frequently encounter errors that seem cryptic but stem from fundamental mismatches between application logic and the underlying database schema. The error you are facing—`SQLSTATE[42S02]: Base table or view not found: 1146 Table 'intern.users' doesn't exist`—is one of the most common database connectivity errors in Laravel applications, especially when dealing with migrations and Eloquent models.\n\nThis post will dissect why this error occurs in a Laravel environment, analyze the context provided by your code snippets, and provide a comprehensive, step-by-step solution to ensure your application connects successfully.\n\n## Understanding the Error: What SQLSTATE[42S02] Means\n\nThe error `SQLSTATE[42S02]` specifically indicates that the database engine (in this case, MySQL) could not find the table or view specified in the executed SQL query. The message clarifies it is looking for a table named `users` within the `intern` database context.\n\nThis is not typically an error in your Laravel application code itself, but rather a failure occurring at the point where Laravel attempts to execute a query against the configured database. It means: **The SQL command sent from PHP/Laravel does not correspond to an existing structure in the database.**\n\n## Analyzing Your Context and Code Flow\n\nLet's look at the components you provided: your `config/database.php`, your controller logic, and the HTML form.\n\n1"
+}

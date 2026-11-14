@@ -1,0 +1,11 @@
+{
+  "title": "Config nginx for Laravel In a subfolder",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Configuring Nginx for Laravel in a Subfolder: Solving Access Denied Errors As developers, we frequently encounter frustrating configuration mismatches when...",
+  "image": null,
+  "tags": [],
+  "content": "# Configuring Nginx for Laravel in a Subfolder: Solving Access Denied Errors\n\nAs developers, we frequently encounter frustrating configuration mismatches when deploying modern frameworks like Laravel to web servers like Nginx. When you have an existing project structure that works fine on XAMPP/Apache but fails under Nginx with \""
+}

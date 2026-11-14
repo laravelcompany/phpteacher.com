@@ -1,0 +1,11 @@
+{
+  "title": "How can I solve \"Connection could not be established with host smtp.gmail.com\"?",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# How to Solve \"Connection could not be established with host smtp.gmail.com\" on Staging Servers Dealing with connection errors when sending emails is one of...",
+  "image": null,
+  "tags": [],
+  "content": "# How to Solve \"Connection could not be established with host smtp.gmail.com\" on Staging Servers\n\nDealing with connection errors when sending emails is one of the most frustrating hurdles in web development. You can send emails perfectly fine on your local machine, but when deploying to a staging or production server, you encounter cryptic errors like `Connection could not be established with host smtp.gmail.com [Connection timed out #110]`. This usually signals a problem outside of your application code—it's almost always related to networking, firewall rules, or specific SMTP authentication requirements imposed by the mail provider.\n\nAs a senior developer, I’ve seen this exact scenario repeatedly. The fact that it works locally but fails on the server points directly to an environmental mismatch between your local environment and your remote hosting environment. Let's break down why this happens and provide a comprehensive solution.\n\n## Understanding the \"Connection Timed Out\" Error\n\nThe error `Connection timed out` means your PHP application (via SwiftMailer or the underlying stream functions) attempted to initiate a TCP connection to `smtp.gmail.com` on port 587, but the server either didn't respond within the allotted time or the connection was blocked somewhere along the network path.\n\nWhen this occurs on a remote server, the most common culprits are:\n\n1.  **Outbound Firewall:** The server’s outbound firewall (like `iptables` or cloud security groups) is blocking the outgoing connection to external SMTP servers.\n2.  **Port Blockage:** A specific port"
+}

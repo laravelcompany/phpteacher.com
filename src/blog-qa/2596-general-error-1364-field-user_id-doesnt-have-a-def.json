@@ -1,0 +1,11 @@
+{
+  "title": "General error: 1364 Field 'user_id' doesn't have a default value (SQL: insert into `products`..... in laravel-8",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Mastering Data Deletion in Laravel: Eloquent Relationships and Database Integrity When working with relational data in Laravel, managing the deletion of...",
+  "image": null,
+  "tags": [],
+  "content": "# Mastering Data Deletion in Laravel: Eloquent Relationships and Database Integrity\n\nWhen working with relational data in Laravel, managing the deletion of records is not just about executing a simple SQL command; it involves understanding Eloquent relationships, database constraints, and transactional integrity. The scenario you presented—deleting a `Product` which is linked to a `User`—is a perfect example of how these concepts intersect.\n\nThis article will walk through the process of safely deleting related data in Laravel, focusing on the provided models, migration, and controller logic, ensuring we adhere to robust database practices.\n\n## 1. The Foundation: Eloquent Relationships\n\nBefore diving into deletion, we must establish the structure defined by our Eloquent Models (`Product` and `User`) and the database schema (the Migration).\n\nIn your setup, you have defined a crucial relationship:\n*   The `Product` model has a `user()` method, establishing a `belongsTo(User::class)` relationship. This means every product belongs to exactly one user.\n*   The `User` model has the inverse relationship, `products()`, defining a `hasMany(Product::class)` relationship.\n\nThis setup ensures that the foreign key constraint in your `products` table (`user_id`) correctly links each product back to its owner in the `users` table. This relationship is the backbone of data integrity. As you can see from the migration:\n\n```php\n$table->unsignedBigInteger('user_id');\n// ...\n$table->foreign('user_id')->references('id')->on('users');\n```\n\nThis foreign key ensures that a product cannot exist without a valid, existing user, preventing orphaned records.\n\n## 2. Executing the Deletion in the Controller\n\nThe core task is handled in your `ProductController`'s `destroy` method:\n\n```php\npublic function destroy"
+}

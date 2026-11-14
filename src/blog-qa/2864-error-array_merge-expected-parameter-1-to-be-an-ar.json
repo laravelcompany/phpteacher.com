@@ -1,0 +1,11 @@
+{
+  "title": "\"error\": \"array_merge(): Expected parameter 1 to be an array, null given\"",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "This is a very common point of confusion when starting with Laravel's powerful features like Observers, Events, and Broadcasting. The issue you are facing...",
+  "image": null,
+  "tags": [],
+  "content": "This is a very common point of confusion when starting with Laravel's powerful features like Observers, Events, and Broadcasting. The issue you are facing isn't necessarily a bug in your code syntax itself, but rather a misunderstanding of **how events should be triggered and how broadcasting mechanisms integrate with them.**\n\nBased on the context you provided—using an Observer to trigger a broadcast—we can diagnose the problem and establish the correct Laravel pattern.\n\nHere is a thorough developer explanation addressing your setup, best practices, and why commenting out `broadcast(new OrderStatus($order));` changes the behavior.\n\n***\n\n# Understanding Observers, Events, and Broadcasting in Laravel\n\nWhen working with complex application logic in Laravel, separating concerns into Models, Observers, and Events is a fundamental best practice. Your setup involves three key components: an Eloquent Model (`Order`), an Observer (`OrderStatusObserver`), and an Event (`OrderStatus`). The interaction between these pieces determines how data flows through your application.\n\n## The Role of the Observer\n\nAn **Observer** is designed to react to specific events that happen on a Model. In your case, the `OrderStatusObserver` correctly hooks into the `created` event of the `Order` model.\n\n```php\n// app/Observers/OrderStatusObserver.php\npublic function created(Order $order)\n{\n   broadcast(new OrderStatus($order)); // <--- The point of confusion\n}\n```\n\nThe Observer's job is to detect the change and signal that something important has happened.\n\n## Why `broadcast()` Might Be Failing\n\nThe behavior you described—where commenting out the line makes it \"work fine\"—strongly suggests that the issue"
+}

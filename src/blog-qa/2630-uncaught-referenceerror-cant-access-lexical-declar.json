@@ -1,0 +1,11 @@
+{
+  "title": "Uncaught ReferenceError: can't access lexical declaration 'html' before initialization",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Decoding the Mystery: Understanding `Uncaught ReferenceError: can't access lexical declaration 'html' before initialization` As senior developers, we spend a...",
+  "image": null,
+  "tags": [],
+  "content": "# Decoding the Mystery: Understanding `Uncaught ReferenceError: can't access lexical declaration 'html' before initialization`\n\nAs senior developers, we spend a lot of time debugging code that seems perfectly fine until it throws an obscure error. One such error—`Uncaught ReferenceError: can't access lexical declaration 'html' before initialization`—often appears in the browser console when working with modern JavaScript features like `let` and `const`. It feels confusing because the variable *is* declared, yet the code refuses to access it.\n\nThis post will demystify this error, explain the underlying mechanism, and show you how to avoid it, especially when integrating dynamic content generation in frameworks like Laravel where server-side logic meets client-side execution.\n\n## The Root Cause: Temporal Dead Zone (TDZ)\n\nThe error you are encountering is not a bug in your code as much as a strict enforcement of modern JavaScript scoping rules. It relates directly to the concept known as the **Temporal Dead Zone (TDZ)**.\n\nWhen you declare a variable using `let` or `const`, the variable enters a phase where it exists within the scope but cannot be accessed until execution reaches the line where it is actually declared and initialized. This period between the start of the scope and the declaration is the Temporal Dead Zone. If you try to read the variable before this point, the JavaScript engine throws a `ReferenceError`.\n\nIn your specific scenario:\n\n```javascript\nlet html = '' + ... // Declaration"
+}

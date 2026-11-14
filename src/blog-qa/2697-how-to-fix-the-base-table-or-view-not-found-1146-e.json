@@ -1,0 +1,11 @@
+{
+  "title": "How to fix the \"Base table or view not found: 1146\" error when running 'php artisan migrate' command?",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# How to",
+  "image": null,
+  "tags": [],
+  "content": "# How to"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Laravel Queue with Supervisor, running but not processing jobs",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "## Troubleshooting Intermittent Laravel Queue Worker Stops via Supervisor The log entries you provided clearly illustrate an interaction between your process...",
+  "image": null,
+  "tags": [],
+  "content": "## Troubleshooting Intermittent Laravel Queue Worker Stops via Supervisor\n\nThe log entries you provided clearly illustrate an interaction between your process supervisor (`supervisord`) and the `laravel_queue` worker. While the worker successfully starts, the subsequent logs show it being terminated by a signal (`SIGTERM`), which is then successfully handled by Supervisor stopping the process. The fact that this cycle repeats without necessarily restarting indicates that the issue lies not in the queue worker itself, but in **how the lifecycle of the worker is being managed or controlled externally.**\n\nAs a developer, when dealing with process supervision in a production environment, we need to look beyond the application logs and examine the infrastructure layer.\n\n### Diagnosis: Process Lifecycle Management\n\nThe repeated sequence:\n1. `CRIT received SIGTERM indicating exit request`\n2. `INFO stopped: laravel_queue (terminated by SIGTERM)`\n\nThis strongly suggests that an external command, a system signal, or another process is intentionally telling the queue worker to shut down. If this happens repeatedly without a clean restart initiated by your application code, it usually points to one of these scenarios:\n\n1. **Faulty External Scripting:** A cron job, another management script, or a monitoring tool is incorrectly signaling termination.\n2. **Resource Limits:** The process might be hitting memory limits or CPU throttling imposed by the operating system or cgroups, causing an external watchdog (like OOM Killer) to terminate it, which Supervisor then reports as received a signal.\n3. **Misconfigured Restart Policy:** The configuration within `supervisord` might be set up in a way that interprets termination signals differently than expected, leading to a stuck state if the restart command is missing or flawed.\n\n### Best Practices for Robust Queue Management\n\nTo resolve this,"
+}

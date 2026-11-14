@@ -1,0 +1,11 @@
+{
+  "title": "Laravel custom messages for array validation",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Mastering Dynamic Error Messages: Custom Validation for Array Inputs in Laravel As a senior developer working with Laravel, you often run into scenarios...",
+  "image": null,
+  "tags": [],
+  "content": "# Mastering Dynamic Error Messages: Custom Validation for Array Inputs in Laravel\n\nAs a senior developer working with Laravel, you often run into scenarios where standard validation messages fall short. A very common pain point arises when validating arrays of inputs—like multiple video URLs—where you need highly specific feedback for each item that fails validation, rather than receiving repetitive or unhelpful generic errors.\n\nThe challenge you've described is excellent: you want custom error messages that incorporate the actual invalid value (the URL) into the feedback, instead of just stating which field failed. This requires moving beyond simple static message definitions and diving deeper into how Laravel handles validation context and error reporting.\n\nThis post will walk you through why the standard approach doesn't suffice and provide a robust solution for creating dynamic, value-aware error messages in your Laravel applications.\n\n---\n\n## The Limitation of Static Custom Messages\n\nWhen you define custom messages within your Request class (or validator setup), Laravel processes these strings based on the rule name (e.g., `external_media.active_url`). This system is designed for consistency and simplicity. When validation fails across an array, Laravel reports the failure against the index (`external_media.0`, `external_media.1`, etc.).\n\nThe issue arises because the custom message mechanism, by default, does not automatically expose the specific value that caused the failure directly into the error string during the standard reporting phase. You are essentially asking"
+}

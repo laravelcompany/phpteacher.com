@@ -1,0 +1,11 @@
+{
+  "title": "Laravel Collection with groupby, count and sum",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Mastering Data Aggregation: Grouping, Counting, and Summing in Laravel Collections Struggling to apply complex data transformations using simple collection...",
+  "image": null,
+  "tags": [],
+  "content": "# Mastering Data Aggregation: Grouping, Counting, and Summing in Laravel Collections\n\nStruggling to apply complex data transformations using simple collection methods is a common hurdle when moving from basic CRUD operations to sophisticated data analysis. When dealing with relational data pulled from a database, transforming that flat list into meaningful summary statistics requires understanding how Laravel Collections can be leveraged effectively. You are absolutely right—avoiding unnecessary database queries by performing these aggregations in memory is a powerful performance optimization, especially when you already have the dataset loaded.\n\nThis post will walk you through exactly how to use `groupBy` alongside other methods like `map` and potentially grouping again to achieve complex aggregations, transforming your raw results into meaningful opposition statistics. We will focus entirely on using the power of Laravel Collections.\n\n## Understanding the Foundation: The Power of `groupBy()`\n\nThe starting point for any aggregation is correctly grouping your data. If you have a flat collection of player results, and you want to analyze performance per opponent, `groupBy('opposition_id')` is the essential first step. This method partitions the entire collection into smaller collections based on the value of the specified key.\n\nHowever, simply grouping doesn't give you the totals you need; it just separates the data. To get counts, sums, and specific values (like 'won' or 'lost') for each group, we must apply a transformation function to those newly created groups. This is where the real power of collection methods shines.\n\n## Advanced"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "PDOException::(\"could not find driver\") PHP Configuration MySql",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Solving the Dreaded Error: PDOException::(\"could not find driver\") in Laravel MySQL Setup Starting with a new framework like Laravel is exciting, but...",
+  "image": null,
+  "tags": [],
+  "content": "# Solving the Dreaded Error: PDOException::(\"could not find driver\") in Laravel MySQL Setup\n\nStarting with a new framework like Laravel is exciting, but sometimes the initial setup throws cryptic errors that can halt momentum. One of the most frustrating errors newcomers encounter when setting up database connections, especially with MySQL, is `PDOException::(\"could not find driver\")`. This error tells you exactly what the problem is: PHP cannot locate the necessary driver module required to communicate with the specific database system you are trying to connect to.\n\nAs a senior developer, Iâve seen this issue repeatedly across various environments (XAMPP, MAMP, Linux servers). The good news is that this is almost always a configuration issue within your PHP installation rather than an error in your Laravel code itself. Let's dive deep into why this happens and how to fix it permanently.\n\n## Understanding the Connection: PDO and Drivers\n\nTo understand the fix, we must first understand the components involved. Laravel, like most modern PHP applications, handles all database interactions through PHP Data Objects (PDO). PDO is a standardized interface that allows PHP to communicate with various database systems (MySQL, PostgreSQL, SQLite, etc.) using a unified set of functions.\n\nThe key concept here is the **"
+}

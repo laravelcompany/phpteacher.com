@@ -1,0 +1,11 @@
+{
+  "title": "Undefined table: 7 ERROR: relation \"expenses\" does not exist",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Solving the Dreaded \"Undefined Table\": Debugging Migration Chaos in Laravel As a developer, we all encounter moments where perfectly functional code throws...",
+  "image": null,
+  "tags": [],
+  "content": "# Solving the Dreaded \"Undefined Table\": Debugging Migration Chaos in Laravel\n\nAs a developer, we all encounter moments where perfectly functional code throws cryptic database errors. The error you are facing—`Undefined table: 7 ERROR: relation \"expenses\" does not exist` during `php artisan migrate:reset"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Trying to get property of a non-object problem in laravel",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Mastering CRUD Operations in Laravel: A Deep Dive into Post Management Building dynamic web applications often requires robust data management capabilities....",
+  "image": null,
+  "tags": [],
+  "content": "# Mastering CRUD Operations in Laravel: A Deep Dive into Post Management\n\nBuilding dynamic web applications often requires robust data management capabilities. In the Laravel ecosystem, handling Create, Read, Update, and Delete (CRUD) operations for resources like blog posts is fundamental. The provided code snippets illustrate a standard implementation of this functionality within a typical Laravel application structure. This post will dissect these components from a developer's perspective, focusing on Eloquent relationships, controller logic, and view presentation, ensuring we adhere to modern Laravel best practices.\n\n## 1. The Foundation: Eloquent Models and Relationships\n\nThe core of managing blog posts lies in the relationship between the `User` and the `Post` models. As shown in your `User` model definition, establishing a one-to-many relationship is crucial for determining authorship:\n\n```php\n// In App\\User.php\npublic function posts(){\n    return $this->hasMany('App\\Post');\n}\n```\n\nThis relationship allows us to easily query which posts belong to a specific user, enabling authorization checks and personalized content display later on. A powerful concept that underpins this structure is Eloquent, Laravel's elegant Object-Relational Mapper, which abstracts complex SQL queries into intuitive PHP objects. Learning how to define these relationships effectively is key to building scalable applications, much like the principles discussed on the official [Laravel documentation](https://laravel.com).\n\n## 2. Controller Logic: Handling Updates and Deletions\n\nThe controller methods are responsible for the business logic—taking user input, interacting with the database via Eloquent, and managing redirects.\n\n### Updating a Resource (`update` method)\n\nThe `update` method demonstrates safe data manipulation"
+}

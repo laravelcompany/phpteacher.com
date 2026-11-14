@@ -1,0 +1,11 @@
+{
+  "title": "Eloquent Delete - SQLSTATE[22007]: Invalid datetime format: 1292 Truncated incorrect DOUBLE value:",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Solving Eloquent Deletes with UUIDs: Debugging SQLSTATE Errors in Laravel As a senior developer working with relational databases through the Laravel...",
+  "image": null,
+  "tags": [],
+  "content": "# Solving Eloquent Deletes with UUIDs: Debugging SQLSTATE Errors in Laravel\n\nAs a senior developer working with relational databases through the Laravel framework, we frequently encounter subtle yet frustrating errors when dealing with complex data types like UUIDs within Eloquent relationships. The error you are facing—`SQLSTATE[22007]: Invalid datetime format: 1292 Truncated incorrect DOUBLE value: '808498e7-a393-42f1-ab23-6ee89eb7040a'`—is a classic symptom of a type mismatch occurring deep within the database query execution, usually stemming from how foreign keys are being matched or cast during a mass deletion.\n\nThis post will dissect why this error occurs when attempting to delete records via Eloquent relationships involving UUIDs and provide robust solutions to ensure your data operations are clean and reliable.\n\n## Understanding the Root Cause: Type Mismatches in Deletes\n\nThe error message itself is highly misleading if you only look at the `datetime` part. The actual problem lies with the system attempting to compare or insert a value that it expects to be a standard numeric type (like a `DOUBLE` or `DATETIME`) but is receiving a string representation of a UUID.\n\nIn your scenario, where you are deleting `stock_movements` based on a relationship to `deliveries` using `company_id` (which is defined as a `uuid` in both tables), the issue often arises because:\n\n1.  **Implicit Casting Failure:** When Eloquent executes the cascading delete, it relies on the database's foreign key constraints. If the underlying table structure or index definitions subtly conflict"
+}

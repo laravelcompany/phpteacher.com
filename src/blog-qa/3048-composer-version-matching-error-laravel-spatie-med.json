@@ -1,0 +1,11 @@
+{
+  "title": "Composer version matching error laravel + spatie medialibrary",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "## Decoding Laravel Dependencies: Why Your `medialibrary` Installation Might Be Stuck It is a common point of confusion when working within the Laravel...",
+  "image": null,
+  "tags": [],
+  "content": "## Decoding Laravel Dependencies: Why Your `medialibrary` Installation Might Be Stuck\n\nIt is a common point of confusion when working within the Laravel ecosystem, especially when dealing with third-party packages like **Medialibrary**. You've correctly identified that you have a fresh Laravel installation, and the package requires Laravel 7 or newer. If you are still encountering issues, the problem likely isn't with the framework itself, but rather how Composer manages version constraints and how your specific project environment is configured.\n\nAs a developer, understanding this interplay between frameworks, dependencies, and Composer is crucial. Let’s break down what might be missing and how to resolve this dependency puzzle.\n\n### The Core Concept: Versioning and Compatibility\n\nWhen you run `composer require medialibrary`, Composer looks up the package's requirements defined in its `composer.json` file. It then checks if those requirements conflict with what is already installed in your project’s main dependencies (in your case, Laravel).\n\nThe statement that \"Medialibrary requires Laravel 7+\" means that the code within that package was written with assumptions about the structure and methods available in Laravel versions 7 and above. If you are running a very recent version of Laravel (like the `^8.0` suggested by your `composer.json`), this should theoretically be compatible.\n\nHowever, conflicts often arise from one of three scenarios:\n\n1.  **Outdated Dependencies:** The version of Medialibrary itself might be too old and not support the major changes introduced between older Laravel versions and the current ones.\n2.  **Environment Mismatch:** There might be a subtle mismatch between the PHP version (you are on 7.4.9) and the specific requirements assumed by the package, although this is less common with modern Composer setups.\n3."
+}

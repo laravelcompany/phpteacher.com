@@ -1,0 +1,11 @@
+{
+  "title": "Laravel session timeout, extra logout code",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Laravel Session Timeout: Implementing Automatic Logout on Inactivity **Bottom line:** Achieving automatic user logout upon session inactivity requires moving...",
+  "image": null,
+  "tags": [],
+  "content": "# Laravel Session Timeout: Implementing Automatic Logout on Inactivity\n\n**Bottom line:** Achieving automatic user logout upon session inactivity requires moving beyond simple session lifetime settings. You must implement custom logic, typically via middleware, to check user activity timestamps against a defined threshold and force a logout, ensuring the"
+}

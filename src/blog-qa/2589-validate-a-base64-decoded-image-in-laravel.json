@@ -1,0 +1,11 @@
+{
+  "title": "Validate a base64 decoded image in laravel",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Validating Base64 Decoded Images in Laravel: A Practical Guide As developers working with APIs, one common challenge arises when handling image uploads:...",
+  "image": null,
+  "tags": [],
+  "content": "# Validating Base64 Decoded Images in Laravel: A Practical Guide\n\nAs developers working with APIs, one common challenge arises when handling image uploads: transmitting binary data, such as an image, over HTTP. When using methods like `multipart/form-data`, the file is uploaded directly. However, if you decide to embed the image data directly into a JSON payload—often encoded in Base64 format (as seen in your Postman example: `\"picture\": \"data:image/png;base64,...\"`)—you introduce a new layer of complexity for server-side processing and validation in Laravel.\n\nThis guide will walk you through the various methods for successfully decoding these Base64 strings, saving the resulting image files, and integrating robust file validation within your Laravel application.\n\n## The Challenge: Raw Data vs. File Uploads\n\nLaravel's built-in validation system (`image`, `mimes`, etc.) is designed primarily to work with actual uploaded files stored temporarily on the server. When you receive a Base64 string, you are dealing with raw text data that must be converted into a binary file format before validation can occur. The key difficulty lies in correctly parsing the Data URL prefix (`data:image/png;base64,`) and safely decoding the payload without introducing security vulnerabilities or performance bottlenecks.\n\n## Approach 1: Manual Decoding (The Low-Level Approach)\n\nOne approach is to manually parse the Base64 string"
+}

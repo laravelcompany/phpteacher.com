@@ -1,0 +1,39 @@
+---
+interface Props {
+    id: string
+    title: string
+    excerpt: string
+    date: string
+}
+
+const { id, title, excerpt, date } = Astro.props
+
+const cleanExcerpt = excerpt
+    .replace(/^Title:\s*/, '')
+    .replace(/\s*Body:\s*/, ' ')
+    .trim()
+
+function formatDate(d: string): string {
+    const t = new Date(d)
+    if (isNaN(t.valueOf())) return d
+    return t.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
+}
+---
+
+<a
+    class="group relative block rounded-xl outline-none ring-zinc-500 transition duration-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none bg-white dark:bg-neutral-900 shadow-md hover:shadow-xl hover:-translate-y-0.5 border border-neutral-200 dark:border-neutral-700 overflow-hidden"
+    href={`/blog/${id}/`}
+    data-astro-prefetch="false"
+>
+    <div class="p-5">
+        <h3 class="text-sm font-bold text-neutral-800 group-hover:text-orange-500 dark:text-neutral-200 dark:group-hover:text-orange-300 leading-snug line-clamp-2">
+            {title}
+        </h3>
+        <p class="mt-2 text-xs text-gray-600 dark:text-neutral-400 leading-relaxed line-clamp-3">
+            {cleanExcerpt}
+        </p>
+        <p class="mt-3 text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-neutral-500">
+            {formatDate(date)}
+        </p>
+    </div>
+</a>

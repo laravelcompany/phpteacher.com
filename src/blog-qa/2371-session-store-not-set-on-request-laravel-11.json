@@ -1,0 +1,11 @@
+{
+  "title": "Session store not set on request Laravel 11",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Session Store Not Set on Request in Laravel 11: Diagnosing State Management Issues As a senior developer working with modern Laravel applications, we...",
+  "image": null,
+  "tags": [],
+  "content": "# Session Store Not Set on Request in Laravel 11: Diagnosing State Management Issues\n\nAs a senior developer working with modern Laravel applications, we frequently encounter subtle yet frustrating errors when dealing with session management, especially when integrating authentication systems like Sanctum. The error message `\"Session store not set on request.\"` during a login attempt, particularly when trying to regenerate the session, points directly to a failure in initializing or accessing the configured session storage mechanism within the context of the incoming request.\n\nThis post will dissect the specific scenario you've described—a stateful API authentication flow—to diagnose why this error appears and provide robust solutions, ensuring your application adheres to best practices outlined by the Laravel team.\n\n## Understanding the Context: Stateful APIs and Sessions\n\nYour setup involves a typical API authentication pattern using Sanctum, configured as `stateful`. This implies that the"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Undefined variable: users (View: C:\\xampp\\htdocs\\rentalmobil\\resources\\views\\admin\\user.blade.php)",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# SOLVED: Debugging Undefined Variables in Laravel Blade Views Welcome to the world of Laravel development! It is completely normal to feel confused when you...",
+  "image": null,
+  "tags": [],
+  "content": "# SOLVED: Debugging Undefined Variables in Laravel Blade Views\n\nWelcome to the world of Laravel development! It is completely normal to feel confused when you start moving from basic syntax to handling database interactions and view rendering—it’s a steep but rewarding learning curve. The error \"Undefined variable: users\" often stems not from a fundamental misunderstanding of Laravel, but from a subtle mismatch in how data is passed between the Controller, the Model, and the View.\n\nAs a senior developer, I can assure you that this issue is extremely common. It usually boils down to scope, naming conventions, or an incorrect array structure when passing data to the view. Let's dissect your specific scenario, correct the logic, and establish some best practices for handling Eloquent collections in Blade files.\n\n## Understanding the Flow: Controller to View Data Passing\n\nThe core of this problem lies in understanding the flow of data through the Model-View-Controller (MVC) pattern. When you fetch data using Eloquent, that data must be explicitly passed from the controller to the view.\n\nLet's review the code snippets you provided:\n\n**Your Controller Logic:**\n```php\npublic function users(){\n    $users = Admin::all(); // $users is a Collection of Admin models"
+}

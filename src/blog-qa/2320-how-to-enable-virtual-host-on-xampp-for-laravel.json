@@ -1,0 +1,11 @@
+{
+  "title": "How to enable Virtual Host on Xampp for Laravel?",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# How to Enable Virtual Host on XAMPP for Laravel: Troubleshooting Domain Access Issues Setting up custom domain names for local development environments is a...",
+  "image": null,
+  "tags": [],
+  "content": "# How to Enable Virtual Host on XAMPP for Laravel: Troubleshooting Domain Access Issues\n\nSetting up custom domain names for local development environments is a crucial step for professional Laravel development. When you want to access your application via a clean URL like `dev.app` instead of `localhost/dev`, configuring Apache as a Virtual Host (VHost) within XAMPP is the correct approach.\n\nHowever, as demonstrated by the common issues encountered during this setup—like resolving the domain but failing to load assets (images)—it often reveals subtle configuration errors beyond just editing the `.conf` files. As senior developers, we need to look beyond the syntax and examine file permissions and server directives.\n\nThis guide will walk you through the correct process for setting up a Virtual Host for your Laravel installation and troubleshoot the common pitfalls that lead to connection failures or broken assets.\n\n## The Foundation: Understanding Virtual Hosts\n\nA Virtual Host allows a single server (like Apache) to host multiple websites, each with its own document root and configuration. For Laravel, the key is ensuring that the web server points correctly to the application's `public` directory, which contains all the publicly accessible assets.\n\n### Step 1: Configuring Apache Virtual Hosts\n\nYou initially attempted to modify"
+}

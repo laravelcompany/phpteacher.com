@@ -1,0 +1,11 @@
+{
+  "title": "How to count distinct values from a collection in Laravel?",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# How to Count Distinct Values from a Collection in Laravel: Mastering Collection Aggregation As developers working with Laravel, we frequently deal with...",
+  "image": null,
+  "tags": [],
+  "content": "# How to Count Distinct Values from a Collection in Laravel: Mastering Collection Aggregation\n\nAs developers working with Laravel, we frequently deal with retrieving complex data sets from the database and manipulating them within PHP"
+}

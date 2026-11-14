@@ -1,0 +1,60 @@
+---
+import { sortedBlogQa } from '@support/blog-qa'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogQaCard from '@components/blog/BlogQaCard.astro'
+import Pagination from '@components/blog/Pagination.astro'
+import { SITE } from '@/config'
+
+export const POSTS_PER_PAGE = 24
+
+const allPosts = sortedBlogQa()
+
+const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
+const pagePosts = allPosts.slice(0, POSTS_PER_PAGE)
+
+const description = `${allPosts.length} PHP and Laravel questions answered: errors, configuration, architecture, testing and day-to-day development fixes.`
+const URL = Astro.url.href
+---
+
+<BaseLayout
+    title="Blog - PHP Q&A"
+    description={description}
+    structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'inLanguage': 'en-US',
+        '@id': URL,
+        'url': URL,
+        'name': `Blog - ${SITE.title}`,
+        'description': description,
+        'isPartOf': {
+            '@type': 'WebSite',
+            'url': SITE.url,
+            'name': SITE.title,
+            'description': SITE.description,
+        },
+    }}
+>
+    <section class="mx-auto max-w-7xl px-4 pt-28 pb-16 sm:px-6 lg:px-[60px]">
+        <nav class="mb-8 flex items-center justify-center gap-2 text-sm text-neutral-400" aria-label="Breadcrumb">
+            <a href="/" class="transition-colors hover:text-white">Home</a>
+            <span>/</span>
+            <span class="text-white">Blog</span>
+        </nav>
+
+        <h1 class="text-center text-4xl font-extrabold tracking-tight text-white">PHP Q&amp;A Blog</h1>
+        <p class="mx-auto mt-4 max-w-2xl text-center text-lg text-neutral-400">
+            {allPosts.length} questions and answers on PHP, Laravel, errors, configuration and everyday development problems.
+        </p>
+
+        <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {pagePosts.map(post => (
+                <BlogQaCard id={post.id} title={post.title} excerpt={post.excerpt} date={post.date} />
+            ))}
+        </div>
+
+        <div class="mt-12">
+            <Pagination currentPage={1} totalPages={totalPages} baseUrl="/blog/" />
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,11 @@
+{
+  "title": "Laravel + Vite + Sail over HTTPS. Possible?",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Laravel + Vite + Sail over HTTPS: The Reality of Docker Networking As a senior developer, I often encounter situations where a seemingly simple configuration...",
+  "image": null,
+  "tags": [],
+  "content": "# Laravel + Vite + Sail over HTTPS: The Reality of Docker Networking\n\nAs a senior developer, I often encounter situations where a seemingly simple configuration breaks down into complex networking puzzles. Trying to achieve a specific goal—like serving a Laravel application via HTTPS within a Dockerized environment using Sail and Vite—can quickly lead to confusion about which layer is responsible for what.\n\nThe setup you’ve provided highlights a common stumbling block: setting the `vite.config.js` to use HTTPS doesn't automatically configure the underlying web server (like Nginx, which is typically used in production Docker setups) to handle SSL termination correctly across the network boundary.\n\nLet's dive into why your attempt fails"
+}

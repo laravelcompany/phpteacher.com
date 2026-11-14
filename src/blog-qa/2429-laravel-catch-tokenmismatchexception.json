@@ -1,0 +1,11 @@
+{
+  "title": "Laravel catch TokenMismatchException",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Mastering CSRF Errors in Laravel: Catching `TokenMismatchException` Gracefully As a senior developer working with the Laravel ecosystem, we frequently...",
+  "image": null,
+  "tags": [],
+  "content": "# Mastering CSRF Errors in Laravel: Catching `TokenMismatchException` Gracefully\n\nAs a senior developer working with the Laravel ecosystem, we frequently encounter situations where standard framework exceptions need custom handling to"
+}

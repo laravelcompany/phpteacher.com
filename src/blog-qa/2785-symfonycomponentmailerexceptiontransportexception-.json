@@ -1,0 +1,11 @@
+{
+  "title": "Symfony\\Component\\Mailer\\Exception\\TransportException with message 'Expected response code \"250\" but got an empty response.'",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Solving the SMTP Transport Nightmare: Decoding `Expected response code \"250\" but got an empty response` in Laravel Mailer As developers, we often encounter...",
+  "image": null,
+  "tags": [],
+  "content": "# Solving the SMTP Transport Nightmare: Decoding `Expected response code \"250\" but got an empty response` in Laravel Mailer\n\nAs developers, we often encounter frustrating errors when dealing with external services, especially email delivery. The error `Symfony\\Component\\Mailer\\Exception\\TransportException with message 'Expected response code \"250\" but got an empty response"
+}

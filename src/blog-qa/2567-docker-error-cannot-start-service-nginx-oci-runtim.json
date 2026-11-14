@@ -1,0 +1,11 @@
+{
+  "title": "Docker: ERROR Cannot start service nginx: OCI runtime create failed",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Docker: Solving the \"OCI runtime create failed\" Error When Mounting Configuration Files As senior developers working with containerized applications, we...",
+  "image": null,
+  "tags": [],
+  "content": "# Docker: Solving the \"OCI runtime create failed\" Error When Mounting Configuration Files\n\nAs senior developers working with containerized applications, we frequently encounter frustrating errors during the deployment phase. One of the most common culprits in `docker-compose` setups is the inability to correctly mount host files into the container, often resulting in cryptic messages like `ERROR Cannot start service nginx: OCI runtime create failed`.\n\nThis post will dissect the specific error you are facing with your Nginx setup and provide a thorough, developer-focused solution. We will examine your provided configuration, diagnose the root cause of the \"not a directory\" issue, and establish best practices for volume management in Docker.\n\n## Understanding the Error"
+}

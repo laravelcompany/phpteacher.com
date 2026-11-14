@@ -1,0 +1,11 @@
+{
+  "title": "Authenticator \"LOGIN\" returned \"Expected response code \"235\" but got code \"535\", with message \"535 Authentication failed\".\"",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Resolving SMTP Authentication Failures in Laravel: Decoding Error Code 535 As a senior developer working with Laravel, setting up reliable email delivery is...",
+  "image": null,
+  "tags": [],
+  "content": "# Resolving SMTP Authentication Failures in Laravel: Decoding Error Code 535\n\nAs a senior developer working with Laravel, setting up reliable email delivery is crucial. When you configure services like Mailgun, SendGrid, or even standard SMTP servers via Laravel's mail system, unexpected authentication errors can halt your application flow. The error you are encountering—\"Authenticator 'LOGIN' returned 'Expected response code \"235\" but got code \"535\", with message '535 Authentication failed'\"—is a classic symptom of an issue occurring at the SMTP server level, rather than just a simple Laravel configuration mistake.\n\nThis post will break down what this error means and provide a comprehensive troubleshooting guide based on your provided setup to help you resolve the authentication failure.\n\n## Understanding the SMTP Error Code 535\n\nThe error code `535 Authentication failed` is a standard response from an SMTP server indicating that the client (your Laravel application, acting as the authenticator) failed to successfully log in using the provided credentials. The expected code (`235`) relates to a successful initial response"
+}

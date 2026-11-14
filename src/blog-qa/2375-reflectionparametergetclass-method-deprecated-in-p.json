@@ -1,0 +1,11 @@
+{
+  "title": "ReflectionParameter::getClass() method deprecated in php 8.0.1",
+  "date": "2026-06-29",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Resolving Deprecation: Dealing with `ReflectionParameter::getClass()` in PHP 8.0+ Laravel Applications As developers working with frameworks like Laravel, we...",
+  "image": null,
+  "tags": [],
+  "content": "# Resolving Deprecation: Dealing with `ReflectionParameter::getClass()` in PHP 8.0+ Laravel Applications\n\nAs developers working with frameworks like Laravel, we are constantly navigating changes introduced by new PHP versions. Upgrading to PHP 8"
+}
