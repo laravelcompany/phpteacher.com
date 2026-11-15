@@ -38,6 +38,8 @@ export const FooterLinks = [
     {
         section: 'Other',
         links: [
+            { name: 'About', url: '/about' },
+            { name: 'Contact', url: '/contact' },
             { name: 'RSS', url: '/rss.xml' },
             { name: 'Site Map', url: '/sitemap-index.xml' },
             { name: 'GitHub', url: 'https://github.com/laravelcompany' },
