@@ -27,7 +27,10 @@ export default defineConfig({
         sitemap(),
         tailwind(),
         react(),
-        (await import('@playform/compress')).default({
+        // Slice builds (BLOG_SLICE) set SKIP_COMPRESS=1: post HTML is
+        // harvested for KV mid-build and uniform compression would need a
+        // full run; the deploy dist comes from a normal compressed build.
+        ...(process.env.SKIP_COMPRESS ? [] : [(await import('@playform/compress')).default({
             // The bundled upstream manual is copied unchanged, not rebuilt with the site.
             Exclude: [(file) => file.includes('/manual/') || file.includes('/magazines/')],
             CSS: true,
@@ -42,7 +45,7 @@ export default defineConfig({
             Image: false,
             SVG: true,
             Logger: 2,
-        }),
+        })],
         uploadAssetsToS3(),
     ],
     markdown: {
