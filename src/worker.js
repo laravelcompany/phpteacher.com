@@ -19,6 +19,11 @@ function b64ToBytes(b64) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // One canonical host: fold www into the apex.
+    if (url.hostname === "www.phpteacher.com") {
+      url.hostname = "phpteacher.com";
+      return Response.redirect(url.toString(), 308);
+    }
     const m = url.pathname.match(/^\/blog\/([^\/.]+)\/?(?:index\.html)?$/);
     if (m && !/^\d+$/.test(m[1]) && m[1] !== "page") {
       const slug = m[1];
