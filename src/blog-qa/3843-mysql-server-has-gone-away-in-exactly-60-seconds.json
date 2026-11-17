@@ -1,0 +1,11 @@
+{
+  "title": "MySQL server has gone away - in exactly 60 seconds",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# MySQL server has gone away - in exactly 60 seconds You are debugging a nightly job that suddenly started timing out after exactly 60 seconds, throwing a...",
+  "image": null,
+  "tags": [],
+  "content": "# MySQL server has gone away - in exactly 60 seconds\n\nYou are debugging a nightly job that suddenly started timing out after exactly 60 seconds, throwing a `MySQL server has gone away` error. The query runs fine from the command line but fails when called from your PHP application. You've already tried increasing `wait_timeout`, rebooted the server, and even checked the OS version. It's frustrating because the logic seems sound: you're using `SLEEP(120)` to simulate a long-running operation, yet the connection dies prematurely.\n\nThe culprit is almost certainly not a resource issue or a query optimization problem. When an error occurs at a fixed intervalâspecifically 60 seconds in this caseâit points directly to a network-level timeout setting rather than a server-side execution limit.\n\n## The Real Timeout: `net_read_timeout`\n\nWhile you might have adjusted the standard `wait_timeout`, which controls how long a connection is kept idle before the server closes it, that isn't the only timer at play. In your specific environment, the issue stems from the client's expectation to receive data versus the actual delivery time.\n\nThe variable `net_read_timeout` dictates how many seconds the MySQL client waits for the first packet of data after issuing a query. By default in many configurations (and often the case in older setups like MySQL 5.1), this value is set to 30 seconds. However, your error log shows the connection dying at 60 seconds"
+}

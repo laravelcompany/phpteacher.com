@@ -1,0 +1,15 @@
+{
+  "name": "phpteacher-com",
+  "compatibility_date": "2026-03-25",
+  "main": "src/worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "STATIC"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "BLOG_KV",
+      "id": "BLOG_KV_NAMESPACE_ID"
+    }
+  ]
+}

@@ -11,6 +11,11 @@ marked.setOptions({
 })
 
 export async function getStaticPaths() {
+    // Cloudflare Pages builds set SKIP_BLOG_POST_PAGES=1: the ~16k post
+    // pages would exceed the Pages 20k-file deploy cap. They are served by
+    // the Worker from KV instead (src/worker.js); a full local build renders
+    // them and scripts/extract-blog-posts.mjs ships them to KV.
+    if (process.env.SKIP_BLOG_POST_PAGES === '1') return []
     return loadBlogQa().map(post => ({
         params: { slug: post.id },
         props: { post },

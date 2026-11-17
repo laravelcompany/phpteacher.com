@@ -1,0 +1,11 @@
+{
+  "title": "enable SOAP on PHP",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "Enabling SOAP on a CentOS server isn't just about dropping a line into `php.ini`. It's a dependency management exercise that often trips up administrators...",
+  "image": null,
+  "tags": [],
+  "content": "Enabling SOAP on a CentOS server isn't just about dropping a line into `php.ini`. It's a dependency management exercise that often trips up administrators relying on the default EPEL or base repositories. The core issue stems from how PHP extensions are packaged in RPM distributions: they don't live in isolation. When you attempt to install `php-soap` directly via `yum`, the package manager sees it as an orphan unless the underlying PHP build is already aligned with a specific extension version.\n\nIf your server is running standard CentOS packages (e.g., PHP 5.1 or 5.3 from the base repo) and you try to install `php-soap` from EPEL or Updates, you"
+}
