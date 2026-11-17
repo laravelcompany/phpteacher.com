@@ -2,10 +2,20 @@ import { blogBatchKey } from "./blog-kv-hash.js";
 
 // phpteacher.com front door.
 // - /blog/<slug> post pages are served from KV (batched, written at deploy
-//   time by scripts/extract-blog-posts.mjs) because the ~16k post files
-//   exceed the Pages per-deploy file limit.
+//   time by scripts/extract-blog-posts.mjs or scripts/assemble-kv-bulk.mjs)
+//   because the ~16k post files exceed the Pages per-deploy file limit.
+//   Each post is stored gzip-compressed and base64-encoded: the raw harvest
+//   is ~700MB, which would not fit the 1GB free-tier KV storage next to
+//   ecudocs; gzipped it is ~100MB.
 // - Everything else (including /blog and /blog/page/<n> pagination) falls
 //   through to the static assets binding (the Astro build output).
+function b64ToBytes(b64) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -14,15 +24,28 @@ export default {
       const slug = m[1];
       try {
         const batch = await env.BLOG_KV.get(blogBatchKey(slug), "json");
-        const html = batch && batch[slug];
-        if (html) {
-          return new Response(html, {
-            status: 200,
-            headers: {
-              "content-type": "text/html; charset=utf-8",
-              "cache-control": "public, max-age=3600",
-            },
-          });
+        const packed = batch && batch[slug];
+        if (packed) {
+          const gz = b64ToBytes(packed);
+          const headers = {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "public, max-age=3600",
+            vary: "accept-encoding",
+          };
+          const acceptsGzip = (
+            request.headers.get("accept-encoding") || ""
+          ).includes("gzip");
+          if (acceptsGzip) {
+            return new Response(gz, {
+              status: 200,
+              headers: { ...headers, "content-encoding": "gzip" },
+            });
+          }
+          // Rare non-gzip client: inflate in the worker.
+          const stream = new Blob([gz])
+            .stream()
+            .pipeThrough(new DecompressionStream("gzip"));
+          return new Response(stream, { status: 200, headers });
         }
         // Unknown slug: fall through to the static 404 page.
       } catch (err) {

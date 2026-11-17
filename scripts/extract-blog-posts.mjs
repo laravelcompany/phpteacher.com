@@ -12,6 +12,7 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 import { execSync } from "node:child_process";
+import { gzipSync } from "node:zlib";
 import { BLOG_BATCHES, blogBatchIndex } from "../src/blog-kv-hash.js";
 
 const root = new URL("../", import.meta.url).pathname;
@@ -48,7 +49,8 @@ if (postDirs.length < 15000) {
 
 const batches = new Map(); // batchIndex -> {slug: html}
 for (const slug of postDirs) {
-  const html = readFileSync(join(blogDir, slug, "index.html"), "utf8");
+  // gzip+base64, see assemble-kv-bulk.mjs / src/worker.js
+  const html = gzipSync(readFileSync(join(blogDir, slug, "index.html"))).toString("base64");
   const n = blogBatchIndex(slug);
   if (!batches.has(n)) batches.set(n, {});
   batches.get(n)[slug] = html;

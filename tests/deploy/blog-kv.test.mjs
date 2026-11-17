@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { execSync } from "node:child_process";
+import { gunzipSync } from "node:zlib";
 import { blogBatchKey } from "../../src/blog-kv-hash.js";
 
 const root = new URL("../../", import.meta.url).pathname;
@@ -25,7 +26,8 @@ test("kv bulk chunks exist and parse", () => {
       const posts = JSON.parse(el.value);
       const slugs = Object.keys(posts);
       assert.ok(slugs.length > 0, `${el.key} holds no posts`);
-      assert.match(posts[slugs[0]], /<article/, `${slugs[0]} missing <article>`);
+      const html = gunzipSync(Buffer.from(posts[slugs[0]], "base64")).toString("utf8");
+      assert.match(html, /<article/, `${slugs[0]} missing <article>`);
     }
   }
 });
@@ -52,7 +54,10 @@ test("a new questions/json post is in the KV payload", () => {
     const arr = JSON.parse(readFileSync(join(kvDir, f), "utf8"));
     const el = arr.find((e) => e.key === key);
     if (el) {
-      found = JSON.parse(el.value)["1002-how-to-install-mysqli"] ?? "";
+      const packed = JSON.parse(el.value)["1002-how-to-install-mysqli"] ?? "";
+      found = packed
+        ? gunzipSync(Buffer.from(packed, "base64")).toString("utf8")
+        : "";
       break;
     }
   }

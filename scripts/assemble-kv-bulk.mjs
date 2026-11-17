@@ -17,6 +17,7 @@ import {
   statSync,
 } from "node:fs";
 import { join } from "node:path";
+import { gzipSync } from "node:zlib";
 import { blogBatchIndex } from "../src/blog-kv-hash.js";
 
 const root = new URL("../", import.meta.url).pathname;
@@ -65,7 +66,10 @@ for (const [n, slugs] of [...byBatch.entries()].sort((a, b) => a[0] - b[0])) {
   const key = `blog-batch-${String(n).padStart(3, "0")}`;
   const posts = {};
   for (const slug of slugs) {
-    posts[slug] = readFileSync(join(partsDir, `${slug}.html`), "utf8");
+    // gzip+base64: ~700MB raw would not fit the 1GB free-tier KV storage
+    // alongside ecudocs; gzipped it is ~100MB. The Worker serves it with
+    // content-encoding: gzip (or inflates for non-gzip clients).
+    posts[slug] = gzipSync(readFileSync(join(partsDir, `${slug}.html`))).toString("base64");
   }
   const el = JSON.stringify({ key, value: JSON.stringify(posts) });
   if (currentBytes + el.length > MAX_CHUNK_BYTES && !first) {
