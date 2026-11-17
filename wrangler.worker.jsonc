@@ -4,7 +4,10 @@
   "main": "src/worker.js",
   "assets": {
     "directory": "./dist",
-    "binding": "STATIC"
+    "binding": "STATIC",
+    // Run the worker for every request: host redirects (/posts, www) must
+    // fire even for paths that exist as static assets.
+    "run_worker_first": true
   },
   "kv_namespaces": [
     {
