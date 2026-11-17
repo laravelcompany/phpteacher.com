@@ -1,0 +1,11 @@
+{
+  "title": "Inserting html code in a mysql table",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Inserting HTML Code in a MySQL Table Without Breaking Queries You are facing a classic SQL injection scenario, but the root cause isn't just \"quotes\"; it is...",
+  "image": null,
+  "tags": [],
+  "content": "# Inserting HTML Code in a MySQL Table Without Breaking Queries\n\nYou are facing a classic SQL injection scenario, but the root cause isn't just \"quotes\"; it is fundamentally how your query constructs the statement string. The error you are seeingâ`Error adding details. Reason : You have an error in your SQL syntax...` near `fulltext = '`âindicates that the database parser sees a single quote as the end of your string value, followed immediately by a newline or another character it doesn't expect to be part of the value.\n\nThe specific issue lies in this line of your query:\n```php\nUPDATE $jos_content SET introtext = '$intro_code', ...\n```\n\nEven if you wrap `$article_code` with `mysql_escape_string()`, that function only works on scalar strings passed directly to it. In your current implementation, you are placing the variable *inside* single quotes within the SQL string itself. If the HTML content contains a single quote (e.g., `<span class=\"test\">`), that character terminates the SQL string prematurely. The database thinks the value ends there, and whatever follows is interpreted as new SQL syntax, causing the crash.\n\nFurthermore, `mysql_escape_string()` is deprecated and removed in modern PHP versions. It also does not handle binary data or specific context-dependent escaping correctly. Using `addslashes()` to fix this creates a double-encoding problem because Joomla expects the raw HTML stored in the database, not escaped HTML. When Joomla retrieves the data, it cannot simply run `stripslashes()`, as that would corrupt the actual HTML tags and attributes.\n\n### The Correct Approach"
+}

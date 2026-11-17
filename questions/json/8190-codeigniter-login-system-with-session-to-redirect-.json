@@ -1,0 +1,11 @@
+{
+  "title": "Codeigniter login system with session to redirect user to page if password correct",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Implementing Session-Based Access Control in CodeIgniter You are experiencing a classic access control issue where your application loops back to the login...",
+  "image": null,
+  "tags": [],
+  "content": "# Implementing Session-Based Access Control in CodeIgniter\n\nYou are experiencing a classic access control issue where your application loops back to the login page immediately after a successful authentication, regardless of whether the user is valid or not. This behavior usually stems from how session data is checked against protected routes versus how unprotected routes are handled. The root cause in your specific setup is that the `Employee` controller does not verify if a user is logged in before rendering views like `index`, `list_employee`, or `View_employee`.\n\nWhen a valid user logs in, the `User_Authentication` controller sets a session variable (e.g., `logged_in`) and redirects to the employee dashboard. However, because your `Employee` controller lacks middleware-like logic, it treats the authenticated user exactly the same as an unauthenticated one when rendering these public-facing views. Conversely, if you try to protect these pages by redirecting everyone back to the login form without checking session state, you create a loop where even valid users are kicked out immediately.\n\n## Verifying Session State in Controllers\n\nTo fix this, you must explicitly check for the existence of your session data before loading any views or performing database operations. In CodeIgniter, the `session` library allows you to verify if a specific key"
+}

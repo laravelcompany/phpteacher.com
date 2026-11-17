@@ -1,0 +1,11 @@
+{
+  "title": "Troubleshooting \"Warning: session_start(): Cannot send session cache limiter - headers already sent\"",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Troubleshooting \"Warning: session_start(): Cannot send session cache limiter - headers already sent\" When you encounter the warning `Cannot send session...",
+  "image": null,
+  "tags": [],
+  "content": "# Troubleshooting \"Warning: session_start(): Cannot send session cache limiter - headers already sent\"\n\nWhen you encounter the warning `Cannot send session cache limiter - headers already sent`, it indicates a fundamental conflict in how HTTP responses are managed. PHP requires that all header informationâincluding redirects, cookies, and the session cookie itselfâbe transmitted before any body content is output to the browser. Once your script prints even a single character, such as whitespace, a newline, or an echoed string, the headers are locked. Attempting to start a session with `session_start()` after this point triggers the error because PHP tries to modify the header state that has already been committed.\n\nIn the provided code snippet, the issue is not strictly about submitting data to the same page versus a different file; rather, it is about *where* the output begins relative to the `session_start()` call. The specific error message often cites where output started, for example: `output started at line 123`. In your scenario, the error likely stems from the fact that `session_start()` is invoked inside the PHP block that is already mixed with HTML content or preceded by invisible characters.\n\n### The Root Cause: Invisible Characters and Code Order\n\nLooking closely at the structure of your script, you have a large block of HTML (DOCTYPE, head, body) followed by a PHP block embedded within the `<body>`. While PHP can be placed anywhere in the file, `session_start()` is typically best placed at the very top of the file.\n\nIf your editor is configured to add a Byte Order Mark (BOM) or if there are"
+}

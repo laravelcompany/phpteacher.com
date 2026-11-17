@@ -1,0 +1,11 @@
+{
+  "title": "Symfony 4 - Object of class could not be converted to String",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Symfony 4 - Object of class could not be converted to String This error occurs in two common scenarios in a Symfony application: you are trying to echo or...",
+  "image": null,
+  "tags": [],
+  "content": "# Symfony 4 - Object of class could not be converted to String\n\nThis error occurs in two common scenarios in a Symfony application: you are trying to echo or print an object instance directly, or your Twig template is attempting to render an entity without it having a valid string representation. It's not a Doctrine magic method issue; the database mapping for your `Entreprise` and `Site` entities looks correct. The problem lies in how Symfony handles type coercion when rendering templates or generating flash messages.\n\nIn Symfony, objects are not automatically converted to strings unless they implement the `__toString()` magic method. If you do not define this method, Symfony will throw a `Catchable Fatal Error` when it attempts to cast your object to a string. This often happens when using the `addFlash` function in controllers, where the framework tries to convert the object passed as the message into a string for display.\n\nIn your specific case, the error points to the `Entreprise` entity not being convertible to a string. However, looking at your code, you have already implemented `__toString()` on the `Site` entity, which returns the site name. The issue is that you are likely passing an `Entreprise` object into a context where Symfony expects a string.\n\n### Correcting the Entity Mapping\n\nA deeper inspection of your `Entreprise` entity reveals a critical mistake in the association mapping that is unrelated to the `__toString()` error but will cause other issues later. You have defined:\n\n```php"
+}

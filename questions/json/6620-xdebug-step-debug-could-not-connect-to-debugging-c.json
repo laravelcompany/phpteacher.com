@@ -1,0 +1,11 @@
+{
+  "title": "Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (fallback through xdebug.client_host/xdebug.client_port) :-(",
+  "date": "2026-11-15",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "# Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (fallback through xdebug.client_host/xdebug.client_port) :-( When running...",
+  "image": null,
+  "tags": [],
+  "content": "# Xdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (fallback through xdebug.client_host/xdebug.client_port) :-(\n\nWhen running `composer update` on WSL2 with Ubuntu 20.04 and PHP 8, you might see this error from Xdebug 3:\n\n```\nXdebug: [Step Debug] Could not connect to debugging client. Tried: localhost:9003 (fallback through xdebug.client_host/xdebug.client_port) :-(\n```\n\nThis message means Xdebug is trying to establish a connection with your IDE debugger but cannot reach the expected address. In your environment, it's attempting to connect to `localhost:9003` as shown in this log output from `php -i`:\n\n```\nxdebug.client_host => localhost => localhost\nxdebug.client_port => 9003 => 9003\n```\n\nXdebug 3 changed how debugging connections are initiated. Unlike previous versions, Xdebug now expects the client debugger (such as VS Code, PhpStorm, or Laravel Idea) to initiate the connection, not the PHP process. This is why you're seeing a failure when trying to connect from WSL2 to localhostâthe PHP CLI environment doesn't know which external debugger should connect back to it, and `localhost` isn't reachable from within WSL2 unless explicitly configured.\n\n## Why this happens in WSL2 environments\n\nThe core issue lies in the network configuration between your Windows host and the Linux subsystem (WSL2). When you run PHP commands inside WSL2, `localhost` refers to the WSL2 VM's internal loopback interface, not your Windows machine. If your IDE debugger is running on Windows,"
+}
