@@ -1,0 +1,19 @@
+{
+  "title": "Faster Network File Sync with `rclone` (vs `rsync`)",
+  "date": "2025-05-01",
+  "author": "Stefan Bogdanescu",
+  "authorRole": "Founder & Senior Architect",
+  "authorAvatar": "/avatar-stefan.jpg",
+  "excerpt": "The PHP Foundation just dropped a fat security audit on `php-src` — that’s the engine behind PHP itself — and yeah, it wasn’t pretty. Some high-sev vulnerabilities were found lurking in the dark corners",
+  "description": "The PHP Foundation just dropped a fat security audit on `php-src` — that’s the engine behind PHP itself — and yeah, it wasn’t pretty. Some high-sev vulnerabilities were found lurking in the dark corners",
+  "image": "/logo.svg",
+  "banner": "/logo.svg",
+  "category": "tool",
+  "tags": [
+    "Tips",
+    "Programming",
+    "Technical",
+    "Linux"
+  ],
+  "content": "For the past couple years, I’ve lugged around my “working set” — a hefty, ever-growing collection of video projects and random chaos — on an external Thunderbolt NVMe SSD. It’s my daily shuttle. And yeah, it’s fast. *On paper.*\n\nBut syncing those files? Painfully slow. I'm talking *slower than it should be*. 😤\n\nA typical day sees me drop 500–1000 new files, with a handful weighing in at 1–10 GB each. Multiply that by a few project folders and... you get the idea.\n\nMy gear’s no slouch:\n\n* 🔥 External Thunderbolt NVMe SSD: Capable of 5+ GB/sec.\n* 🌐 10 GbE network connection: Can hit 1 GB/sec.\n* 🚀 Upgraded to Thunderbolt 5: Nice, but didn’t solve the sync bottleneck.\n\nSo the weak link? The **sync method**. I had been using:\n\n```bash\nrsync -au --progress --stats /drive/sda/* /Volumes/Shuttle/Video_Projects\n```\n\nWhere `/drive/` is a fast NVMe-backed NAS share from my Arm-based NAS (fittingly named “Mercury”), and “Shuttle” is the SSD I carry around.\n\nAnd while `rsync` is rock solid — it *gets the job done* — it doesn’t seem to care much about using all that juicy bandwidth and IOPS I’ve got lying around.\n\n---\n\n### ⚡ Meet `rclone`: Your Sync Workhorse on Steroids\n\nSo I swapped `rsync` out with [`rclone`](https://rclone.org/), which is usually thought of for cloud syncs... but turns out it *slaps* for local network work too.\n\nHere’s the basic `rclone` command I used:\n\n```bash\nrclone copy /drive/sda/ Shuttle:Video_Projects --progress --transfers=32 --checkers=64 --fast-list\n```\n\nOr with a local path target:\n\n```bash\nrclone copy /drive/sda/ /Volumes/Shuttle/Video_Projects --progress --transfers=32 --checkers=64 --fast-list\n```\n\nTweakable. Efficient. And **way faster**.\n\n---\n\n### 📈 Benchmarks (Unofficial but Real)\n\nI ran a few real-world tests across the same dataset, doing cold syncs (no files cached). The results?\n\n| Tool     | Avg. Sync Time | Peak Throughput  |\n| -------- | -------------- | ---------------- |\n| `rsync`  | \\~16 minutes   | \\~200–250 MB/sec |\n| `rclone` | \\~4 minutes    | \\~800–900 MB/sec |\n\nWe're talking about **4x faster** syncs — basically using up every bit of that 10 Gbps link without breaking a sweat. 🙌\n\n---\n\n### 🔍 Why Is It Faster?\n\n1. **Multithreaded Transfers**: `rclone` doesn’t just crawl file by file — it throws multiple transfers at the problem.\n2. **Aggressive File Checking**: With `--checkers` and `--fast-list`, it ramps up directory scanning.\n3. **Better Parallelism**: It scales better across high-I/O file systems and fast networks.\n4. **Smarter Caching**: If you do repeated syncs, `rclone` benefits more from file system caching (especially on macOS).\n\n---\n\n### 💡 Takeaways\n\n* ✅ If you're syncing lots of small files or giant folders, **use `rclone`** — not just for the cloud.\n* ✅ Tweak `--transfers` and `--checkers` depending on your network/CPU.\n* ✅ Keep using `rsync` for surgical precision or POSIX metadata needs, but consider `rclone` when raw speed matters.\n\n---"
+}

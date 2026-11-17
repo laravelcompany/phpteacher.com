@@ -32,10 +32,10 @@ test("mobile navigation is accessible, dismissible and height constrained", () =
     assert.match(header, /max-height: calc\(100dvh - 80px\)/);
     assert.match(header, /overflow-y: auto/);
 });
-test("homepage keeps the existing resource routes and does not add a new blog system", () => {
+test("homepage keeps the existing resource routes with articles merged into /blog", () => {
     const home = read("src/pages/index.astro");
     for (const route of [
-        "/posts/",
+        "/blog/",
         "/manual/",
         "/categories/",
         "/magazines/",
@@ -43,6 +43,8 @@ test("homepage keeps the existing resource routes and does not add a new blog sy
         "/partners/",
     ])
         assert.ok(home.includes(route), route);
+    // The Posts section is merged into the one blog: no /posts links left.
+    assert.doesNotMatch(home, /\/posts\//);
     assert.match(home, /getCollection\('posts'\)/);
     assert.doesNotMatch(home, /Weekly Updates|50k|testimonials|href="#"/);
 });

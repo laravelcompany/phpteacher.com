@@ -9,7 +9,6 @@ export const SITE: Site = {
 }
 
 export const NavigationLinks: NavigationLink[] = [
-    { name: 'Posts', url: '/posts/' },
     { name: 'Blog', url: '/blog/' },
     { name: 'Categories', url: '/categories/' },
     { name: 'Partners', url: '/partners/' },
@@ -21,8 +20,7 @@ export const FooterLinks = [
     {
         section: 'Learn PHP',
         links: [
-            { name: 'Posts', url: '/posts/' },
-            { name: 'Blog', url: '/blog/' },
+                    { name: 'Blog', url: '/blog/' },
             { name: 'Categories', url: '/categories/' },
             { name: 'Manual', url: '/manual/' },
         ],

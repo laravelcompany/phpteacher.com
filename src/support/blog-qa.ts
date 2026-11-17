@@ -18,6 +18,10 @@ export interface BlogQaPost {
     content: string
     image?: string | null
     tags: string[]
+    // Present on the long-form articles imported from the old Posts section.
+    category?: string
+    description?: string
+    banner?: string | null
 }
 
 const DIR = 'src/blog-qa'

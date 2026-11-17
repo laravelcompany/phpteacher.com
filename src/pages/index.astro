@@ -10,8 +10,8 @@ const recentPosts = posts.slice(1, 7)
 const learning = [
   { title: 'PHP basics & syntax', description: 'Start with variables, types, functions and control flow. Keep the PHP manual close as you learn.', href: '/manual/', label: 'Open the manual' },
   { title: 'OOP & design patterns', description: 'Explore classes, interfaces, traits and the patterns behind maintainable PHP applications.', href: '/categories/', label: 'Explore categories' },
-  { title: 'Databases & SQL', description: 'Read about PDO, SQL and working with data in PHP and Laravel applications.', href: '/posts/', label: 'Browse articles' },
-  { title: 'Testing & tooling', description: 'Find articles on testing, developer tools and the everyday work of building software.', href: '/posts/', label: 'Read the articles' },
+  { title: 'Databases & SQL', description: 'Read about PDO, SQL and working with data in PHP and Laravel applications.', href: '/blog/', label: 'Browse articles' },
+  { title: 'Testing & tooling', description: 'Find articles on testing, developer tools and the everyday work of building software.', href: '/blog/', label: 'Read the articles' },
   { title: 'Frameworks & libraries', description: 'Go beyond the language with Laravel books, ecosystem news and framework resources.', href: '/books-laravel/', label: 'Browse Laravel books' },
   { title: 'PHP magazines', description: 'Explore the magazine archive for longer reads on PHP development and the community.', href: '/magazines/', label: 'Explore magazines' },
 ]
@@ -25,7 +25,7 @@ const learning = [
           <h1 id="hero-title">Build your skills.<br />Learn <span class="pt-gradient">PHP</span>.<br />Keep growing.</h1>
           <p class="pt-hero-description">From your first function to your next application. Explore PHP articles, the language manual, Laravel books and magazines, all in one place.</p>
           <div class="pt-actions">
-            <a class="pt-button" href="/posts/">Browse articles <span aria-hidden="true">→</span></a>
+            <a class="pt-button" href="/blog/">Browse articles <span aria-hidden="true">→</span></a>
             <a class="pt-button pt-button-secondary" href="/manual/">Read the manual</a>
           </div>
           <div class="pt-badges">
@@ -49,7 +49,7 @@ const learning = [
           <div class="pt-code-links"><a href="/manual/">The manual →</a><a href="/categories/">Categories →</a><a href="/magazines/">Magazines →</a></div>
         </div>
       </div>
-      <div class="pt-container pt-topics" aria-label="Learning resources"><span>Your PHP resource shelf</span><a href="/manual/">PHP manual</a><a href="/posts/">Articles</a><a href="/books-laravel/">Laravel books</a><a href="/magazines/">Magazines</a><a href="/categories/">Categories</a></div>
+      <div class="pt-container pt-topics" aria-label="Learning resources"><span>Your PHP resource shelf</span><a href="/manual/">PHP manual</a><a href="/blog/">Articles</a><a href="/books-laravel/">Laravel books</a><a href="/magazines/">Magazines</a><a href="/categories/">Categories</a></div>
     </section>
     <section class="pt-container pt-section" aria-labelledby="learning-title">
       <div class="pt-section-heading"><span class="pt-section-label">Find your next step</span><h2 id="learning-title">A place to learn.<br /><span class="pt-gradient">A reference to return to.</span></h2><p>Start with the language, then explore the tools and ideas around it. Choose the resource that fits what you are working on.</p></div>
@@ -60,9 +60,9 @@ const learning = [
     <section class="pt-articles" aria-labelledby="articles-title">
       <div class="pt-container pt-section">
         <div class="pt-section-heading"><span class="pt-section-label">From the reading list</span><h2 id="articles-title">Articles &amp; <span class="pt-gradient">ideas</span></h2><p>Explore the latest articles in our collection, from programming and frameworks to working as a developer.</p></div>
-        {featuredPost && <article class="pt-featured"><a href={`/posts/${featuredPost.slug}/`} tabindex="-1" aria-hidden="true"><Image src={featuredPost.data.banner} alt="" class="pt-featured-image" width="800" height="460" loading="lazy" /></a><div class="pt-featured-body"><span class="pt-section-label">Featured article · {featuredPost.data.category}</span><h3><a href={`/posts/${featuredPost.slug}/`}>{featuredPost.data.title}</a></h3><time datetime={featuredPost.data.pubDate.toISOString()}>{featuredPost.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time><p>{featuredPost.data.description}</p><a class="pt-card-link text-orange-300" href={`/posts/${featuredPost.slug}/`}>Read article <span aria-hidden="true">→</span></a></div></article>}
+        {featuredPost && <article class="pt-featured"><a href={`/blog/${featuredPost.slug}/`} tabindex="-1" aria-hidden="true"><Image src={featuredPost.data.banner} alt="" class="pt-featured-image" width="800" height="460" loading="lazy" /></a><div class="pt-featured-body"><span class="pt-section-label">Featured article · {featuredPost.data.category}</span><h3><a href={`/blog/${featuredPost.slug}/`}>{featuredPost.data.title}</a></h3><time datetime={featuredPost.data.pubDate.toISOString()}>{featuredPost.data.pubDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time><p>{featuredPost.data.description}</p><a class="pt-card-link text-orange-300" href={`/blog/${featuredPost.slug}/`}>Read article <span aria-hidden="true">→</span></a></div></article>}
         <div class="pt-recent-grid">{recentPosts.map(blog => <BlogInsight blog={blog} />)}</div>
-        <div class="pt-all-posts"><a class="pt-button pt-button-secondary" href="/posts/">View all articles <span aria-hidden="true">→</span></a></div>
+        <div class="pt-all-posts"><a class="pt-button pt-button-secondary" href="/blog/">View all articles <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
     <section class="pt-container pt-section" aria-labelledby="next-title"><div class="pt-cta"><span class="pt-section-label">Make something with PHP</span><h2 id="next-title">Your next line of code<br /><span class="pt-gradient">starts here.</span></h2><p>Look up a function, find your next read or explore a framework. The resources are here whenever you need them.</p><div class="pt-actions"><a class="pt-button" href="/manual/">Explore the PHP manual <span aria-hidden="true">→</span></a><a class="pt-button pt-button-secondary" href="/partners/">Meet our partners</a></div></div></section>

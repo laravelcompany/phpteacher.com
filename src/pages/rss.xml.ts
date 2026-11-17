@@ -50,7 +50,7 @@ export async function GET(context: APIContext) {
             },
             sanitize({ dropElements: ['script', 'style'] }),
         ])
-        feedItems.push({ ...post.data, link: `/posts/${post.slug}/`, content })
+        feedItems.push({ ...post.data, link: `/blog/${post.slug}/`, content })
     }
 
     // Return our RSS feed XML response.

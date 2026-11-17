@@ -1,39 +1,80 @@
 ---
+import Image from '@components/ui/images/Image.astro'
+
 interface Props {
     id: string
     title: string
     excerpt: string
     date: string
+    category?: string
+    banner?: string | null
 }
 
-const { id, title, excerpt, date } = Astro.props
+const { id, title, excerpt, date, category, banner } = Astro.props
 
-const cleanExcerpt = excerpt
+const categoryColorMap: Record<string, string> = {
+    php: 'bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300 border-orange-200 dark:border-orange-800',
+    laravel: 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-300 border-red-200 dark:border-red-800',
+    books: 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+    ddd: 'bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300 border-purple-200 dark:border-purple-800',
+    drupal: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800',
+    security: 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-300 border-red-200 dark:border-red-800',
+    career: 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-300 border-green-200 dark:border-green-800',
+    tool: 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700',
+    news: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 border-yellow-200 dark:border-yellow-800',
+    seo: 'bg-teal-100 text-teal-700 dark:bg-teal-900/20 dark:text-teal-300 border-teal-200 dark:border-teal-800',
+    kubernetes: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
+}
+const cat = (category || '').toLowerCase()
+const colorClass = categoryColorMap[cat] || 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700'
+
+const cleanExcerpt = (excerpt || '')
     .replace(/^Title:\s*/, '')
     .replace(/\s*Body:\s*/, ' ')
+    .replace(/^#+\s*/gm, '')
     .trim()
 
 function formatDate(d: string): string {
     const t = new Date(d)
     if (isNaN(t.valueOf())) return d
-    return t.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
+    return t.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
+
+const imageSrc = banner || '/logo.svg'
 ---
 
 <a
     class="group relative block rounded-xl outline-none ring-zinc-500 transition duration-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none bg-white dark:bg-neutral-900 shadow-md hover:shadow-xl hover:-translate-y-0.5 border border-neutral-200 dark:border-neutral-700 overflow-hidden"
     href={`/blog/${id}/`}
+    data-category={cat}
     data-astro-prefetch="false"
 >
+    <div class="relative overflow-hidden">
+        <Image
+            class="w-full h-40 object-cover transition duration-500 ease-in-out group-hover:scale-105"
+            src={imageSrc}
+            alt={title}
+            format="avif"
+            loading="lazy"
+            width="850"
+            height="440"
+            inferSize={true}
+        />
+        {category && (
+            <div class="absolute top-3 left-3">
+                <span class={`inline-flex items-center gap-x-1.5 rounded-md border px-2.5 py-1 text-xs font-semibold ${colorClass}`}>
+                    {category}
+                </span>
+            </div>
+        )}
+    </div>
     <div class="p-5">
-        <h3 class="text-sm font-bold text-neutral-800 group-hover:text-orange-500 dark:text-neutral-200 dark:group-hover:text-orange-300 leading-snug line-clamp-2">
+        <time class="text-sm text-neutral-500 dark:text-neutral-400">{formatDate(date)}</time>
+        <h3 class="mt-2 text-sm font-bold text-neutral-800 group-hover:text-orange-500 dark:text-neutral-200 dark:group-hover:text-orange-300 leading-snug line-clamp-2">
             {title}
         </h3>
         <p class="mt-2 text-xs text-gray-600 dark:text-neutral-400 leading-relaxed line-clamp-3">
             {cleanExcerpt}
-        </p>
-        <p class="mt-3 text-[11px] font-medium uppercase tracking-wide text-gray-500 dark:text-neutral-500">
-            {formatDate(date)}
         </p>
     </div>
 </a>

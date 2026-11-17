@@ -24,6 +24,18 @@ export default {
       url.hostname = "phpteacher.com";
       return Response.redirect(url.toString(), 308);
     }
+    // The old Posts section is merged into /blog: article URLs map 1:1 by
+    // slug, the section index and its pagination fold into the blog index.
+    const pm = url.pathname.match(/^\/posts(?:\/(.*))?$/);
+    if (pm) {
+      const rest = pm[1] || "";
+      const sm = rest.match(/^([^\/.]+)\/?(?:index\.html)?$/);
+      const target =
+        sm && !/^\d+$/.test(sm[1]) && sm[1] !== "page"
+          ? `/blog/${sm[1]}/`
+          : "/blog/";
+      return Response.redirect(new URL(target, url).toString(), 308);
+    }
     const m = url.pathname.match(/^\/blog\/([^\/.]+)\/?(?:index\.html)?$/);
     if (m && !/^\d+$/.test(m[1]) && m[1] !== "page") {
       const slug = m[1];
