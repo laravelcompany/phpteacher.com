@@ -48,6 +48,20 @@ test("homepage keeps the existing resource routes with articles merged into /blo
     assert.match(home, /getCollection\('posts'\)/);
     assert.doesNotMatch(home, /Weekly Updates|50k|testimonials|href="#"/);
 });
+test("search popup matches the dark violet theme and keeps its footer tidy", () => {
+    const css = read("src/components/support/search/AlgoliaDocSearch.css").replace(/\s+/g, "");
+    for (const token of [
+        "--docsearch-modal-background:#130f2e",
+        "--docsearch-searchbox-background:#0a0818",
+        "--docsearch-footer-background:#0d0a22",
+        "--docsearch-primary-color:#a78bfa",
+        "--docsearch-searchbox-shadow:0",
+        ".DocSearch-Commands{",
+        "white-space:nowrap",
+        "color-scheme:dark",
+    ])
+        assert.ok(css.includes(token), token);
+});
 test("house theme includes responsive layouts and reduced-motion support", () => {
     const css = read("src/styles/network-theme.css").replace(/\s+/g, "");
     for (const token of [
