@@ -45,7 +45,7 @@ export default defineConfig({
             Image: false,
             SVG: true,
             Logger: 2,
-        })],
+        })]),
         uploadAssetsToS3(),
     ],
     markdown: {
