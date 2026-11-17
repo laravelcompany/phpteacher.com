@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "npm test && astro build && node scripts/verify-build.mjs",
+    "build": "npm test && npm run build:search-index && astro build && node scripts/verify-build.mjs",
+    "build:search-index": "node --experimental-strip-types scripts/build-search-index.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",

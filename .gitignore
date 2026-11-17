@@ -30,3 +30,6 @@ backups/
 # KV deploy artifacts (generated)
 kv-parts/
 kv-bulk/
+
+# generated blog search index (scripts/build-search-index.mjs)
+public/search-index.json

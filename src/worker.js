@@ -1,4 +1,5 @@
 import { blogBatchKey } from "./blog-kv-hash.js";
+import { prepareIndex, searchIndex } from "./search/rank.mjs";
 
 // phpteacher.com front door.
 // - /blog/<slug> post pages are served from KV (batched, written at deploy
@@ -33,9 +34,36 @@ async function removedMark(env, slug) {
   return removedSlugs ? removedSlugs[slug] : undefined;
 }
 
+// Blog search index: built at deploy time into public/search-index.json by
+// scripts/build-search-index.mjs and fetched once per isolate through the
+// static assets binding. Own-corpus replacement for the old Algolia demo
+// index; the search popup calls GET /api/search?q=... .
+let preparedIndex; // undefined = not loaded yet, null = unavailable
+async function searchApi(env, url) {
+  if (preparedIndex === undefined) {
+    try {
+      const res = await env.STATIC.fetch(
+        new Request(new URL("/search-index.json", url)),
+      );
+      if (!res.ok) throw new Error(`search-index asset ${res.status}`);
+      preparedIndex = prepareIndex(await res.json());
+    } catch {
+      preparedIndex = null;
+    }
+  }
+  const hits = preparedIndex
+    ? searchIndex(preparedIndex, url.searchParams.get("q") || "")
+    : [];
+  return Response.json(
+    { hits },
+    { headers: { "cache-control": "public, max-age=300" } },
+  );
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/search") return searchApi(env, url);
     // One canonical host: fold www into the apex.
     if (url.hostname === "www.phpteacher.com") {
       url.hostname = "phpteacher.com";

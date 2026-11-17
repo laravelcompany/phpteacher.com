@@ -30,10 +30,15 @@ assert.ok(
     existsSync("dist/manual/index.html"),
     "PHP manual index remains available",
 );
+const searchIndex = JSON.parse(readFileSync("dist/search-index.json", "utf8"));
+assert.ok(
+    searchIndex.length > 9000,
+    `blog search index covers the corpus (${searchIndex.length} posts)`,
+);
 assert.ok(
     existsSync("dist/manual/function.strlen.html"),
     "bundled PHP manual remains available",
 );
 console.log(
-    "Production output verified: seven resource routes, shared layout, one AdSense loader per page, ads.txt, PHP manual.",
+    "Production output verified: seven resource routes, shared layout, one AdSense loader per page, ads.txt, PHP manual, blog search index.",
 );
