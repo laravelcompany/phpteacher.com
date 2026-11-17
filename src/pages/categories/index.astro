@@ -1,25 +1,17 @@
 ---
-import { getCollection } from 'astro:content'
-import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import MainSection from '@components/ui/sections/MainSection.astro'
 import BlogCategoryCard from '../../components/blog/BlogCategoryCard.astro'
 import { timeago } from '../../support/time'
+import { BLOG_CATEGORIES, postsInCategory, sortedBlogQa } from '@support/blog-qa'
 import { SITE } from '@/config'
 
-const postMap: Map<string, CollectionEntry<'posts'>[]> = (await getCollection('posts')).sort(
-    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).reduce((acc, obj) => {
-    let posts = acc.get(obj.data.category)
-    if (!posts) {
-        posts = []
-    }
-    posts.push(obj)
+const allPosts = sortedBlogQa()
 
-    acc.set(obj.data.category, posts)
-
-    return acc
-}, new Map<string, CollectionEntry<'posts'>[]>())
+const postMap = new Map<string, typeof allPosts>()
+for (const cat of BLOG_CATEGORIES) {
+    postMap.set(cat.slug, postsInCategory(allPosts, cat))
+}
 
 const layoutPattern = [
     { col: 2, row: 2 },
@@ -28,37 +20,32 @@ const layoutPattern = [
     { col: 1, row: 1 },
     { col: 1, row: 2 },
     { col: 2, row: 1 },
+    { col: 2, row: 1 },
     { col: 1, row: 1 },
     { col: 1, row: 1 },
     { col: 1, row: 1 },
     { col: 1, row: 1 },
 ]
 
-const categories = (await getCollection('categories')).sort((a, b) => {
-    const aCount = postMap.get(a.slug)?.length ?? 0
-    const bCount = postMap.get(b.slug)?.length ?? 0
-    return bCount - aCount
-}).map((c, index) => {
-    const posts = postMap.get(c.slug)
-    const pattern = layoutPattern[index % layoutPattern.length]
-    const smColSpan = Math.min(pattern.col, 2)
-    const mdColSpan = Math.min(pattern.col, 4)
-    const rowSpan = pattern.row
-    const rowSpanClass = rowSpan > 1 ? `row-span-${rowSpan}` : 'row-span-1'
-    const gridItemClass = `col-span-${smColSpan} md:col-span-${mdColSpan} ${rowSpanClass}`
-    return {
-        ...c,
-        posts,
-        gridItemClass,
-        layoutPattern: {
-            smCol: smColSpan,
-            mdCol: mdColSpan,
-            row: rowSpan,
-            index,
-        },
-    }
-})
-const description = 'Browse all blog categories including Laravel, PHP, Golang, Kubernetes, MySQL, Books, News, SEO, and Tools. Find tutorials, articles, and resources organized by topic.'
+const categories = BLOG_CATEGORIES
+    .map((c, index) => ({ ...c, posts: postMap.get(c.slug) ?? [], index }))
+    .filter(c => c.posts.length > 0)
+    .sort((a, b) => b.posts.length - a.posts.length)
+    .map((c, index) => {
+        const pattern = layoutPattern[index % layoutPattern.length]
+        const smColSpan = Math.min(pattern.col, 2)
+        const mdColSpan = Math.min(pattern.col, 4)
+        const rowSpan = pattern.row
+        const rowSpanClass = rowSpan > 1 ? `row-span-${rowSpan}` : 'row-span-1'
+        const gridItemClass = `col-span-${smColSpan} md:col-span-${mdColSpan} ${rowSpanClass}`
+        return {
+            ...c,
+            gridItemClass,
+            layoutPattern: { smCol: smColSpan, mdCol: mdColSpan, row: rowSpan, index },
+        }
+    })
+
+const description = 'Browse the real categories of the phpteacher.com blog: Laravel, PHP, MySQL, JavaScript, Composer, WordPress, Symfony, Docker, testing and more, with live post counts.'
 const URL = Astro.url.href
 ---
 
@@ -95,10 +82,10 @@ const URL = Astro.url.href
                         >
                             <BlogCategoryCard
                                 slug={category.slug}
-                                title={category.data.title}
-                                description={category.data.description}
-                                count={postMap.get(category.slug)?.length ?? 0}
-                                publishDate={timeago(postMap.get(category.slug)?.[0]?.data?.pubDate)}
+                                title={category.title}
+                                description={category.description}
+                                count={category.posts.length}
+                                publishDate={timeago(new Date(category.posts[0]?.date ?? ''))}
                                 layoutPattern={category.layoutPattern}
                             />
                         </div>

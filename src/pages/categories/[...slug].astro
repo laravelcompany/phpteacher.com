@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { type CollectionEntry, getCollection } from 'astro:content'
-import BlogCard from '@components/blog/BlogCard.astro'
+import BlogQaCard from '@components/blog/BlogQaCard.astro'
 import MainSection from '@components/ui/sections/MainSection.astro'
+import { BLOG_CATEGORIES, postsInCategory, sortedBlogQa } from '@support/blog-qa'
 import { SITE } from '@/config'
 
+const MAX_LISTED = 48
+
 export async function getStaticPaths() {
-    const categories = await getCollection('categories')
-    return categories.map(category => ({
+    return BLOG_CATEGORIES.map(category => ({
         params: { slug: category.slug },
         props: { category },
     }))
@@ -17,24 +18,22 @@ const { category } = Astro.props
 const URL = Astro.url.href
 const categoriesURL = `${Astro.url.origin}/categories`
 
-const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
-    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).filter((b) => {
-    return b.data.category === category.slug
-});
+const posts = postsInCategory(sortedBlogQa(), category)
+const listed = posts.slice(0, MAX_LISTED)
+const moreCount = posts.length - listed.length
 ---
 
 <BaseLayout
-    title={category.data.title}
-    description={category.data.description}
+    title={category.title}
+    description={category.description}
     structuredData={{
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         'inLanguage': 'en-US',
         '@id': URL,
         'url': URL,
-        'name': `${category.data.title} - ${SITE.title}`,
-        'description': category.data.description,
+        'name': `${category.title} - ${SITE.title}`,
+        'description': category.description,
         'isPartOf': {
             '@type': 'WebSite',
             'url': categoriesURL,
@@ -43,16 +42,24 @@ const posts: CollectionEntry<'posts'>[] = (await getCollection('posts')).sort(
     }}
 >
     <MainSection
-        title={category.data.title}
-        subTitle={category.data.description}
+        title={category.title}
+        subTitle={`${category.description} - ${posts.length} posts.`}
         btnExists={true}
-        btnTitle="Go to List"
+        btnTitle="All categories"
         btnURL="/categories"
     />
 
     <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mb-10 2xl:max-w-full">
         <div class="grid gap-6 grid-cols-1 lg:grid-cols-3 sm:grid-cols-2">
-            {posts.map(b => <BlogCard blog={b} />)}
+            {listed.map(p => (
+                <BlogQaCard id={p.id} title={p.title} excerpt={p.excerpt} date={p.date} category={p.category} banner={p.banner || p.image} />
+            ))}
         </div>
+        {moreCount > 0 && (
+            <p class="mt-10 text-center text-sm text-neutral-500 dark:text-neutral-400">
+                Showing the {MAX_LISTED} newest of {posts.length} posts in {category.title} -
+                <a class="text-orange-400 hover:text-orange-500 underline underline-offset-2" href="/blog/">browse the full blog</a>.
+            </p>
+        )}
     </section>
 </BaseLayout>
