@@ -32,8 +32,8 @@ if (!existsSync(partsDir)) {
 
 const files = readdirSync(partsDir).filter((f) => f.endsWith(".html"));
 console.log(`found ${files.length} harvested post pages`);
-if (files.length < 15000) {
-  console.error(`expected >15000 post pages, got ${files.length}`);
+if (files.length < 9000) {
+  console.error(`expected >9000 post pages, got ${files.length}`);
   process.exit(1);
 }
 

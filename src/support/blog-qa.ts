@@ -1,8 +1,12 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-// The ~6k Q&A posts reused from laravelcompany.com live in src/blog-qa/ as
-// plain JSON files, read with node:fs at build time. They deliberately do NOT
+// The blog corpus (the questions/json Q&A posts and the long-form articles
+// from the old Posts section) lives in src/blog-qa/ as
+// plain JSON files, read with node:fs at build time.
+// The ~6k posts reused from laravelcompany.com were dropped in November 2026
+// (AdSense low-value-content review); their old URLs are answered from
+// src/blog-removed-slugs.json (see src/worker.js). They deliberately do NOT
 // go through an Astro content collection: a glob-loaded data collection turns
 // every JSON file into a vite module, which exhausts the build heap at this
 // volume.

@@ -1,5 +1,5 @@
 // Runs after a full local build (no SKIP_BLOG_POST_PAGES) and the blog tests.
-// Moves the ~16k blog post pages out of dist/ (they exceed the Pages
+// Moves the ~10k blog post pages out of dist/ (they exceed the Pages
 // per-deploy file limit) into batched KV bulk-upload JSON files under
 // kv-bulk/. The Worker serves them from KV at request time.
 import {
@@ -42,8 +42,8 @@ const isPostDir = (name) => {
 
 const postDirs = readdirSync(blogDir).filter(isPostDir);
 console.log(`found ${postDirs.length} post pages`);
-if (postDirs.length < 15000) {
-  console.error(`expected >15000 post pages, got ${postDirs.length}`);
+if (postDirs.length < 9000) {
+  console.error(`expected >9000 post pages, got ${postDirs.length}`);
   process.exit(1);
 }
 
@@ -65,6 +65,16 @@ const elements = [...batches.entries()].map(([n, posts]) => ({
   key: `blog-batch-${String(n).padStart(3, "0")}`,
   value: JSON.stringify(posts),
 }));
+
+// Old URLs of posts removed from the corpus (see src/worker.js): the Worker
+// redirects or 410s them from this map instead of serving a 404.
+const removedPath = join(root, "src", "blog-removed-slugs.json");
+if (existsSync(removedPath)) {
+  elements.push({
+    key: "blog-removed-slugs",
+    value: readFileSync(removedPath, "utf8").trim(),
+  });
+}
 
 const chunks = [];
 let current = [];

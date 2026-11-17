@@ -41,7 +41,7 @@ test('blog pagination page 2 exists', () => {
 
 test('post pages were generated', () => {
     const postDirs = readdirSync(join(out, 'blog')).filter(isPostDir);
-    assert.ok(postDirs.length > 15000, `expected >15000 post pages, got ${postDirs.length}`);
+    assert.ok(postDirs.length > 9000, `expected >9000 post pages, got ${postDirs.length}`);
     const html = readFileSync(join(out, 'blog', postDirs[0], 'index.html'), 'utf8');
     assert.match(html, /<article/, 'post page missing <article>');
 });

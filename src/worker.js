@@ -3,7 +3,7 @@ import { blogBatchKey } from "./blog-kv-hash.js";
 // phpteacher.com front door.
 // - /blog/<slug> post pages are served from KV (batched, written at deploy
 //   time by scripts/extract-blog-posts.mjs or scripts/assemble-kv-bulk.mjs)
-//   because the ~16k post files exceed the Pages per-deploy file limit.
+//   because the ~10k post files exceed the Pages per-deploy file limit.
 //   Each post is stored gzip-compressed and base64-encoded: the raw harvest
 //   is ~700MB, which would not fit the 1GB free-tier KV storage next to
 //   ecudocs; gzipped it is ~100MB.
@@ -14,6 +14,23 @@ function b64ToBytes(b64) {
   const bytes = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
   return bytes;
+}
+
+// Posts removed from the blog (the laravelcompany.com duplicates dropped in
+// November 2026) are recorded in KV under "blog-removed-slugs":
+// { "<slug>": "r" | "g" }. "r" 308-redirects the old URL to the identical
+// article on laravelcompany.com; "g" answers 410 Gone. The map is written at
+// deploy time from src/blog-removed-slugs.json by scripts/extract-blog-posts.mjs.
+let removedSlugs; // undefined = not loaded yet, null = unavailable
+async function removedMark(env, slug) {
+  if (removedSlugs === undefined) {
+    try {
+      removedSlugs = (await env.BLOG_KV.get("blog-removed-slugs", "json")) || null;
+    } catch {
+      removedSlugs = null;
+    }
+  }
+  return removedSlugs ? removedSlugs[slug] : undefined;
 }
 
 export default {
@@ -57,6 +74,21 @@ export default {
               "content-type": "text/html; charset=utf-8",
               "cache-control": "public, max-age=3600",
             },
+          });
+        }
+        // Removed post: send readers to the identical laravelcompany.com
+        // article, or answer 410 when no equivalent exists there.
+        const mark = await removedMark(env, slug);
+        if (mark === "r") {
+          return Response.redirect(
+            `https://laravelcompany.com/blog/${slug}/`,
+            308,
+          );
+        }
+        if (mark === "g") {
+          return new Response("Gone", {
+            status: 410,
+            headers: { "content-type": "text/plain; charset=utf-8" },
           });
         }
         // Unknown slug: fall through to the static 404 page.

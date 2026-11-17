@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
 const routes = [
     "",
-    "posts/",
+    "blog/",
     "categories/",
     "manual/",
     "magazines/",

@@ -44,7 +44,7 @@ test("every post is in the batch its slug hashes to", () => {
       }
     }
   }
-  assert.ok(checked > 15000, `expected >15000 posts, got ${checked}`);
+  assert.ok(checked > 9000, `expected >9000 posts, got ${checked}`);
 });
 
 test("a new questions/json post is in the KV payload", () => {
@@ -66,6 +66,32 @@ test("a new questions/json post is in the KV payload", () => {
     /How to install MySQLi/,
     "new questions/json post missing from KV payload",
   );
+});
+
+test("removed duplicates are out of the payload; the removed-slugs key ships", () => {
+  const removed = JSON.parse(
+    readFileSync(join(root, "src", "blog-removed-slugs.json"), "utf8")
+  );
+  const inPayload = new Set();
+  let removedKeyCount = 0;
+  for (const f of chunks) {
+    const arr = JSON.parse(readFileSync(join(kvDir, f), "utf8"));
+    for (const el of arr) {
+      if (el.key === "blog-removed-slugs") {
+        removedKeyCount++;
+        assert.deepEqual(
+          JSON.parse(el.value),
+          removed,
+          "blog-removed-slugs payload differs from src/blog-removed-slugs.json"
+        );
+        continue;
+      }
+      for (const slug of Object.keys(JSON.parse(el.value))) inPayload.add(slug);
+    }
+  }
+  assert.equal(removedKeyCount, 1, "blog-removed-slugs key missing from chunks");
+  const leaked = Object.keys(removed).filter((s) => inPayload.has(s));
+  assert.deepEqual(leaked, [], `removed slugs still in KV payload: ${leaked.slice(0, 3)}`);
 });
 
 test("post pages are out of dist, index and pagination stay", () => {
