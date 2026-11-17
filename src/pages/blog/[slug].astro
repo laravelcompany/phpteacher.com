@@ -16,7 +16,17 @@ export async function getStaticPaths() {
     // the Worker from KV instead (src/worker.js); a full local build renders
     // them and scripts/extract-blog-posts.mjs ships them to KV.
     if (process.env.SKIP_BLOG_POST_PAGES === '1') return []
-    return loadBlogQa().map(post => ({
+    let posts = loadBlogQa()
+    // Sandboxes with short command limits can render the posts in slices:
+    // BLOG_SLICE=2/8 renders only posts whose index mod 8 is 2. The slices'
+    // post HTML is harvested per run and assembled into kv-bulk afterwards
+    // (scripts/assemble-kv-bulk.mjs).
+    const slice = process.env.BLOG_SLICE
+    if (slice) {
+        const [i, n] = slice.split('/').map(Number)
+        posts = posts.filter((_, idx) => idx % n === i)
+    }
+    return posts.map(post => ({
         params: { slug: post.id },
         props: { post },
     }))
