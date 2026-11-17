@@ -26,26 +26,21 @@ export default {
         const batch = await env.BLOG_KV.get(blogBatchKey(slug), "json");
         const packed = batch && batch[slug];
         if (packed) {
+          // Inflate in the worker and hand the edge plain HTML: the edge
+          // then negotiates br/zstd/gzip with the client itself, exactly
+          // like it does for the static assets. Setting content-encoding
+          // here made the edge compress the payload a second time.
           const gz = b64ToBytes(packed);
-          const headers = {
-            "content-type": "text/html; charset=utf-8",
-            "cache-control": "public, max-age=3600",
-            vary: "accept-encoding",
-          };
-          const acceptsGzip = (
-            request.headers.get("accept-encoding") || ""
-          ).includes("gzip");
-          if (acceptsGzip) {
-            return new Response(gz, {
-              status: 200,
-              headers: { ...headers, "content-encoding": "gzip" },
-            });
-          }
-          // Rare non-gzip client: inflate in the worker.
           const stream = new Blob([gz])
             .stream()
             .pipeThrough(new DecompressionStream("gzip"));
-          return new Response(stream, { status: 200, headers });
+          return new Response(stream, {
+            status: 200,
+            headers: {
+              "content-type": "text/html; charset=utf-8",
+              "cache-control": "public, max-age=3600",
+            },
+          });
         }
         // Unknown slug: fall through to the static 404 page.
       } catch (err) {
