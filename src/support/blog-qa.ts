@@ -1,5 +1,6 @@
-import { readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { normalizeBlogDates } from './blog-dates.mjs'
 
 // The blog corpus (the questions/json Q&A posts and the long-form articles
 // from the old Posts section) lives in src/blog-qa/ as
@@ -15,6 +16,8 @@ export interface BlogQaPost {
     id: string
     title: string
     date: string
+    sourceCreatedAt?: string
+    modifiedAt?: string
     author: string
     authorRole: string
     authorAvatar: string
@@ -38,14 +41,14 @@ export function loadBlogQa(): BlogQaPost[] {
             // The original harvest stored missing images as the string 'None'.
             if (j.image === 'None' || j.image === 'null') j.image = null
             if (j.banner === 'None' || j.banner === 'null') j.banner = null
-            return { id: f.replace(/\.json$/, ''), ...j } as BlogQaPost
+            return { id: f.replace(/\.json$/, ''), ...normalizeBlogDates(j, existsSync(join('questions/json', f))) } as BlogQaPost
         })
 }
 
 export function sortedBlogQa(): BlogQaPost[] {
     return loadBlogQa().sort((a, b) => {
-        const ta = new Date(a.date).valueOf() || 0
-        const tb = new Date(b.date).valueOf() || 0
+        const ta = new Date(a.date || a.sourceCreatedAt || '').valueOf() || 0
+        const tb = new Date(b.date || b.sourceCreatedAt || '').valueOf() || 0
         return tb - ta || a.id.localeCompare(b.id)
     })
 }

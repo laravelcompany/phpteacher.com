@@ -24,7 +24,10 @@ export default defineConfig({
     integrations: [
         partytown(),
         mdx(),
-        sitemap(),
+        sitemap({
+            // KV article URLs belong exclusively to sitemap-blog.xml.
+            filter: page => !/^\/blog\/[^/]+\/$/.test(new URL(page).pathname),
+        }),
         tailwind(),
         react(),
         // Slice builds (BLOG_SLICE) set SKIP_COMPRESS=1: post HTML is

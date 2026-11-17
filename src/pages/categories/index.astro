@@ -85,7 +85,7 @@ const URL = Astro.url.href
                                 title={category.title}
                                 description={category.description}
                                 count={category.posts.length}
-                                publishDate={timeago(new Date(category.posts[0]?.date ?? ''))}
+                                publishDate={category.posts[0]?.date ? timeago(new Date(category.posts[0].date)) : ''}
                                 layoutPattern={category.layoutPattern}
                             />
                         </div>

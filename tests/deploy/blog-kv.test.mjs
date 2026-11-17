@@ -22,6 +22,10 @@ test("kv bulk chunks exist and parse", () => {
     const arr = JSON.parse(readFileSync(join(kvDir, f), "utf8"));
     assert.ok(Array.isArray(arr) && arr.length > 0, `${f} empty`);
     for (const el of arr) {
+      if (el.key === "blog-removed-slugs") {
+        assert.deepEqual(JSON.parse(el.value), JSON.parse(readFileSync(join(root, "src/blog-removed-slugs.json"), "utf8")));
+        continue;
+      }
       assert.match(el.key, /^blog-batch-\d{3}$/, `bad key ${el.key}`);
       const posts = JSON.parse(el.value);
       const slugs = Object.keys(posts);
@@ -37,6 +41,7 @@ test("every post is in the batch its slug hashes to", () => {
   for (const f of chunks) {
     const arr = JSON.parse(readFileSync(join(kvDir, f), "utf8"));
     for (const el of arr) {
+      if (el.key === "blog-removed-slugs") continue;
       const posts = JSON.parse(el.value);
       for (const slug of Object.keys(posts)) {
         assert.equal(blogBatchKey(slug), el.key, `${slug} in wrong batch`);

@@ -91,6 +91,7 @@ function truncateDescription(text: string, max = 157): string {
 const description = truncateDescription(cleanExcerpt)
 const postUrl = new URL(`/blog/${post.id}/`, SITE.url).href
 const isoDate = (() => {
+    if (!data.date) return undefined
     const t = new Date(data.date)
     return isNaN(t.valueOf()) ? data.date : t.toISOString()
 })()
@@ -181,7 +182,7 @@ const articleSchema = {
                                     <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
                                 </svg>
                             </li>
-                            <li class="inline-flex items-center text-sm text-neutral-500 dark:text-neutral-500">
+                            {data.date && <li class="inline-flex items-center text-sm text-neutral-500 dark:text-neutral-500">
                                 {formatDate(data.date)}
                                 <svg
                                     class="flex-shrink-0 size-5 text-neutral-500 dark:text-neutral-600 mx-2"
@@ -194,7 +195,7 @@ const articleSchema = {
                                 >
                                     <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
                                 </svg>
-                            </li>
+                            </li>}
                             <li
                                 class="inline-flex items-center text-sm text-neutral-500 dark:text-neutral-500"
                                 aria-current="page"

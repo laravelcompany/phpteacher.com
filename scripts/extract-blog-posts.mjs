@@ -96,7 +96,7 @@ chunks.forEach((chunk, i) =>
 );
 
 const totalPosts = elements.reduce(
-  (acc, el) => acc + Object.keys(JSON.parse(el.value)).length,
+  (acc, el) => acc + (el.key === "blog-removed-slugs" ? 0 : Object.keys(JSON.parse(el.value)).length),
   0
 );
 const distFiles = execSync(`find "${dist}" -type f | wc -l`, {
