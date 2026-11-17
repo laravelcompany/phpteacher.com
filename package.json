@@ -17,8 +17,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "node --test tests/*.test.mjs",
-    "test:blog": "node --test tests/blog-visible.test.mjs",
-    "test:kv": "node --test tests/blog-kv.test.mjs",
+    "test:blog": "node --test tests/deploy/blog-visible.test.mjs",
+    "test:kv": "node --test tests/deploy/blog-kv.test.mjs",
     "extract:blog": "node scripts/extract-blog-posts.mjs"
   },
   "dependencies": {

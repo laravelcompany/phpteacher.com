@@ -8,7 +8,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-const root = new URL('../', import.meta.url).pathname;
+const root = new URL('../../', import.meta.url).pathname;
 const out = join(root, 'dist');
 
 const isPostDir = (name) => {

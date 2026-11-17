@@ -4,9 +4,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { blogBatchKey } from "../src/blog-kv-hash.js";
+import { execSync } from "node:child_process";
+import { blogBatchKey } from "../../src/blog-kv-hash.js";
 
-const root = new URL("../", import.meta.url).pathname;
+const root = new URL("../../", import.meta.url).pathname;
 const out = join(root, "dist");
 const kvDir = join(root, "kv-bulk");
 
@@ -46,14 +47,17 @@ test("every post is in the batch its slug hashes to", () => {
 
 test("a new questions/json post is in the KV payload", () => {
   const key = blogBatchKey("1002-how-to-install-mysqli");
-  const chunk = chunks
-    .map((f) => JSON.parse(readFileSync(join(kvDir, f), "utf8")))
-    .flat()
-    .find((el) => el.key === key);
-  assert.ok(chunk, `${key} not found in any chunk`);
-  const posts = JSON.parse(chunk.value);
+  let found = "";
+  for (const f of chunks) {
+    const arr = JSON.parse(readFileSync(join(kvDir, f), "utf8"));
+    const el = arr.find((e) => e.key === key);
+    if (el) {
+      found = JSON.parse(el.value)["1002-how-to-install-mysqli"] ?? "";
+      break;
+    }
+  }
   assert.match(
-    posts["1002-how-to-install-mysqli"] ?? "",
+    found,
     /How to install MySQLi/,
     "new questions/json post missing from KV payload",
   );
@@ -72,9 +76,11 @@ test("post pages are out of dist, index and pagination stay", () => {
 });
 
 test("dist is comfortably under the Pages file limit", () => {
-  const manifest = JSON.parse(readFileSync(join(kvDir, "manifest.json"), "utf8"));
+  const distFiles = Number(
+    execSync(`find "${out}" -type f | wc -l`, { encoding: "utf8" }).trim()
+  );
   assert.ok(
-    manifest.distFiles < 19500,
-    `dist has ${manifest.distFiles} files, too close to the 20k Pages limit`,
+    distFiles < 19500,
+    `dist has ${distFiles} files, too close to the 20k Pages limit`,
   );
 });

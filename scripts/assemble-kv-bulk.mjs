@@ -2,7 +2,8 @@
 // Used when the full build had to be rendered in BLOG_SLICE=i/N runs:
 // each slice build's post HTML files were copied into kv-parts/<slug>.html.
 // Produces the same output as scripts/extract-blog-posts.mjs, without
-// needing a single monolithic build.
+// needing a single monolithic build. Streams batch by batch: the full
+// harvest is ~700MB and cannot be held in one heap.
 import {
   readdirSync,
   readFileSync,
@@ -10,6 +11,10 @@ import {
   mkdirSync,
   writeFileSync,
   existsSync,
+  openSync,
+  writeSync,
+  closeSync,
+  statSync,
 } from "node:fs";
 import { join } from "node:path";
 import { blogBatchIndex } from "../src/blog-kv-hash.js";
@@ -31,50 +36,55 @@ if (files.length < 15000) {
   process.exit(1);
 }
 
-const batches = new Map(); // batchIndex -> {slug: html}
+// Group slugs by batch first (cheap), then read HTML one batch at a time.
+const byBatch = new Map(); // batchIndex -> [slug]
 for (const f of files) {
   const slug = f.replace(/\.html$/, "");
-  const html = readFileSync(join(partsDir, f), "utf8");
   const n = blogBatchIndex(slug);
-  if (!batches.has(n)) batches.set(n, {});
-  batches.get(n)[slug] = html;
+  if (!byBatch.has(n)) byBatch.set(n, []);
+  byBatch.get(n).push(slug);
 }
 
 rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 
-const elements = [...batches.entries()].map(([n, posts]) => ({
-  key: `blog-batch-${String(n).padStart(3, "0")}`,
-  value: JSON.stringify(posts),
-}));
-
-const chunks = [];
-let current = [];
+let chunkIdx = -1;
+let fd = -1;
 let currentBytes = 2; // []
-for (const el of elements) {
-  const size = Buffer.byteLength(el.value) + el.key.length + 32;
-  if (currentBytes + size > MAX_CHUNK_BYTES && current.length) {
-    chunks.push(current);
-    current = [];
-    currentBytes = 2;
+let first = true;
+const openChunk = () => {
+  chunkIdx++;
+  fd = openSync(join(outDir, `chunk-${chunkIdx}.json`), "w");
+  writeSync(fd, "[");
+  currentBytes = 2;
+  first = true;
+};
+openChunk();
+
+for (const [n, slugs] of [...byBatch.entries()].sort((a, b) => a[0] - b[0])) {
+  const key = `blog-batch-${String(n).padStart(3, "0")}`;
+  const posts = {};
+  for (const slug of slugs) {
+    posts[slug] = readFileSync(join(partsDir, `${slug}.html`), "utf8");
   }
-  current.push(el);
-  currentBytes += size;
+  const el = JSON.stringify({ key, value: JSON.stringify(posts) });
+  if (currentBytes + el.length > MAX_CHUNK_BYTES && !first) {
+    writeSync(fd, "]");
+    closeSync(fd);
+    openChunk();
+  }
+  if (!first) writeSync(fd, ",");
+  writeSync(fd, el);
+  currentBytes += el.length;
+  first = false;
 }
-if (current.length) chunks.push(current);
+writeSync(fd, "]");
+closeSync(fd);
 
-chunks.forEach((chunk, i) =>
-  writeFileSync(join(outDir, `chunk-${i}.json`), JSON.stringify(chunk))
-);
-
-const totalPosts = elements.reduce(
-  (acc, el) => acc + Object.keys(JSON.parse(el.value)).length,
-  0
-);
 const manifest = {
-  posts: totalPosts,
-  batches: elements.length,
-  chunks: chunks.length,
+  posts: files.length,
+  batches: byBatch.size,
+  chunks: chunkIdx + 1,
 };
 writeFileSync(join(outDir, "manifest.json"), JSON.stringify(manifest, null, 2));
 console.log(JSON.stringify(manifest));
