@@ -148,27 +148,23 @@
   color: var(--docsearch-muted-color);
 }
 
-/* Footer: keep the key hints on one line and the Algolia logo beside them. */
+/* Footer: key hints only, centered. The "Search by Algolia" logo is
+   hidden: the popup is backed by the site's own /api/search, not Algolia,
+   so the attribution would be misleading. */
 .DocSearch-Footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   height: auto;
-  min-height: 52px;
+  min-height: 44px;
   padding: 10px 16px;
 }
 
 .DocSearch-Footer .DocSearch-Commands {
-  order: 1;
   flex-shrink: 1;
   min-width: 0;
-}
-
-.DocSearch-Footer .DocSearch-Logo {
-  order: 2;
-  flex-shrink: 0;
 }
 
 .DocSearch-Commands {
@@ -206,11 +202,7 @@
 }
 
 .DocSearch-Logo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-  white-space: nowrap;
+  display: none;
 }
 
 .DocSearch-Label {
@@ -220,15 +212,11 @@
   line-height: 1;
 }
 
-/* On small screens the hints crowd the logo; keep just the logo. */
+/* On small screens the hints crowd the popup; with the logo hidden the
+   footer would be empty, so drop it. */
 @media (max-width: 640px) {
-  .DocSearch-Commands {
-    display: none;
-  }
-
   .DocSearch-Footer {
-    justify-content: flex-end;
-    min-height: 44px;
+    display: none;
   }
 }
 

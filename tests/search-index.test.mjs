@@ -75,3 +75,8 @@ test("search popup queries the own /api/search route, not the Algolia demo index
     assert.match(worker, /\/api\/search/);
     assert.match(worker, /search-index\.json/);
 });
+
+test("popup footer hides the Algolia attribution (own backend, not Algolia)", () => {
+    const css = read("src/components/support/search/AlgoliaDocSearch.css");
+    assert.match(css, /\.DocSearch-Logo\s*\{\s*display:\s*none/);
+});
