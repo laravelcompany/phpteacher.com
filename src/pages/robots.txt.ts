@@ -21,7 +21,8 @@ User-agent: *
 Allow: /
 
 Sitemap: ${new URL('sitemap-index.xml', import.meta.env.SITE).href}
-Sitemap: ${new URL('sitemap-blog.xml', import.meta.env.SITE).href}`.trim()
+Sitemap: ${new URL('sitemap-blog.xml', import.meta.env.SITE).href}
+Sitemap: ${new URL('news-sitemap.xml', import.meta.env.SITE).href}`.trim()
 
 export const GET: APIRoute = () => {
     return new Response(robotsTxt, {

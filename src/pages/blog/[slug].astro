@@ -98,13 +98,24 @@ const isoDate = (() => {
 const bannerSrc = data.banner || data.image || '/logo.svg'
 const bannerUrl = bannerSrc.startsWith('http') ? bannerSrc : Astro.url.origin + bannerSrc
 const tags: string[] = Array.isArray(data.tags) ? data.tags : []
+const isoModified = (() => {
+    if (!data.modifiedAt) return isoDate
+    const t = new Date(data.modifiedAt)
+    return isNaN(t.valueOf()) ? isoDate : t.toISOString()
+})()
 const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': 'NewsArticle',
     headline: data.title,
     description,
     image: [bannerUrl],
     datePublished: isoDate,
+    dateModified: isoModified,
+    publisher: {
+        '@type': 'Organization',
+        name: 'PHP Teacher',
+        logo: { '@type': 'ImageObject', url: SITE.url + '/logo.svg' },
+    },
     author: {
         '@type': 'Person',
         name: data.author,
