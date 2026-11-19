@@ -1,0 +1,45 @@
+name: Build and Deploy to Cloudflare Workers
+
+# Deploys the static site + Worker (src/worker.js). The ~10k blog post pages
+# are NOT built here: they live in KV and are written by
+# scripts/extract-blog-posts.mjs after a full local build, so this job builds
+# with SKIP_BLOG_POST_PAGES=1 and leaves KV untouched.
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - name: Build (tests, search index, Astro, sitemaps, verify)
+        run: npm run build
+        env:
+          SKIP_BLOG_POST_PAGES: '1'
+          NODE_OPTIONS: '--max-old-space-size=6144'
+      - name: Deploy Worker and assets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          for attempt in 1 2 3; do
+            if npx wrangler@4 deploy -c wrangler.worker.jsonc; then exit 0; fi
+            echo "::warning::wrangler deploy attempt $attempt of 3 failed"
+            [ "$attempt" -lt 3 ] && sleep 60
+          done
+          exit 1
