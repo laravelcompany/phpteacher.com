@@ -56,6 +56,6 @@ test('the questions/json posts are included', () => {
 
 test('nav and footer link to the blog on the homepage', () => {
     const home = readFileSync(join(out, 'index.html'), 'utf8');
-    const links = home.match(/href="\/blog\/"/g) ?? [];
+    const links = home.match(/href=["']?\/blog\/["' >]/g) ?? [];
     assert.ok(links.length >= 2, `expected nav+footer /blog links, got ${links.length}`);
 });
