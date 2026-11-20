@@ -8,6 +8,11 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      full_build:
+        description: 'Render all blog post pages and upload them to KV (slow)'
+        type: boolean
+        default: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -30,8 +35,27 @@ jobs:
       - name: Build (tests, search index, Astro, sitemaps, verify)
         run: npm run build
         env:
-          SKIP_BLOG_POST_PAGES: '1'
+          SKIP_BLOG_POST_PAGES: ${{ inputs.full_build && '0' || '1' }}
           NODE_OPTIONS: '--max-old-space-size=6144'
+      - name: Extract blog posts to KV payload (full build only)
+        if: ${{ inputs.full_build }}
+        run: |
+          npm run test:blog
+          node scripts/extract-blog-posts.mjs
+          npm run test:kv
+      - name: Upload blog posts to KV (full build only)
+        if: ${{ inputs.full_build }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          for f in kv-bulk/chunk-*.json; do
+            for attempt in 1 2 3; do
+              if npx wrangler@4 kv bulk put "$f" --binding BLOG_KV -c wrangler.worker.jsonc --remote; then break; fi
+              [ "$attempt" -eq 3 ] && exit 1
+              sleep 30
+            done
+          done
       - name: Deploy Worker and assets
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
